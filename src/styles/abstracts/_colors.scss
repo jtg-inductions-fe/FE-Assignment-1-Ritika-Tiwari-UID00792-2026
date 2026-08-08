@@ -1,0 +1,30 @@
+//Raw color variables
+$black: #000000;
+$white: #ffffff;
+$hot-pink: #f85e9f;
+$orange: #ff5722;
+$yellow: #facd49;
+$violet: #5d50c6;
+$grey-scale-black: #191825;
+$grey-scale-black-10: #191825;
+
+//Text colors
+$text-hero: $black;
+$text-primary: $grey-scale-black;
+$text-primary-alpha-50: rgba($grey-scale-black, 0.5);
+$text-primary-alpha-75: rgba($grey-scale-black, 0.75);
+$text-primary-alpha-10: rgba($grey-scale-black, 0.1);
+$text-primary-alpha-5: rgba($grey-scale-black, 0.05);
+$text-seconday: $hot-pink;
+$text-user-data: $orange;
+$shadow-blurr-50: rgba($orange, 0.5);
+
+//Background colors of elements (Buttons)
+$btn-primary: $violet;
+$btn-secondary: $white;
+$bg-tracker-active: $hot-pink;
+$bg-tracker-inactive: $text-primary-alpha-5;
+
+//Border colors
+$border-primary: $text-primary-alpha-10;
+$border-secondary: $text-primary-alpha-5;

@@ -1,1 +1,5 @@
-// TODO: Add styles as per the requirement
+@import '../styles/base/reset';
+@import '../styles/abstracts/variables';
+@import '../styles/abstracts/mixins';
+@import url(../styles/vendors/_icomoon.scss);
+@import url(../styles/vendors/_fonts.scss);
