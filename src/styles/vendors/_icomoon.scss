@@ -1,11 +1,12 @@
 @font-face {
     font-family: 'icomoon';
-    src: url('assetsfonts/icomoon.eot?xxn511');
+    src: url('../../../assets/fonts/icomoon.eot?pcolqy');
     src:
-        url('assets/fonts/icomoon.eot?xxn511#iefix') format('embedded-opentype'),
-        url('assets/fonts/icomoon.ttf?xxn511') format('truetype'),
-        url('assets/fonts/icomoon.woff?xxn511') format('woff'),
-        url('assets/fonts/icomoon.svg?xxn511#icomoon') format('svg');
+        url('../../../assets/fonts/icomoon.eot?pcolqy#iefix')
+            format('embedded-opentype'),
+        url('../../../assets/fonts/icomoon.ttf?pcolqy') format('truetype'),
+        url('../../../assets/fonts/icomoon.woff?pcolqy') format('woff'),
+        url('../../../assets/fonts/icomoon.svg?pcolqy#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -27,42 +28,45 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-send:before {
-    content: '\e901';
-    color: #fff;
-}
-.icon-watch-demo:before {
-    content: '\e903';
-    color: #5d50c6;
-}
-.icon-bag:before {
-    content: '\e904';
-    color: #f85e9f;
-}
 .icon-instagram:before {
     content: '\e900';
+    color: #fff;
 }
-.icon-location:before {
-    content: '\e905';
-}
-.icon-user-add:before {
-    content: '\e902';
-}
-.icon-arrow-drop-up:before {
-    content: '\e906';
-}
-.icon-star-full:before {
-    content: '\e9d9';
-}
-.icon-arrow-right:before {
-    content: '\ea3c';
-}
-.icon-arrow-left:before {
-    content: '\ea40';
+.icon-menu:before {
+    content: '\e9bd';
 }
 .icon-facebook:before {
     content: '\ea90';
 }
 .icon-twitter:before {
     content: '\ea96';
+}
+.icon-star:before {
+    content: '\e901';
+}
+.icon-arrow-circle-down:before {
+    content: '\e902';
+}
+.icon-arrow-left:before {
+    content: '\e903';
+}
+.icon-arrow-right:before {
+    content: '\e904';
+    color: #fff;
+}
+.icon-bag:before {
+    content: '\e905';
+    color: #f85e9f;
+}
+.icon-hamburger:before {
+    content: '\e906';
+    color: #5d50c6;
+}
+.icon-watch-demo-icon:before {
+    content: '\e907';
+    color: #5d50c6;
+}
+.icon-yellow-star:before {
+    content: '\e908';
+    color: #facd49;
 }
