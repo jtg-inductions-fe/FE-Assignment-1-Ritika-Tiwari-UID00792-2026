@@ -1,13 +1,50 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Assignment-1</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="src/styles/main.scss" />
     </head>
     <body>
-        <div>Hello World</div>
+        <main class="page">
+            <header class="header">
+                <div class="header__logo">
+                    <img src="./public/assets/images/logo.svg" alt="Logo" />
+                </div>
+                <nav class="navigation" aria-label="Main Navigation">
+                    <button class="navigation__close-btn"></button>
+                    <div class="navigation__section">
+                        <a
+                            class="navigation__link navigation__link--primary"
+                            href="#"
+                            >Home</a
+                        >
+                        <a class="navigation__link" href="#">Discover</a>
+                        <a class="navigation__link" href="#">Special Deals</a>
+                        <a class="navigation__link" href="#">Contact</a>
+                    </div>
+                    <div class="navigation__section">
+                        <a
+                            class="navigation__link navigation__link--primary"
+                            href="#"
+                            >Log In</a
+                        >
+                        <a
+                            class="navigation__link button button--primary"
+                            href="#"
+                            >Sign Up</a
+                        >
+                    </div>
+                </nav>
+                <div class="header__hamburger">
+                    <img
+                        src="./public/assets/images/hamburger.svg"
+                        alt="Hamburger Menu"
+                    />
+                </div>
+            </header>
+        </main>
         <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>

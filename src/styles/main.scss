@@ -1,6 +1,25 @@
-@use '../styles/base/reset' as *;
-@use '../styles/abstracts/variables' as *;
-@use '../styles/abstracts/mixins' as *;
-@use '../styles/vendors/_icomoon.scss' as *;
-@use '../styles/vendors/_fonts.scss' as *;
-@use '../styles/abstracts/utilites' as *;
+@use '../styles/base/reset';
+@use '../styles/abstracts/variables';
+@use '../styles/abstracts/mixins';
+@use '../styles/vendors/_icomoon.scss';
+@use '../styles/vendors/_fonts.scss';
+@import '../styles/components/header';
+
+.page {
+    background-color: $white;
+    position: relative;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    width: 272px;
+    height: 348px;
+    top: -36px;
+    left: -33px;
+    background: $shadow-blurr-50;
+    border-radius: 50%;
+    filter: blur(150px);
+    pointer-events: none;
+    z-index: 0;
+}
