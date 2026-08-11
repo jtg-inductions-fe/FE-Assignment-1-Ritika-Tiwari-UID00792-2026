@@ -1,5 +1,5 @@
-@use '../base/layout-breakpoints';
-@use '../abstracts/variables';
+@use '../base/layout-breakpoints' as *;
+@use '../abstracts/variables' as *;
 
 // min width
 @mixin mq-min($breakpoint) {
