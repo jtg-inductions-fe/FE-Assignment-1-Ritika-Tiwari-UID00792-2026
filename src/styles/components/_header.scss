@@ -1,65 +1,131 @@
 .header {
-    margin-inline: 16px;
     max-width: 576px;
     padding-block: 3.2rem;
+    margin-inline: 1.6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
 .header {
+    .header__hamburger {
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon-hamburger {
+        font-size: 4rem;
+    }
+
     .navigation {
         position: fixed;
         bottom: 0;
         right: 0;
-        float: right;
-        width: 50vw;
+        width: 250px;
         height: 100vh;
-        display: none;
         flex-direction: column;
         order: 2;
         align-items: center;
         padding: 3rem;
-        gap: 5rem;
+        gap: 3.8rem;
         background-color: $white;
+        display: none;
+    }
 
-        .navigation__section {
+    .navigation__section--start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .navigation__link {
+        text-decoration: none;
+        text-align: center;
+        color: $text-primary-alpha-50;
+        font-size: $body-sm;
+        line-height: normal;
+        font-weight: $weight-bold;
+    }
+
+    .navigation__link--primary {
+        color: $text-primary;
+    }
+
+    .button {
+        text-decoration: none;
+        text-align: center;
+        color: $btn-secondary;
+        width: 11.5rem;
+        height: 4.9rem;
+        padding: 1.6rem 3.2rem;
+        background-color: $btn-primary;
+        border-radius: 100px;
+    }
+
+    .navigation__close-btn {
+        width: 3rem;
+        height: 3rem;
+        border-color: $border-primary;
+        border-radius: 5px;
+        align-self: flex-end;
+    }
+
+    .navigation__section--end {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.2rem;
+        position: fixed;
+        top: 20%;
+        right: 0;
+        z-index: 3;
+        display: none;
+    }
+}
+
+.header.navigation-open {
+    .navigation__section--end {
+        display: flex;
+    }
+
+    .navigation {
+        display: flex;
+    }
+}
+
+//responsive design for tablets
+@media screen and (min-width: map-get($breakpoints, sm)) and (max-width: map-get($breakpoints, xl)) {
+    .header {
+        max-width: 1200px;
+        padding-inline: 6.4rem;
+        position: relative;
+
+        .header__logo {
+            order: -1;
+            justify-self: center;
+        }
+
+        .header__hamburger {
+            order: -3;
+        }
+
+        .navigation__section--end {
+            max-width: 220px;
+            position: static;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
+            flex-direction: row;
+            justify-content: flex-end;
         }
 
-        .navigation__link {
-            text-decoration: none;
-            text-align: center;
-            color: $text-primary-alpha-50;
-            font-size: $body-sm;
-            line-height: normal;
-            font-weight: $weight-bold;
-        }
-
-        .navigation__link--primary {
-            color: $text-primary;
-        }
-
-        .button {
-            text-decoration: none;
-            text-align: center;
-            color: $btn-secondary;
-            width: 11.5rem;
-            height: 4.9rem;
-            padding: 1.6rem 3.2rem;
-            background-color: $btn-primary;
-            border-radius: 100px;
-        }
-
-        .navigation__close-btn {
-            width: 3rem;
-            height: 3rem;
-            border-color: $border-primary;
-            border-radius: 5px;
-            align-self: flex-end;
+        .navigation {
+            bottom: 0;
+            left: 0;
         }
     }
 }

@@ -1,18 +1,13 @@
 const hamburger = document.querySelector('.header__hamburger');
-const navigationContainer = document.querySelector('.navigation');
-let hambugerIsOpen = false;
+const header = document.querySelector('.header');
+const closingButton = document.querySelector('.navigation__close-btn');
+
+header.classList.remove('navigation-open');
 
 hamburger.addEventListener('click', () => {
-    navigationContainer.style.display = 'flex';
-    hamburger.style.display = 'none';
-    hambugerIsOpen = true;
+    header.classList.toggle('navigation-open');
 });
 
-const closingButton = document.querySelector('.navigation__close-btn');
 closingButton.addEventListener('click', () => {
-    if (hambugerIsOpen) {
-        navigationContainer.style.display = 'none';
-        hamburger.style.display = 'block';
-        hambugerIsOpen = false;
-    }
+    header.classList.remove('navigation-open');
 });
