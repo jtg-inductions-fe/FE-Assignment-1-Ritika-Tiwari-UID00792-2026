@@ -1,5 +1,6 @@
-@use '../styles/base/reset';
-@use '../styles/abstracts/variables';
-@use '../styles/abstracts/mixins';
-@use '../styles/vendors/_icomoon.scss';
-@use '../styles/vendors/_fonts.scss';
+@use '../styles/base/reset' as *;
+@use '../styles/abstracts/variables' as *;
+@use '../styles/abstracts/mixins' as *;
+@use '../styles/vendors/_icomoon.scss' as *;
+@use '../styles/vendors/_fonts.scss' as *;
+@use '../styles/abstracts/utilites' as *;
