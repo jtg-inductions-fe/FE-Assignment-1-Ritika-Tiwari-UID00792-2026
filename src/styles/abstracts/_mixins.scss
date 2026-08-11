@@ -1,7 +1,7 @@
 @use '../base/layout-breakpoints' as *;
 @use '../abstracts/variables' as *;
 
-// min width
+/* media query mixin for handling responsiveness based on the min widths of the screens. */
 @mixin mq-min($breakpoint) {
     @if map-has-key($breakpoints, $breakpoint) {
         $breakpoint-value: map-get($breakpoints, $breakpoint);
@@ -13,42 +13,7 @@
         @warn 'Invalid breakpoint: #{$breakpoint}.';
     }
 }
-
-// max width
-@mixin mq-max($breakpoint) {
-    @if map-has-key($breakpoints, $breakpoint) {
-        $breakpoint-value: map-get($breakpoints, $breakpoint);
-
-        @media (max-width: ($breakpoint-value)) {
-            @content;
-        }
-    } @else {
-        @warn 'Invalid breakpoint: #{$breakpoint}.';
-    }
-}
-
-// min and max
-@mixin mq-between($lower, $upper) {
-    @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper)
-    {
-        $lower-breakpoint: map-get($breakpoints, $lower);
-        $upper-breakpoint: map-get($breakpoints, $upper);
-
-        @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
-            @content;
-        }
-    } @else {
-        @if (map-has-key($max-breakpoints, $lower) ==false) {
-            @warn 'Your lower breakpoint was invalid: #{$lower}.';
-        }
-
-        @if (map-has-key($min-breakpoints, $upper) ==false) {
-            @warn 'Your upper breakpoint was invalid: #{$upper}.';
-        }
-    }
-}
-
-//Pass the font name, file path, weight, and style into the mixin as variables.
+/*Pass the font name, file path, weight, and style into the mixin as variables. */
 @mixin font-face($name, $file, $weight: normal, $style: normal) {
     @font-face {
         font-family: $name;

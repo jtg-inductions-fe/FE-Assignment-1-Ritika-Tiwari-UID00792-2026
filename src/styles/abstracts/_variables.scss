@@ -3,9 +3,9 @@
 
 // Typography Variables and configuration
 
-//Font family
+//Font family used for the text fonts
 $font-primary: 'Circular Std';
-$font-path: '../../../assets/circular-std-font-family';
+$font-path: '../../../assets/fonts/circular-std-font-family';
 
 // Base configuration
 html {
@@ -13,7 +13,7 @@ html {
     font-family: $font-primary;
 }
 
-// Font Weights
+// Font Weights used for the texts
 $weight-light: 300;
 $weight-regular: 400;
 $weight-medium: 500;
@@ -21,14 +21,13 @@ $weight-semibold: 600;
 $weight-bold: 700;
 $weight-black: 900;
 
-// Line Heights
+// Line Heights used for the texts
 $line-heights: (
     normal: 1.2,
     loose: 1.6,
 );
 
 //Font-sizes for Headings
-
 $heading-h1: (
     'sm': 4rem,
     'md': 5.6rem,
@@ -45,7 +44,6 @@ $heading-h3: 3.5rem;
 $heading-h4: 2.8rem;
 
 // Font-sizes for Sub-headings
-
 $sub-heading-h1: (
     'sm': 1.6rem,
     'md': 2.3rem,
@@ -53,7 +51,6 @@ $sub-heading-h1: (
 $sub-heading-h2: 1.4rem;
 
 // Font-sizes for body text
-
 $body-sm: 1.4rem;
 $body-normal: 1.6rem;
 $body-md: 1.8rem;
