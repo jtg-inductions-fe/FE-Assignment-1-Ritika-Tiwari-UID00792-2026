@@ -1,11 +1,15 @@
 .header {
-    max-width: 576px;
+    max-width: map-get($map: $breakpoints, $key: sm);
     padding-block: 3.2rem;
-    margin-inline: 1.6rem;
+
+    padding-inline: 1.6rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: $white;
 }
 
 .header {
@@ -82,7 +86,7 @@
         align-items: center;
         gap: 3.2rem;
         position: fixed;
-        top: 20%;
+        top: 30vh;
         right: 0;
         z-index: 3;
         display: none;
@@ -100,11 +104,12 @@
 }
 
 //responsive design for tablets
-@media screen and (min-width: map-get($breakpoints, sm)) and (max-width: map-get($breakpoints, xl)) {
+@media screen and (min-width: map-get($breakpoints, sm)) and (max-width: map-get($breakpoints, xxl)) {
     .header {
-        max-width: 1200px;
-        padding-inline: 6.4rem;
-        position: relative;
+        max-width: map-get($breakpoints, xxl);
+        margin-inline: 3.2rem;
+        padding-inline: 3.2rem;
+        border-radius: 10px;
 
         .header__logo {
             order: -1;
@@ -126,6 +131,53 @@
         .navigation {
             bottom: 0;
             left: 0;
+        }
+    }
+}
+
+//reponsive layout for desktop screens
+@media screen and (min-width: map-get($breakpoints, xxl)) {
+    .header {
+        min-width: map-get($breakpoints, xl);
+        max-width: 1900px;
+        margin-top: 3.4rem;
+        margin-inline: 6.5rem;
+        padding-inline: 6.5rem;
+        top: 3.4rem;
+        border-radius: 10px;
+
+        .header__hamburger {
+            display: none;
+        }
+
+        .navigation__close-btn {
+            display: none;
+        }
+
+        .navigation {
+            height: initial;
+            width: initial;
+            padding: initial;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            background-color: $white;
+        }
+
+        .navigation__section--start {
+            display: flex;
+            flex-direction: row;
+            order: 2;
+            gap: 6.4rem;
+        }
+
+        .navigation__section--end {
+            max-width: 220px;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            order: 3;
         }
     }
 }
