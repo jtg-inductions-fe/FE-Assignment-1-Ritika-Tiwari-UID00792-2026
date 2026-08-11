@@ -1,4 +1,5 @@
 @use '../abstracts/variables';
+@use '../abstracts/mixins';
 
 @include font-face('Circular Std', 'CircularStd-Book', $weight-medium, normal);
 @include font-face('Circular Std', 'CircularStd-Book', $weight-bold, normal);
