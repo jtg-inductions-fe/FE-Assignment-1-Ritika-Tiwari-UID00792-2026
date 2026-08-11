@@ -1,7 +1,6 @@
 .header {
     max-width: map-get($map: $breakpoints, $key: sm);
     padding-block: 3.2rem;
-
     padding-inline: 1.6rem;
     display: flex;
     flex-direction: row;
@@ -31,13 +30,17 @@
         right: 0;
         width: 250px;
         height: 100vh;
+        display: none;
         flex-direction: column;
-        order: 2;
         align-items: center;
+        order: 2;
         padding: 3rem;
         gap: 3.8rem;
+        white-space: nowrap;
         background-color: $white;
-        display: none;
+        transform-origin: right;
+        animation-name: openingEffect;
+        animation-duration: 1s;
     }
 
     .navigation__section--start {
@@ -85,10 +88,14 @@
         flex-direction: column;
         align-items: center;
         gap: 3.2rem;
+        white-space: nowrap;
         position: fixed;
-        top: 30vh;
+        top: 350px;
         right: 0;
         z-index: 3;
+        transform-origin: right;
+        animation-name: openingEffect;
+        animation-duration: 1s;
         display: none;
     }
 }
@@ -103,7 +110,18 @@
     }
 }
 
-//responsive design for tablets
+//Hamburger opening animation
+@keyframes openingEffect {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+//responsive layout for tablet screens
 @media screen and (min-width: map-get($breakpoints, sm)) and (max-width: map-get($breakpoints, xxl)) {
     .header {
         max-width: map-get($breakpoints, xxl);
@@ -117,7 +135,7 @@
         }
 
         .header__hamburger {
-            order: -3;
+            order: -2;
         }
 
         .navigation__section--end {
@@ -126,11 +144,15 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
+            animation: none;
         }
 
         .navigation {
             bottom: 0;
             left: 0;
+            transform-origin: left;
+            animation-name: openingEffect;
+            animation-duration: 1s;
         }
     }
 }
@@ -162,6 +184,7 @@
             display: flex;
             flex-direction: row;
             background-color: $white;
+            animation: none;
         }
 
         .navigation__section--start {
@@ -178,6 +201,7 @@
             flex-direction: row;
             justify-content: flex-end;
             order: 3;
+            animation: none;
         }
     }
 }
