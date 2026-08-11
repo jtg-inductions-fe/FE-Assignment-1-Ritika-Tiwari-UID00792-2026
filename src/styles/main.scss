@@ -1,8 +1,11 @@
-@use '../styles/base/reset';
-@use '../styles/abstracts/variables';
-@use '../styles/abstracts/mixins';
-@use '../styles/vendors/_icomoon.scss';
-@use '../styles/vendors/_fonts.scss';
+@use 'sass:map';
+
+@use '../styles/base/reset' as *;
+@use '../styles/base/layout-breakpoints' as *;
+@use '../styles/abstracts/mixins' as *;
+@use '../styles/vendors/icomoon.scss' as *;
+@use '../styles/vendors/fonts' as *;
+@use '../styles/abstracts/colors' as *;
 @import '../styles/components/header';
 
 .page {
@@ -17,7 +20,7 @@
     height: 348px;
     top: -36px;
     left: -33px;
-    background: $shadow-blurr-50;
+    background: $shadow-blur-50;
     border-radius: 50%;
     filter: blur(150px);
     pointer-events: none;
