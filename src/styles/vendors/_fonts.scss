@@ -1,13 +1,5 @@
 @use '../abstracts/variables';
 
-@include font-face('Circular Std', 'CircularStd-Book', $weight-light, normal);
-@include font-face('Circular Std', 'CircularStd-Book', $weight-regular, normal);
 @include font-face('Circular Std', 'CircularStd-Book', $weight-medium, normal);
-@include font-face(
-    'Circular Std',
-    'CircularStd-Book',
-    $weight-semibold,
-    normal
-);
 @include font-face('Circular Std', 'CircularStd-Book', $weight-bold, normal);
 @include font-face('Circular Std', 'CircularStd-Book', $weight-black, normal);
