@@ -131,7 +131,7 @@
 }
 
 //responsive layout for tablet screens
-@media screen and (min-width: map-get($breakpoints, sm)) and (max-width: map-get($breakpoints, xxl)) {
+@include mq-between('sm', 'xxl') {
     .header {
         max-width: map-get($breakpoints, xxl);
         margin-inline: 3.2rem;
@@ -167,7 +167,7 @@
 }
 
 //reponsive layout for desktop screens
-@media screen and (min-width: map-get($breakpoints, xxl)) {
+@include mq-min('xxl') {
     .header {
         min-width: map-get($breakpoints, xl);
         max-width: 1900px;
