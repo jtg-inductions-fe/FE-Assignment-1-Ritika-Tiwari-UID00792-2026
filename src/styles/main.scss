@@ -1,5 +1,5 @@
-@import '../styles/base/reset';
-@import '../styles/abstracts/variables';
-@import '../styles/abstracts/mixins';
-@import url(../styles/vendors/_icomoon.scss);
-@import url(../styles/vendors/_fonts.scss);
+@use '../styles/base/reset';
+@use '../styles/abstracts/variables';
+@use '../styles/abstracts/mixins';
+@use '../styles/vendors/_icomoon.scss';
+@use '../styles/vendors/_fonts.scss';

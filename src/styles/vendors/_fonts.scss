@@ -1,33 +1,13 @@
-@import '../base/typography';
+@use '../abstracts/variables';
 
-$font-path: '../../../assets/circular-std-font-family';
-
-@font-face {
-    font-family: 'Circular Std';
-    src:
-        url('#{$font-path}/CircularStd-Book.woff2') format('woff2'),
-        url('../fonts/CircularStd-Book.woff') format('woff');
-    font-weight: $weight-book;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Circular Std';
-    src:
-        url('#{$font-path}/CircularStd-Medium.woff2') format('woff2'),
-        url('#{$font-path}/CircularStd-Medium.woff') format('woff');
-    font-weight: $weight-medium;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Circular Std';
-    src:
-        url('#{$font-path}/CircularStd-Bold.woff2') format('woff2'),
-        url('#{$font-path}/CircularStd-Bold.woff') format('woff');
-    font-weight: $weight-bold;
-    font-style: normal;
-    font-display: swap;
-}
+@include font-face('Circular Std', 'CircularStd-Book', $weight-light, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-regular, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-medium, normal);
+@include font-face(
+    'Circular Std',
+    'CircularStd-Book',
+    $weight-semibold,
+    normal
+);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-bold, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-black, normal);
