@@ -6,6 +6,7 @@
 @use '../vendors/icomoon' as *;
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
 
 header {
     position: sticky;
@@ -16,7 +17,7 @@ header {
 .header {
     max-width: map-get($map: $breakpoints, $key: 'md');
     padding-block: 3.2rem;
-    padding-inline: 1.6rem;
+    margin-inline: map-get($map: $margin-inline, $key: 'sm');
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -75,17 +76,6 @@ header {
         color: $text-primary;
     }
 
-    .button {
-        text-decoration: none;
-        text-align: center;
-        color: $btn-secondary;
-        width: 11.5rem;
-        height: 4.9rem;
-        padding: 1.6rem 3.2rem;
-        background-color: $btn-primary;
-        border-radius: 100px;
-    }
-
     .navigation__close-btn {
         width: 3rem;
         height: 3rem;
@@ -137,8 +127,7 @@ header {
 @include mq-min('md') {
     .header {
         max-width: map-get($breakpoints, xl);
-        margin-inline: 3.2rem;
-        padding-inline: 3.2rem;
+        margin-inline: map-get($map: $margin-inline, $key: 'md');
         border-radius: 10px;
 
         .header__logo {
@@ -171,13 +160,17 @@ header {
 
 //reponsive layout for desktop screens
 @include mq-min('xl') {
+    header {
+        background-color: transparent;
+    }
     .header {
         max-width: 100%;
         margin-top: 3.4rem;
-        margin-inline: 6.5rem;
+        margin-inline: calc(map-get($map: $margin-inline, $key: 'lg') - 6.5rem);
         padding-inline: 6.5rem;
         top: 3.4rem;
         border-radius: 10px;
+        background-color: $white;
 
         .header__hamburger {
             display: none;
