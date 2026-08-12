@@ -1,0 +1,27 @@
+@use '../base/layout-breakpoints' as *;
+@use '../abstracts/variables' as *;
+
+/* media query mixin for handling responsiveness based on the min widths of the screens. */
+@mixin mq-min($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    } @else {
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+/*Pass the font name, file path, weight, and style into the mixin as variables. */
+@mixin font-face($name, $file, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $name;
+        src:
+            url('#{$font-path}/#{$file}.woff2') format('woff2'),
+            url('../fonts/#{$file}.woff') format('woff');
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+    }
+}

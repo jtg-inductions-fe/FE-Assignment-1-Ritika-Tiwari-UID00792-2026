@@ -1,0 +1,72 @@
+@use 'colors' as *;
+@use '../base/layout-breakpoints' as *;
+
+// Typography Variables and configuration
+
+//Font family used for the text fonts
+$font-primary: 'Circular Std';
+$font-path: '../../../assets/fonts/circular-std-font-family';
+
+// Base configuration
+html {
+    font-size: 62.5%;
+    font-family: $font-primary;
+}
+
+// Font Weights used for the texts
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+$weight-black: 900;
+
+// Line Heights used for the texts
+$line-heights: (
+    normal: 1.2,
+    loose: 1.6,
+);
+
+//Font-sizes for Headings
+$heading-h1: (
+    'sm': 4rem,
+    'md': 5.6rem,
+    'lg': 6.9rem,
+);
+
+$heading-h2: (
+    'sm': 3.2rem,
+    'md': 4rem,
+    'lg': 4.4rem,
+);
+
+$heading-h3: 3.5rem;
+$heading-h4: 2.8rem;
+
+// Font-sizes for Sub-headings
+$sub-heading-h1: (
+    'sm': 1.6rem,
+    'md': 2.3rem,
+);
+$sub-heading-h2: 1.4rem;
+
+// Font-sizes for body text
+$body-sm: 1.4rem;
+$body-normal: 1.6rem;
+$body-md: 1.8rem;
+$body-lg: 2.3rem;
+
+//shadows for components
+$shadow-button-primary:
+    0 0 0 rgba($black, 0.1),
+    0 5px 11px rgba($black, 0.1);
+$shadow-button-secondary:
+    0 19px 19px rgba($black, 0.09),
+    0 43px 26px rgba($black, 0.05);
+
+//Consistent margin variables for sections of mobile tablet and desktop layouts
+$margin-inline: (
+    'sm': 1.6rem,
+    'md': 6.4rem,
+    'lg': 13rem,
+);

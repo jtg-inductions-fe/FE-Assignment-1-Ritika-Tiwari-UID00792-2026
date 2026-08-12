@@ -1,0 +1,84 @@
+@font-face {
+    font-family: icomoon;
+    src: url('../../../assets/fonts/icomoon-font-family/icomoon.woff?bkp1nz')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-close-outline:before {
+    content: '\e909';
+}
+.icon-close:before {
+    content: '\e90a';
+}
+.icon-instagram:before {
+    content: '\e900';
+    color: #fff;
+}
+.icon-menu:before {
+    content: '\e9bd';
+}
+.icon-facebook:before {
+    content: '\ea90';
+}
+.icon-twitter:before {
+    content: '\ea96';
+}
+.icon-star:before {
+    content: '\e901';
+}
+.icon-arrow-left:before {
+    content: '\e903';
+}
+.icon-arrow-right:before {
+    content: '\e904';
+    color: #fff;
+}
+.icon-bag:before {
+    content: '\e905';
+    color: #f85e9f;
+}
+.icon-arrow-circle-down:before {
+    content: '\e902';
+}
+.icon-arrow-left:before {
+    content: '\e903';
+}
+.icon-arrow-right:before {
+    content: '\e904';
+    color: #fff;
+}
+.icon-bag:before {
+    content: '\e905';
+    color: #f85e9f;
+}
+.icon-hamburger:before {
+    content: '\e906';
+    color: #5d50c6;
+}
+.icon-watch-demo-icon:before {
+    content: '\e907';
+    color: #5d50c6;
+}
+.icon-yellow-star:before {
+    content: '\e908';
+    color: #facd49;
+}
