@@ -58,8 +58,15 @@ $body-lg: 2.3rem;
 
 //shadows for components
 $shadow-button-primary:
-    0 0 0 rgba($white, 0.08),
-    0 7px 16px rgba($white, 0.07);
-$shadow-button-primary:
-    0 0 0 rgba($white, 0.1),
-    0 5px 11px rgba($white, 0.1);
+    0 0 0 rgba($black, 0.1),
+    0 5px 11px rgba($black, 0.1);
+$shadow-button-secondary:
+    0 19px 19px rgba($black, 0.09),
+    0 43px 26px rgba($black, 0.05);
+
+//Consistent margin variables for sections of mobile tablet and desktop layouts
+$margin-inline: (
+    'sm': 1.6rem,
+    'md': 6.4rem,
+    'lg': 13rem,
+);
