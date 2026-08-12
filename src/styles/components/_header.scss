@@ -7,6 +7,12 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 
+header {
+    position: sticky;
+    top: 0;
+    background-color: $white;
+}
+
 .header {
     max-width: map-get($map: $breakpoints, $key: 'md');
     padding-block: 3.2rem;
@@ -15,9 +21,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: $white;
 }
 
 .header {
@@ -169,7 +172,7 @@
 //reponsive layout for desktop screens
 @include mq-min('xl') {
     .header {
-        max-width: 100vw;
+        max-width: 100%;
         margin-top: 3.4rem;
         margin-inline: 6.5rem;
         padding-inline: 6.5rem;

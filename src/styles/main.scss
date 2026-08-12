@@ -8,12 +8,12 @@
 @use '../styles/abstracts/colors' as *;
 @import '../styles/components/header';
 
-.page {
+body {
     background-color: $white;
     position: relative;
 }
 
-.page::before {
+body::before {
     content: '';
     position: absolute;
     width: 272px;
