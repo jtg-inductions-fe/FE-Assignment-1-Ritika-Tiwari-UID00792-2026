@@ -7,6 +7,7 @@
     padding: 1.6rem 3.2rem;
     border-radius: map-get($map: $border-radius, $key: 'lg');
     cursor: pointer;
+    border: none;
     /* Crucial: Smoothly animates changes over 0.3 seconds */
     transition: all 0.3s ease;
 }
