@@ -39,6 +39,7 @@ document.addEventListener('click', (e) => {
 
 closeNav();
 
+// State updation for active links of navbar
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.navigation__link');
 
