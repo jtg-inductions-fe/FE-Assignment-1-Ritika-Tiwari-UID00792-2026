@@ -161,6 +161,7 @@
     .header {
         background-color: $white;
         &__container {
+            padding-block: 4.85rem;
             max-width: 100%;
             margin-inline: calc(
                 map-get($map: $margin-inline, $key: 'lg') - 6.5rem
@@ -169,6 +170,7 @@
             border-radius: 10px;
             padding-block: 4.9rem;
             background-color: $white;
+            align-items: center;
 
             &__hamburger {
                 display: none;

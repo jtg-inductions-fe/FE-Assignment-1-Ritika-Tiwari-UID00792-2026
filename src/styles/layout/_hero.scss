@@ -36,62 +36,65 @@
         align-items: center;
         gap: 1.5rem;
         position: relative;
+    }
 
-        &__image-container {
-            width: 100%;
-            display: flex;
-            margin-top: 10.85%;
-            flex-direction: row;
-            position: relative;
-            align-items: center;
-            gap: 1.5rem;
-        }
+    &__image-container {
+        width: 100%;
+        display: flex;
+        margin-top: 10.85%;
+        flex-direction: row;
+        position: relative;
+        align-items: center;
+        gap: 1.5rem;
+    }
 
-        .hero__image-group--left {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 1.5rem;
-        }
+    &__image-group--left {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+    }
 
-        .hero__image-group--right {
-            width: 50%;
-            height: 100%;
-        }
+    &__image-group--right {
+        width: 50%;
+        height: 100%;
+    }
 
-        .hero__image-group img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
+    &__image-group img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
 
-        .overlay-items {
-            position: absolute;
-        }
+    .overlay-items {
+        position: absolute;
+    }
 
-        .profile-item {
-            width: 11.7%;
-            height: 11.7%;
-            border-radius: 50%;
-            bottom: -1%;
-            right: 22.2%;
-        }
+    .profile-item {
+        width: 11.7%;
+        height: 11.7%;
+        border-radius: 50%;
+        bottom: -1%;
+        right: 22.2%;
+    }
 
-        .send-item {
-            width: 11.7%;
-            height: 11.7%;
-            border-radius: 50%;
-            top: 40%;
-            left: -5%;
-        }
+    .send-item {
+        width: 11.7%;
+        height: 11.7%;
+        border-radius: 50%;
+        top: 40%;
+        left: -5%;
+    }
 
-        .top-place-item {
-            width: 15%;
-            left: 92%;
-            bottom: 24%;
-        }
+    .top-place-item {
+        width: 29%;
+        height: 8.8%;
+        left: 92%;
+        bottom: 24%;
+        border-radius: map-get($map: $border-radius, $key: 'md') 0px 0px
+            map-get($map: $border-radius, $key: 'md');
     }
 
     &__actions {
@@ -101,64 +104,61 @@
         justify-content: space-between;
         align-items: center;
         gap: 2.4rem;
+    }
 
-        &__tagline {
-            padding-inline: 3.2rem;
-            padding-block: 1.6rem;
-            border-radius: 100px;
+    &__tagline {
+        padding-inline: 3.2rem;
+        padding-block: 1.6rem;
+        border-radius: 100px;
+        box-shadow: $shadow-button-primary;
+        color: $text-secondary;
+        font-size: $body-sm;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-regular;
+        background-color: $btn-secondary;
+
+        i {
+            font-size: 2rem;
+            margin-left: 1.8rem;
+        }
+    }
+
+    &__heading {
+        font-size: map-get($map: $heading-h1, $key: 'sm');
+        text-align: center;
+        padding-inline: 1.5rem;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+
+    &__heading--highlight {
+        color: $text-secondary;
+    }
+
+    &__caption {
+        color: $text-primary-50;
+        font-size: $body-normal;
+        text-align: center;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+    }
+
+    &__button-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 2.4rem;
+
+        .button {
+            width: 100%;
+            min-width: fit-content;
+            max-height: 6.5rem;
+            padding: 2.4rem 3.2rem;
             box-shadow: $shadow-button-primary;
-            color: $text-secondary;
-            font-size: $body-sm;
-            line-height: map-get($map: $line-heights, $key: 'normal');
-            font-weight: $weight-bold;
-            background-color: $btn-secondary;
+            gap: 0.8rem;
 
             i {
                 font-size: 2rem;
-                margin-left: 1.8rem;
-            }
-        }
-
-        &__heading {
-            font-size: map-get($map: $heading-h1, $key: 'sm');
-            text-align: center;
-            padding-inline: 1.5rem;
-            line-height: map-get($map: $line-heights, $key: 'normal');
-            font-weight: $weight-bold;
-        }
-
-        &__heading--highlight {
-            color: $text-secondary;
-        }
-
-        &__caption {
-            color: $text-primary-50;
-            font-size: $body-normal;
-            text-align: center;
-            line-height: map-get($map: $line-heights, $key: 'loose');
-            font-weight: $weight-regular;
-        }
-
-        &__button-container {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 2.4rem;
-
-            .button {
-                width: 100%;
-                max-height: 6.5rem;
-                padding: 2.4rem 3.2rem;
-                box-shadow: $shadow-button-primary;
-                font-size: $body-sm;
-                text-align: center;
-                line-height: map-get($map: $line-heights, $key: 'normal');
-                font-weight: $weight-bold;
-
-                i {
-                    font-size: 2rem;
-                    margin-right: 0.8rem;
-                }
             }
         }
     }
@@ -183,54 +183,56 @@
 
         &__visuals {
             padding-inline: 13%;
+        }
 
-            .hero__image-container {
-                gap: 32px;
-            }
+        &__image-container {
+            gap: 3.2rem;
+        }
 
-            .hero__image-group--left {
-                gap: 3.2rem;
-            }
+        &__image-group--left {
+            gap: 3.2rem;
         }
 
         &__actions {
             gap: 4.3rem;
+        }
 
-            &__heading {
-                font-size: map-get($map: $heading-h1, $key: 'md');
-                text-align: center;
-                padding-inline: 10%;
-            }
+        &__heading {
+            font-size: map-get($map: $heading-h1, $key: 'md');
+            text-align: center;
+            padding-inline: 10%;
+        }
 
-            &__caption {
-                font-size: $body-md;
-                padding-inline: 25%;
-            }
+        &__caption {
+            font-size: $body-md;
+            padding-inline: 25%;
+        }
 
-            &__button-container {
-                width: 50%;
-                flex-direction: row;
-                gap: 1.6rem;
-                justify-content: center;
+        &__button-container {
+            width: 50%;
+            flex-direction: row;
+            gap: 1.6rem;
+            justify-content: center;
 
-                .button {
-                    width: fit-content;
-                    padding-block: 1.6rem;
-                    padding-inline: 3.2rem;
-                }
+            .button {
+                width: fit-content;
+                padding-block: 1.6rem;
+                padding-inline: 3.2rem;
+                box-shadow: $shadow-button-primary;
             }
         }
 
         &__brands {
             padding: 6.4rem;
 
-            &-images {
+            &-image {
                 height: 32px;
             }
         }
     }
 }
 
+// Styling of hero section for desktop
 @include mq-min('xl') {
     .hero {
         &__container {
@@ -248,30 +250,30 @@
         &__actions {
             width: 60%;
             align-items: flex-start;
+        }
 
-            &__heading {
-                font-size: map-get($map: $heading-h1, $key: 'lg');
-                text-align: start;
-                padding: 0;
-            }
+        &__heading {
+            font-size: map-get($map: $heading-h1, $key: 'lg');
+            text-align: start;
+            padding: 0;
+        }
 
-            &__caption {
-                font-size: $body-md;
-                text-align: start;
-                padding: 0;
-            }
+        &__caption {
+            font-size: $body-md;
+            text-align: start;
+            padding: 0;
+        }
 
-            &__button-container {
-                width: 100%;
-                flex-direction: row;
-                gap: 1.6rem;
-                justify-content: start;
+        &__button-container {
+            width: 100%;
+            flex-direction: row;
+            gap: 1.6rem;
+            justify-content: start;
 
-                .button {
-                    width: fit-content;
-                    padding-block: 1.6rem;
-                    padding-inline: 3.2rem;
-                }
+            .button {
+                width: fit-content;
+                padding-block: 1.6rem;
+                padding-inline: 3.2rem;
             }
         }
 
