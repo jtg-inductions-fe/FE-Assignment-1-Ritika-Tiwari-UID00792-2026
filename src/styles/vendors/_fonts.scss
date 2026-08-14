@@ -1,11 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-@include font-face(
-    'Circular Std',
-    'CircularStd-Medium',
-    $weight-medium,
-    normal
-);
-@include font-face('Circular Std', 'CircularStd-Bold', $weight-bold, normal);
-@include font-face('Circular Std', 'CircularStd-Black', $weight-black, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-medium, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-bold, normal);
+@include font-face('Circular Std', 'CircularStd-Book', $weight-black, normal);
