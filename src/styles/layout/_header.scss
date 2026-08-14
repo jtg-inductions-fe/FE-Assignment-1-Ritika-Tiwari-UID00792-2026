@@ -167,7 +167,6 @@
             margin-inline: calc(
                 map-get($map: $margin-inline, $key: 'lg') - 6.5rem
             );
-            padding-inline: 6.5rem;
             top: 3.4rem;
             border-radius: 10px;
             background-color: $white;
