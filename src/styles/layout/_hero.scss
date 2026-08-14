@@ -7,6 +7,7 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 @use '../components/button' as *;
+@use '../abstracts/_utilities';
 
 .hero {
     display: flex;
@@ -14,14 +15,14 @@
     justify-content: center;
     gap: 6.4rem;
 
-    .hero__container {
-        margin-inline: map-get($map: $margin-inline, $key: 'sm');
+    &__container {
         margin-top: 6.4rem;
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
+        z-index: -5;
 
-        .hero__visuals {
+        &__visuals {
             width: 100%;
             background-image: url('../../../assets/images/background-image.svg');
             background-position: center top;
@@ -92,7 +93,7 @@
             }
         }
 
-        .hero__actions {
+        &__actions {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -100,7 +101,7 @@
             align-items: center;
             gap: 2.4rem;
 
-            .hero__tagline {
+            &__tagline {
                 padding-inline: 3.2rem;
                 padding-block: 1.6rem;
                 border-radius: 100px;
@@ -116,18 +117,18 @@
                 }
             }
 
-            .hero__heading {
+            &__heading {
                 font-size: map-get($map: $heading-h1, $key: 'sm');
                 text-align: center;
                 line-height: map-get($map: $line-heights, $key: 'normal');
                 font-weight: $weight-bold;
             }
 
-            .hero__heading--highlight {
+            &__heading--highlight {
                 color: $text-secondary;
             }
 
-            .hero__caption {
+            &__caption {
                 color: $text-primary-50;
                 font-size: $body-normal;
                 text-align: center;
@@ -135,7 +136,7 @@
                 font-weight: $weight-regular;
             }
 
-            .hero__action__button-container {
+            &__button-container {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
@@ -159,8 +160,7 @@
         }
     }
 
-    .hero__brands {
-        margin-inline: map-get($map: $margin-inline, $key: 'sm');
+    &__brands {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -172,12 +172,11 @@
 
 @include mq-min('md') {
     .hero {
-        .hero__container {
+        &__container {
             padding-inline: 6.2rem;
-            z-index: -5;
             gap: 6.4rem;
 
-            .hero__visuals {
+            &__visuals {
                 .hero__image-container {
                     gap: 32px;
                 }
@@ -187,21 +186,21 @@
                 }
             }
 
-            .hero__actions {
+            &__actions {
                 gap: 4.3rem;
 
-                .hero__heading {
+                &__heading {
                     font-size: map-get($map: $heading-h1, $key: 'md');
                     text-align: center;
                     padding-inline: 10%;
                 }
 
-                .hero__caption {
+                &__caption {
                     font-size: $body-md;
                     padding-inline: 25%;
                 }
 
-                .hero__action__button-container {
+                &__button-container {
                     width: 50%;
                     flex-direction: row;
                     gap: 1.6rem;
@@ -216,10 +215,10 @@
             }
         }
 
-        .hero__brands {
+        &__brands {
             padding: 6.4rem;
 
-            .hero__brand-images {
+            &-images {
                 height: 32px;
             }
         }
@@ -228,35 +227,33 @@
 
 @include mq-min('xl') {
     .hero {
-        margin-inline: map-get($map: $margin-inline, $key: 'lg');
-
-        .hero__container {
+        &__container {
             flex-direction: row;
             align-items: center;
             padding: 0;
             gap: 0;
 
-            .hero__visuals {
+            &__visuals {
                 order: 2;
             }
 
-            .hero__actions {
+            &__actions {
                 width: 50%;
                 align-items: flex-start;
 
-                .hero__heading {
+                &__heading {
                     font-size: map-get($map: $heading-h1, $key: 'md');
                     text-align: start;
                     padding: 0;
                 }
 
-                .hero__caption {
+                &__caption {
                     font-size: $body-md;
                     text-align: start;
                     padding: 0;
                 }
 
-                .hero__action__button-container {
+                &__button-container {
                     width: 100%;
                     flex-direction: row;
                     gap: 1.6rem;
@@ -271,7 +268,7 @@
             }
         }
 
-        .hero__brands {
+        &__brands {
             gap: 10rem;
         }
     }
