@@ -7,13 +7,14 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 @use '../components/button' as *;
-@use '../abstracts/_utilities';
+@use '../abstracts/utilities';
 
 .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 6.4rem;
+    scrollbar-gutter: stable;
 
     &__container {
         margin-top: 6.4rem;
@@ -28,7 +29,7 @@
             background-position: center top;
             background-repeat: no-repeat;
             background-size: 100% auto;
-            padding-inline: 7%;
+            padding-inline: 14.5%;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -113,6 +114,7 @@
                 background-color: $btn-secondary;
 
                 i {
+                    font-size: 2rem;
                     margin-left: 1.8rem;
                 }
             }
@@ -144,6 +146,7 @@
 
                 .button {
                     width: 100%;
+                    max-height: 6.5rem;
                     padding-inline: 2.4rem;
                     padding-block: 3.2rem;
                     box-shadow: $shadow-button-primary;
@@ -153,6 +156,7 @@
                     font-weight: $weight-bold;
 
                     i {
+                        font-size: 2rem;
                         margin-right: 0.8rem;
                     }
                 }
@@ -177,6 +181,8 @@
             gap: 6.4rem;
 
             &__visuals {
+                padding-inline: 11%;
+
                 .hero__image-container {
                     gap: 32px;
                 }
@@ -235,14 +241,15 @@
 
             &__visuals {
                 order: 2;
+                padding-inline: 7%;
             }
 
             &__actions {
-                width: 50%;
+                width: 60%;
                 align-items: flex-start;
 
                 &__heading {
-                    font-size: map-get($map: $heading-h1, $key: 'md');
+                    font-size: map-get($map: $heading-h1, $key: 'lg');
                     text-align: start;
                     padding: 0;
                 }
