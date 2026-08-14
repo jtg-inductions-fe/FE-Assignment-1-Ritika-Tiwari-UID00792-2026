@@ -6,23 +6,6 @@
 @use '../styles/vendors/icomoon.scss' as *;
 @use '../styles/vendors/fonts' as *;
 @use '../styles/abstracts/colors' as *;
-@import '../styles/components/header';
-
-body {
-    background-color: $white;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    width: 272px;
-    height: 348px;
-    top: -36px;
-    left: -33px;
-    background: $shadow-blur-50;
-    border-radius: 50%;
-    filter: blur(150px);
-    pointer-events: none;
-    z-index: 0;
-}
+@use '../styles/layout/header';
+@use '../styles/base/base';
+@use '../styles/abstracts/_utilities';

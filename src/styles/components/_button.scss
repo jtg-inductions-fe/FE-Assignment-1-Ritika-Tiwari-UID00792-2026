@@ -4,16 +4,28 @@
 .button {
     text-decoration: none;
     text-align: center;
-    width: 11.5rem;
-    height: 4.9rem;
     padding: 1.6rem 3.2rem;
-    border-radius: 100px;
+    border-radius: map-get($map: $border-radius, $key: 'lg');
+    cursor: pointer;
+    /* Crucial: Smoothly animates changes over 0.3 seconds */
+    transition: all 0.3s ease;
 }
+
 .button--primary {
     color: $btn-secondary !important;
     background-color: $btn-primary;
 }
+
 .button--secondary {
     color: $text-primary !important;
     background-color: $btn-secondary;
+}
+
+.button:hover {
+    transform: translateY(-2px) scale(1.05); /* Lifts up and grows slightly */
+    box-shadow: $shadow-button-primary; /* Colored glow */
+}
+
+.button:active {
+    transform: translateY(0) scale(1); /* Shrinks back down when clicked */
 }

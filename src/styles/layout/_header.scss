@@ -1,0 +1,212 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+
+.header {
+    width: 100vw;
+    position: sticky;
+    top: 0;
+    background-color: $white;
+
+    &__container {
+        max-width: map-get($map: $breakpoints, $key: 'md');
+        padding-block: 3.2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &__hamburger {
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            border: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-hamburger {
+            font-size: 4rem;
+        }
+    }
+}
+
+.navigation {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    order: 2;
+    padding: 3rem;
+    gap: 3.8rem;
+    white-space: nowrap;
+    background-color: $white;
+    transform-origin: right;
+    animation: openingEffect 1s;
+
+    &__section--start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    &__close-btn {
+        width: 3rem;
+        height: 3rem;
+        border-color: $border-primary;
+        border-radius: map-get($map: $border-radius, $key: 'sm');
+        align-self: flex-end;
+    }
+
+    &__link {
+        text-decoration: none;
+        text-align: center;
+        color: $text-primary-50;
+        font-size: $body-sm;
+        line-height: normal;
+        font-weight: $weight-bold;
+    }
+
+    &__link:hover {
+        text-decoration: underline;
+    }
+
+    &__link.is-active {
+        color: $text-primary;
+    }
+}
+
+.auth__section {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.2rem;
+    white-space: nowrap;
+    position: fixed;
+    top: 350px;
+    right: 0;
+    z-index: 3;
+    transform-origin: right;
+    animation: openingEffect 1s;
+    display: none;
+}
+
+.header__container.navigation-open {
+    .auth__section {
+        display: flex;
+    }
+
+    .navigation {
+        display: flex;
+    }
+}
+
+//Hamburger opening animation
+@keyframes openingEffect {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+//responsive layout for tablet screens
+@include mq-min('md') {
+    .header__container {
+        max-width: map-get($breakpoints, xl);
+
+        &__logo {
+            order: -1;
+            justify-self: center;
+        }
+
+        &__hamburger {
+            order: -2;
+        }
+    }
+
+    .navigation {
+        bottom: 0;
+        left: 0;
+        transform-origin: left;
+        animation: openingEffect 1s;
+    }
+
+    .auth__section {
+        max-width: 220px;
+        position: static;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        animation: none;
+    }
+}
+
+//reponsive layout for desktop screens
+@include mq-min('xl') {
+    .header {
+        background-color: $white;
+        padding-top: 3.4rem;
+
+        &__container {
+            max-width: 100%;
+            margin-inline: calc(
+                map-get($map: $margin-inline, $key: 'lg') - 6.5rem
+            );
+            padding-inline: 6.5rem;
+            top: 3.4rem;
+            border-radius: 10px;
+            background-color: $white;
+
+            &__hamburger {
+                display: none;
+            }
+        }
+
+        .navigation {
+            height: initial;
+            width: initial;
+            padding: initial;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            background-color: $white;
+            animation: none;
+
+            &__close-btn {
+                display: none;
+            }
+
+            &__section--start {
+                display: flex;
+                flex-direction: row;
+                order: 2;
+                gap: 6.4rem;
+            }
+        }
+    }
+
+    .auth__section {
+        max-width: 220px;
+        position: static;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        order: 3;
+        animation: none;
+    }
+}

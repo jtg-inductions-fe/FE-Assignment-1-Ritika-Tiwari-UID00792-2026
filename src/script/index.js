@@ -1,8 +1,8 @@
 /*
 Implementation of opening and closing logic of hamburger using toggle class.
  */
-const hamburger = document.querySelector('.header__hamburger');
-const header = document.querySelector('.header');
+const hamburger = document.querySelector('.header__container__hamburger');
+const header = document.querySelector('.header__container');
 const closingButton = document.querySelector('.navigation__close-btn');
 
 /**
@@ -22,7 +22,7 @@ function closeNav() {
 hamburger.addEventListener('click', toggleNav);
 closingButton.addEventListener('click', closeNav);
 
-document.addEventListener('keypress', (e) => {
+document.addEventListener('keydown', (e) => {
     if (e.key == 'Escape') {
         closeNav();
     }
@@ -38,3 +38,28 @@ document.addEventListener('click', (e) => {
 });
 
 closeNav();
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.navigation__link');
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5, // Trigger when 50% of the section is visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach((link) => {
+                link.classList.toggle(
+                    'is-active',
+                    link.getAttribute('href') === `#${id}`,
+                );
+            });
+        }
+    });
+}, observerOptions);
+
+sections.forEach((section) => observer.observe(section));

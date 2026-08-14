@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+@use '../base/reset' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon.scss' as *;
+@use '../vendors/fonts' as *;
+@use '../abstracts/colors' as *;
+
+body {
+    background-color: $white;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 272px;
+    height: 348px;
+    top: -36px;
+    left: -33px;
+    background: $shadow-blur-50;
+    border-radius: 50%;
+    filter: blur(150px);
+    pointer-events: none;
+    z-index: 0;
+}
