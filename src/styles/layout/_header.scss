@@ -131,7 +131,7 @@
 
         &__logo {
             order: -1;
-            justify-self: center;
+            margin-left: 20rem;
         }
 
         &__hamburger {
@@ -173,6 +173,10 @@
 
             &__hamburger {
                 display: none;
+            }
+
+            &__logo {
+                margin-left: 0;
             }
         }
 
