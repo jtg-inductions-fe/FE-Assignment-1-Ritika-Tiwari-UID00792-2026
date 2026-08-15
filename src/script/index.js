@@ -40,27 +40,15 @@ document.addEventListener('click', (e) => {
 closeNav();
 
 // State updation for active links of navbar
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navigation__link');
+document.addEventListener('DOMContentLoaded', function () {
+    const navItems = document.querySelectorAll('.navigation__link');
 
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.5, // Trigger when 50% of the section is visible
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navLinks.forEach((link) => {
-                link.classList.toggle(
-                    'is-active',
-                    link.getAttribute('href') === `#${id}`,
-                );
-            });
-        }
+    navItems.forEach((item) => {
+        item.addEventListener('click', function () {
+            navItems.forEach((navItem) =>
+                navItem.classList.remove('is-active'),
+            );
+            this.classList.add('is-active');
+        });
     });
-}, observerOptions);
-
-sections.forEach((section) => observer.observe(section));
+});

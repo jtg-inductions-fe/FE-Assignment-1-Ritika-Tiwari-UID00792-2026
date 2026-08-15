@@ -9,7 +9,7 @@
 @use '../components/button' as *;
 
 .header {
-    width: 100vw;
+    width: 100%;
     position: sticky;
     top: 0;
     background-color: $white;
@@ -160,8 +160,6 @@
 @include mq-min('xl') {
     .header {
         background-color: $white;
-        padding-top: 3.4rem;
-
         &__container {
             max-width: 100%;
             margin-inline: calc(
@@ -169,6 +167,7 @@
             );
             top: 3.4rem;
             border-radius: 10px;
+            padding-block: 4.9rem;
             background-color: $white;
 
             &__hamburger {
