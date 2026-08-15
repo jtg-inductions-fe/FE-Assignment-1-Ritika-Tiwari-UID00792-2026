@@ -1,13 +1,62 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Travel App</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Explore affordable tour packages., Book flights, hotels, save big on your next trip!"
+        />
+        <meta name="author" content="Ritika Tiwari" />
+
         <link rel="stylesheet" href="src/styles/main.scss" />
     </head>
+
     <body>
-        <div>Hello World</div>
+        <header class="header" id="home">
+            <div class="header__container container navigation-open">
+                <div class="header__container__logo">
+                    <img src="/assets/images/logo.svg" alt="Brand Logo" />
+                </div>
+                <nav class="navigation" aria-label="Main Navigation">
+                    <button class="navigation__close-btn">
+                        <i class="icon-close"></i>
+                    </button>
+                    <ul class="navigation__section--start">
+                        <li id="home">
+                            <a
+                                class="navigation__link is-active"
+                                href="index.html"
+                                >Home</a
+                            >
+                        </li>
+                        <li id="discover">
+                            <a class="navigation__link" href="#">Discover</a>
+                        </li>
+
+                        <li id="deals">
+                            <a class="navigation__link" href="#"
+                                >Special Deals</a
+                            >
+                        </li>
+                        <li id="contact">
+                            <a class="navigation__link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="header__container__hamburger">
+                    <i class="icon-hamburger"></i>
+                </button>
+                <div class="auth__section">
+                    <a class="navigation__link" href="#">Log In</a>
+                    <a class="navigation__link button button--primary" href="#"
+                        >Sign Up</a
+                    >
+                </div>
+            </div>
+        </header>
+        <section id="hero"></section>
         <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>
