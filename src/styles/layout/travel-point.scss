@@ -1,0 +1,69 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+
+.travel-point {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 6.4rem;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+
+    &__img-container {
+        width: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+
+        &__heading-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        &__text {
+            font-size: $body-normal;
+            color: $text-primary-50;
+            line-height: map-get($map: $line-heights, $key: 'loose');
+            font-weight: $weight-regular;
+            text-align: center;
+        }
+    }
+
+    &__heading--primary {
+        font-size: map-get($map: $sub-heading-h1, $key: 'sm');
+        color: $text-secondary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+    }
+
+    &__heading--secondary {
+        font-size: map-get($map: $heading-h2, $key: 'sm');
+        color: $text-primary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+    }
+}
