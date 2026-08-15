@@ -52,3 +52,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+/**
+ *Async Function for render data in data points card from data.json file
+ */
+async function loadData() {
+    try {
+        let response = await fetch('./src/script/data.json');
+        let data = await response.json();
+        const values = Array.from(document.querySelectorAll('.value'));
+        const titles = Array.from(document.querySelectorAll('.title'));
+
+        let i = 0;
+        for (let key in data) {
+            titles[i].textContent = key;
+            values[i].textContent = data[key];
+            i++;
+        }
+    } catch (e) {
+        const dataPointContainer = document.querySelector(
+            '.travel-point__content__data-container',
+        );
+        dataPointContainer.textContent = e;
+    }
+}
+
+loadData();

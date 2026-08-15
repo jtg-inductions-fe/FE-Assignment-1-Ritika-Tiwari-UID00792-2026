@@ -19,6 +19,7 @@
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
+        padding-block: 6.4rem;
     }
 
     &__img-container {
@@ -35,6 +36,7 @@
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
+        padding-inline: 1.6rem;
 
         &__heading-container {
             display: flex;
@@ -48,6 +50,25 @@
             line-height: map-get($map: $line-heights, $key: 'loose');
             font-weight: $weight-regular;
             text-align: center;
+        }
+
+        &__data-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+
+            .data-point {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1.6rem;
+                padding: 3.2rem;
+                border: 1px solid $text-primary-10;
+                border-radius: map-get($map: $border-radius, $key: 'sm');
+            }
         }
     }
 
