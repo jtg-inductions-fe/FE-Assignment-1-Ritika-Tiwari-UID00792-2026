@@ -1,20 +1,40 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
 
 .button {
+    min-width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     text-align: center;
-    padding: 1.6rem 3.2rem;
     font-size: $body-sm;
     line-height: map-get($map: $line-heights, $key: 'normal');
     font-weight: $weight-bold;
     border-radius: map-get($map: $border-radius, $key: 'lg');
     cursor: pointer;
     border: none;
+    gap: 0.8rem;
     transition: all 0.3s ease;
+}
+
+.button--sm {
+    padding: 1.6rem 3.2rem;
+}
+
+.button--md {
+    width: 100%;
+    padding: 2.4rem 3.2rem;
+
+    @include mq-min('md') {
+        width: fit-content;
+        padding: 1.6rem 3.2rem;
+    }
+    @include mq-min('lg') {
+        width: fit-content;
+        padding: 1.6rem 3.2rem;
+    }
 }
 
 .button--primary {
@@ -22,9 +42,16 @@
     background-color: $btn-primary;
 }
 
+.button--shadow {
+    box-shadow: $shadow-button-secondary;
+}
+
 .button--secondary {
     color: $text-primary !important;
     background-color: $btn-secondary;
+}
+.button--round {
+    border-radius: map-get($map: $border-radius, $key: 'lg');
 }
 
 .button:hover {
