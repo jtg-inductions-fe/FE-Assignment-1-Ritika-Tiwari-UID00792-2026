@@ -86,6 +86,17 @@
         line-height: map-get($map: $line-heights, $key: 'loose');
         text-align: center;
     }
+    &__icon {
+        position: absolute;
+        right: 0%;
+        bottom: 5%;
+        img {
+            width: 100%;
+            height: 100%;
+            box-shadow: none;
+        }
+        display: none;
+    }
 
     &__heading--primary {
         font-size: map-get($map: $sub-heading-h1, $key: 'sm');
@@ -169,6 +180,9 @@
 
         &__content__text {
             text-align: start;
+        }
+        &__icon {
+            display: block;
         }
     }
 }
