@@ -14,7 +14,6 @@
     border-radius: map-get($map: $border-radius, $key: 'lg');
     cursor: pointer;
     border: none;
-    /* Crucial: Smoothly animates changes over 0.3 seconds */
     transition: all 0.3s ease;
 }
 
@@ -29,13 +28,12 @@
 }
 
 .button:hover {
+    //Adds a subtle elevation effect to indicate hover state of button
     transform: translateY(-2px) scale(1.05);
-    /* Lifts up and grows slightly */
     box-shadow: $shadow-button-primary;
-    /* Colored glow */
 }
 
 .button:active {
+    //Return the button to its normal position while pressing
     transform: translateY(0) scale(1);
-    /* Shrinks back down when clicked */
 }

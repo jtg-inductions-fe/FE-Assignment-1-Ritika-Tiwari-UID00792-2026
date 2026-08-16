@@ -1,0 +1,13 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+
+.icon {
+    width: 12%;
+    height: 12%;
+    border-radius: 50%;
+    box-shadow: $shadow-button-secondary;
+}
+
+.icon--small {
+    font-size: 2rem;
+}

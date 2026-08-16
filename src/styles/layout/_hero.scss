@@ -7,20 +7,25 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 @use '../components/button' as *;
+@use '../components/icon' as *;
 @use '../abstracts/utilities';
 
 .hero {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6.4rem;
 
     &__container {
         margin-top: 6.4rem;
         display: flex;
         flex-direction: column;
+        gap: 6.4rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
         gap: 3.2rem;
-        z-index: -5;
     }
 
     &__visuals {
@@ -73,17 +78,11 @@
     }
 
     .profile-item {
-        width: 11.7%;
-        height: 11.7%;
-        border-radius: 50%;
         bottom: -1%;
         right: 22.2%;
     }
 
     .send-item {
-        width: 11.7%;
-        height: 11.7%;
-        border-radius: 50%;
         top: 40%;
         left: -5%;
     }
@@ -95,6 +94,7 @@
         bottom: 24%;
         border-radius: map-get($map: $border-radius, $key: 'md') 0px 0px
             map-get($map: $border-radius, $key: 'md');
+        box-shadow: $shadow-button-secondary;
     }
 
     &__actions {
@@ -107,6 +107,9 @@
     }
 
     &__tagline {
+        display: flex;
+        gap: 1.8rem;
+        align-items: end;
         padding-inline: 3.2rem;
         padding-block: 1.6rem;
         border-radius: 100px;
@@ -116,11 +119,6 @@
         line-height: map-get($map: $line-heights, $key: 'normal');
         font-weight: $weight-regular;
         background-color: $btn-secondary;
-
-        i {
-            font-size: 2rem;
-            margin-left: 1.8rem;
-        }
     }
 
     &__heading {
@@ -156,10 +154,6 @@
             padding: 2.4rem 3.2rem;
             box-shadow: $shadow-button-primary;
             gap: 0.8rem;
-
-            i {
-                font-size: 2rem;
-            }
         }
     }
 
@@ -176,9 +170,8 @@
 // Styling of hero section for tablet
 @include mq-min('md') {
     .hero {
-        &__container {
+        &__content {
             padding-inline: 6.2rem;
-            gap: 6.4rem;
         }
 
         &__visuals {
@@ -223,8 +216,8 @@
         }
 
         &__brands {
-            padding: 6.4rem;
-
+            padding-block: 6.4rem;
+            justify-content: center;
             &-image {
                 height: 32px;
             }
@@ -235,7 +228,7 @@
 // Styling of hero section for desktop
 @include mq-min('xl') {
     .hero {
-        &__container {
+        &__content {
             flex-direction: row;
             align-items: center;
             padding: 0;
@@ -278,7 +271,7 @@
         }
 
         &__brands {
-            gap: 10rem;
+            justify-content: space-between;
         }
     }
 }

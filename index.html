@@ -21,7 +21,10 @@
                 </div>
                 <nav class="navigation" aria-label="Main Navigation">
                     <button class="navigation__close-btn">
-                        <i class="icon-close"></i>
+                        <i
+                            class="icon-close icon--small"
+                            aria-hidden="true"
+                        ></i>
                     </button>
                     <ul class="navigation__section--start">
                         <li id="home">
@@ -46,7 +49,10 @@
                     </ul>
                 </nav>
                 <button class="header__container__hamburger">
-                    <i class="icon-hamburger"></i>
+                    <i
+                        class="icon-hamburger icon--small"
+                        aria-hidden="true"
+                    ></i>
                 </button>
                 <div class="auth__section">
                     <a class="navigation__link" href="#">Log In</a>
@@ -56,108 +62,113 @@
                 </div>
             </div>
         </header>
-
-        <!-- Hero section start -->
-        <section class="hero" id="hero">
-            <div class="hero__container container">
-                <div class="hero__visuals">
-                    <div class="hero__image-container">
-                        <img
-                            src="./assets/images/profile.svg"
-                            class="overlay-items profile-item"
-                            alt="Profile icon"
-                        />
-                        <img
-                            src="./assets/images/send.svg"
-                            class="overlay-items send-item"
-                            alt="Send icon"
-                        />
-                        <div class="overlay-items top-place-item">
-                            <img
-                                src="./assets/images/top-places.svg"
-                                alt="Top place"
-                            />
+        <main id="main-content">
+            <!-- Hero section start -->
+            <section class="hero" id="hero">
+                <div class="hero__container container">
+                    <div class="hero__content">
+                        <div class="hero__visuals">
+                            <div class="hero__image-container">
+                                <img
+                                    src="./assets/images/profile.svg"
+                                    class="overlay-items profile-item icon"
+                                    alt="Profile Icon"
+                                />
+                                <img
+                                    src="./assets/images/send.svg"
+                                    class="overlay-items send-item icon"
+                                    alt="Send Icon"
+                                />
+                                <div class="overlay-items top-place-item">
+                                    <img
+                                        src="./assets/images/top-places.svg"
+                                        alt="Top Place"
+                                    />
+                                </div>
+                                <div
+                                    class="hero__image-group hero__image-group--left"
+                                >
+                                    <img
+                                        src="./assets/images/visual-image-1.svg"
+                                        alt="Travelling Image"
+                                    />
+                                    <img
+                                        src="./assets/images/visual-image-2.svg"
+                                        alt="Travelling Image"
+                                    />
+                                </div>
+                                <div
+                                    class="hero__image-group hero__image-group--right"
+                                >
+                                    <img
+                                        src="./assets/images/visual-image-3.svg"
+                                        alt="Travelling Image"
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        <div class="hero__image-group hero__image-group--left">
-                            <figure>
-                                <img
-                                    src="./assets/images/visual-image-1.svg"
-                                    alt="Travelling Image"
-                                    style="width: 100%"
-                                />
-                            </figure>
-                            <figure>
-                                <img
-                                    src="./assets/images/visual-image-2.svg"
-                                    alt="Travelling Image"
-                                    style="width: 100%"
-                                />
-                            </figure>
-                        </div>
-                        <div class="hero__image-group hero__image-group--right">
-                            <figure>
-                                <img
-                                    src="./assets/images/visual-image-3.svg"
-                                    alt="Travelling image"
-                                    style="width: 100%"
-                                />
-                            </figure>
+                        <div class="hero__actions">
+                            <span class="hero__tagline">
+                                Explore the world!<i
+                                    class="icon-bag icon--small"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+                            <h1 class="hero__heading">
+                                Travel
+                                <span class="hero__heading--highlight"
+                                    >top destination</span
+                                >
+                                of the world
+                            </h1>
+                            <p class="hero__caption">
+                                We always make our customer happy by providing
+                                as many choices as possible
+                            </p>
+                            <div class="hero__button-container">
+                                <button class="button button--primary">
+                                    Get Started
+                                </button>
+                                <button class="button button--secondary">
+                                    <i
+                                        class="icon-watch-demo-icon icon--small"
+                                        aria-hidden="true"
+                                    ></i
+                                    >Watch Demo
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="hero__actions">
-                    <h2 class="hero__tagline">
-                        Explore the world!<i class="icon-bag"></i>
-                    </h2>
-                    <h1 class="hero__heading">
-                        Travel
-                        <span class="hero__heading--highlight"
-                            >top destination</span
-                        >
-                        of the world
-                    </h1>
-                    <p class="hero__caption">
-                        We always make our customer happy by providing as many
-                        choices as possible
-                    </p>
-                    <div class="hero__button-container">
-                        <button class="button button--primary">
-                            Get Started
-                        </button>
-                        <button class="button button--secondary">
-                            <i class="icon-watch-demo-icon"></i>Watch Demo
-                        </button>
+                    <div class="hero__brands">
+                        <img
+                            src="./assets/images/brand-img-1.svg"
+                            alt="Tripadvisor Brand Logo"
+                            class="hero__brands-image"
+                        />
+                        <img
+                            src="./assets/images/brand-img-2.svg"
+                            alt="Expedia Brand Logo"
+                            class="hero__brands-image"
+                        />
+                        <img
+                            src="./assets/images/brand-img-3.svg"
+                            alt="Booking.com Brand Logo"
+                            class="hero__brands-image"
+                        />
+                        <img
+                            src="./assets/images/brand-img-4.svg"
+                            alt="Airbnb Brand Logo"
+                            class="hero__brands-image"
+                        />
+                        <img
+                            src="./assets/images/brand-img-5.svg"
+                            alt="GRBITZ Brand Logo"
+                            class="hero__brands-image"
+                        />
                     </div>
                 </div>
-            </div>
-            <div class="hero__brands">
-                <img
-                    src="./assets/images/brand-img-1.svg"
-                    alt=""
-                    class="hero__brands-image"
-                />
-                <img
-                    src="./assets/images/brand-img-2.svg"
-                    alt=""
-                    class="hero__brands-image"
-                />
-                <img
-                    src="./assets/images/brand-img-3.svg"
-                    alt=""
-                    class="hero__brands-image"
-                />
-                <img
-                    src="./assets/images/brand-img-4.svg"
-                    alt=""
-                    class="hero__brands-image"
-                />
-                <img
-                    src="./assets/images/brand-img-5.svg"
-                    alt=""
-                    class="hero__brands-image"
-                />
-            </div>
-        </section>
+            </section>
+        </main>
         <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>
