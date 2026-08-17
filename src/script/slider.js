@@ -27,7 +27,7 @@ function renderData(name, role, image, rating, text) {
 }
 
 /**
- * Async Function for render data in slides from slides.json file
+ * Async Function for fetch and render data in slides from slides.json file and initialization of swiper instance
  */
 async function loadData() {
     testimonials.innerHTML = testimonialsData

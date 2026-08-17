@@ -40,7 +40,7 @@
     &-button:hover,
     &-button--small:hover {
         background-color: $btn-hover-color;
-        color: $white !important;
+        color: $white;
         box-shadow: $shadow-button-secondary;
     }
 }
