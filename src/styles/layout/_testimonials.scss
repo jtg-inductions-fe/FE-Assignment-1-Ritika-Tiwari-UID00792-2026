@@ -41,30 +41,27 @@
     }
 
     &__slider-container {
+        position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
     &__button {
-        height: 55px;
-        width: 30px;
-        padding: 2rem;
         position: absolute;
         z-index: 20;
     }
 
     &__button--previous {
         order: 1;
-        border: 1px solid $text-primary-10;
         left: 4%;
-        bottom: 14%;
+        top: 10%;
     }
 
     &__button--next {
         order: 3;
         right: 4%;
-        bottom: 14%;
+        top: 10%;
     }
 
     &__slider {
@@ -78,6 +75,14 @@
         align-items: center;
         justify-content: center;
         gap: 6.4rem;
+    }
+
+    &__data-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+        justify-content: center;
+        align-items: center;
     }
 
     &__name {
@@ -97,14 +102,14 @@
 
     &__rating {
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     &__description {
         color: $text-primary-75;
         font-size: $body-md;
-        font-weight: $weight-bold;
-        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'loose');
         text-align: center;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -117,7 +122,6 @@
         justify-content: center;
         gap: 2.4rem;
     }
-
     .swiper-pagination-bullet {
         width: 2.4rem;
         height: 2.4rem;
@@ -132,8 +136,44 @@
 
 @include mq-min('md') {
     .testimonials {
+        &__container {
+            gap: 5.6rem;
+            position: relative;
+        }
+
+        &__container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('../../../assets/images/testimonials-background.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        &__heading--primary {
+            font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        }
+
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'md');
+        }
+
         &__button {
             position: static;
+        }
+
+        &__description {
+            font-size: $body-lg;
+        }
+    }
+}
+
+@include mq-min('xl') {
+    .testimonials {
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'lg');
         }
     }
 }

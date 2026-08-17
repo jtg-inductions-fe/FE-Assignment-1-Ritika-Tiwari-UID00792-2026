@@ -17,50 +17,51 @@
     border: none;
     gap: 0.8rem;
     transition: all 0.3s ease;
-}
 
-.button--sm {
-    padding: 1.6rem 3.2rem;
-}
-
-.button--md {
-    width: 100%;
-    padding: 2.4rem 3.2rem;
-
-    @include mq-min('md') {
-        width: fit-content;
+    &--sm {
         padding: 1.6rem 3.2rem;
     }
-    @include mq-min('lg') {
-        width: fit-content;
-        padding: 1.6rem 3.2rem;
+
+    &--md {
+        width: 100%;
+        padding: 2.4rem 3.2rem;
+
+        @include mq-min('md') {
+            width: fit-content;
+            padding: 1.6rem 3.2rem;
+        }
+        @include mq-min('lg') {
+            width: fit-content;
+            padding: 1.6rem 3.2rem;
+        }
     }
-}
 
-.button--primary {
-    color: $btn-secondary !important;
-    background-color: $btn-primary;
-}
+    &--primary {
+        color: $btn-secondary !important;
+        background-color: $btn-primary;
+    }
 
-.button--shadow {
-    box-shadow: $shadow-button-secondary;
-}
+    &--shadow {
+        box-shadow: $shadow-button-secondary;
+    }
 
-.button--secondary {
-    color: $text-primary !important;
-    background-color: $btn-secondary;
-}
-.button--round {
-    border-radius: map-get($map: $border-radius, $key: 'lg');
-}
+    &--secondary {
+        color: $text-primary;
+        background-color: $btn-secondary;
+        border: 1px solid $text-primary-10;
+    }
+    &--round {
+        border-radius: map-get($map: $border-radius, $key: 'lg');
+    }
 
-.button:hover {
-    //Adds a subtle elevation effect to indicate hover state of button
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: $shadow-button-primary;
-}
+    &:hover {
+        //Adds a subtle elevation effect to indicate hover state of button
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: $shadow-button-primary;
+    }
 
-.button:active {
-    //Return the button to its normal position while pressing
-    transform: translateY(0) scale(1);
+    &:active {
+        //Return the button to its normal position while pressing
+        transform: translateY(0) scale(1);
+    }
 }
