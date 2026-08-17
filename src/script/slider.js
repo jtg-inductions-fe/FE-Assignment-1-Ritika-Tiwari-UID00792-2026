@@ -3,8 +3,6 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
 const testimonials = document.querySelector('.testimonials__list');
-let response = await fetch('./src/script/slides.json');
-let testimonialsData = await response.json();
 
 /**
  * Function for render data in slides from slides.json file
@@ -30,6 +28,8 @@ function renderData(name, role, image, rating, text) {
  * Async Function for fetch and render data in slides from slides.json file and initialization of swiper instance
  */
 async function loadData() {
+    let response = await fetch('./src/script/slides.json');
+    let testimonialsData = await response.json();
     testimonials.innerHTML = testimonialsData
         .map(({ name, role, image, rating, text }) =>
             renderData(name, role, image, rating, text),
