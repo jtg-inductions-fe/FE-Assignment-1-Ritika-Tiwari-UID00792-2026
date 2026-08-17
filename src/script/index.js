@@ -54,24 +54,29 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- *Async Function for render data in data points card from data.json file
+ * Async Function for render data in data points card from data.json file
  */
+function renderData(value, title) {
+    return `<div class="travel-point__data-point">
+                                <span class="value">${value}</span>
+                                <span class="title">${title}</span>
+                            </div>`;
+}
 async function loadData() {
     try {
         let response = await fetch('./src/script/data.json');
         let data = await response.json();
-        const values = Array.from(document.querySelectorAll('.value'));
-        const titles = Array.from(document.querySelectorAll('.title'));
-
-        let i = 0;
-        for (let key in data) {
-            titles[i].textContent = key;
-            values[i].textContent = data[key];
-            i++;
+        const dataItemContainer = document.querySelector(
+            '.travel-point__data-container',
+        );
+        for (let key in data[0]) {
+            let title = key;
+            let value = data[0][key];
+            dataItemContainer.innerHTML += renderData(value, title);
         }
     } catch (e) {
         const dataPointContainer = document.querySelector(
-            '.travel-point__content__data-container',
+            '.travel-point__data-container',
         );
         dataPointContainer.textContent = e;
     }

@@ -9,7 +9,6 @@
 @use '../components/button' as *;
 
 .travel-point {
-    width: 100%;
     display: flex;
     flex-direction: row;
 
@@ -88,8 +87,8 @@
     }
     &__icon {
         position: absolute;
-        right: 0%;
-        bottom: 5%;
+        right: -1%;
+        bottom: 7%;
         img {
             width: 100%;
             height: 100%;
@@ -119,12 +118,13 @@
 //reponsive layout for tablet screens
 @include mq-min('md') {
     .travel-point {
+        display: flex;
         &__container {
             gap: 6.4rem;
         }
-        &__img-container {
-            min-height: 61%;
-        }
+        // &__img-container {
+        //     // min-height: 61%;
+        // }
         &__heading--primary {
             font-size: map-get($map: $sub-heading-h1, $key: 'md');
         }
@@ -154,7 +154,7 @@
             object-position: center;
         }
         &__img-container {
-            width: 52%;
+            width: 58%;
         }
         &__container {
             flex-direction: row;
