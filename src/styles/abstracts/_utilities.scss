@@ -3,7 +3,6 @@
 
 .container {
     margin-inline: map-get($map: $margin-inline, $key: 'sm');
-    max-width: 1536px;
 
     @include mq-min('md') {
         margin-inline: map-get($map: $margin-inline, $key: 'md');
@@ -11,5 +10,9 @@
 
     @include mq-min('xl') {
         margin-inline: map-get($map: $margin-inline, $key: 'lg');
+    }
+    @include mq-min('xxl') {
+        margin-inline: auto;
+        max-width: 1536px;
     }
 }

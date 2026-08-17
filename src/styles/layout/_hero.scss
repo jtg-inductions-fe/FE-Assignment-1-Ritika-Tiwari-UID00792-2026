@@ -11,10 +11,6 @@
 @use '../abstracts/utilities';
 
 .hero {
-    display: flex;
-    justify-content: center;
-    justify-content: center;
-
     &__container {
         margin-top: 6.4rem;
         display: flex;
