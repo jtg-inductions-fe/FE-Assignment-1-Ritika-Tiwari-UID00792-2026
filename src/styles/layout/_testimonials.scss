@@ -9,7 +9,131 @@
 @use '../components/button' as *;
 
 .testimonials {
-    &__contianer {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 6.4rem;
         padding-block: 6.4rem;
+    }
+
+    &__heading-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+
+    &__heading--primary {
+        font-size: map-get($map: $sub-heading-h1, $key: 'sm');
+        color: $text-secondary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+        letter-spacing: 20%;
+        text-transform: uppercase;
+    }
+
+    &__heading--secondary {
+        font-size: map-get($map: $heading-h2, $key: 'sm');
+        color: $text-primary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+    }
+
+    &__slider-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__button {
+        height: 55px;
+        width: 30px;
+        padding: 2rem;
+        position: absolute;
+        z-index: 20;
+    }
+
+    &__button--previous {
+        order: 1;
+        border: 1px solid $text-primary-10;
+        left: 4%;
+        bottom: 14%;
+    }
+
+    &__button--next {
+        order: 3;
+        right: 4%;
+        bottom: 14%;
+    }
+
+    &__slider {
+        order: 2;
+    }
+
+    .swiper-slide-active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        gap: 6.4rem;
+    }
+
+    &__name {
+        color: $text-user-data;
+        font-size: $heading-h4;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+    }
+
+    &__role {
+        color: $text-primary-75;
+        font-size: $heading-h4;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__rating {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__description {
+        color: $text-primary-75;
+        font-size: $body-md;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        gap: 2.4rem;
+    }
+
+    .swiper-pagination-bullet {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: map-get($map: $border-radius, $key: 'lg');
+        background-color: $bg-tracker-inactive;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: $bg-tracker-active;
+    }
+}
+
+@include mq-min('md') {
+    .testimonials {
+        &__button {
+            position: static;
+        }
     }
 }

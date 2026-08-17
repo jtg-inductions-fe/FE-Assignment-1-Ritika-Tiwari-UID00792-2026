@@ -13,9 +13,9 @@ testimonials.innerHTML = testimonialsData
 <img src="${image}" alt="${name}" class="testimonials__image"/>
 <h3 class="testimonials__author">
     <span class="testimonials__name">${name}</span>
-    <span class="testimonials__role">${role}</span>
+    <span class="testimonials__role">/${role}</span>
 </h3>
-<div class="testimonials__rating">${'*'.repeat(rating)}</div>
+<div class="testimonials__rating">${'<i class="icon-yellow-star icon--small"></i>'.repeat(rating)}</div>
 <p class="testimonials__description">${text}</p>
 </article>
 `,
