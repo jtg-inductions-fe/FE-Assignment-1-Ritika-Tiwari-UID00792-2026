@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * Async Function for render data in data points card from data.json file
+ *  Function for create and render data in data points card from data.json file
  */
 function renderData(value, title) {
     return `<div class="travel-point__data-point">
@@ -62,6 +62,10 @@ function renderData(value, title) {
                                 <span class="travel-point__data-item-title">${title}</span>
                             </div>`;
 }
+
+/**
+ * Async Function for fetch and render data in data points card from data.json file
+ */
 async function loadData() {
     try {
         let response = await fetch('./src/script/data.json');

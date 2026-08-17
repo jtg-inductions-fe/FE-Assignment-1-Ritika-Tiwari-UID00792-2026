@@ -1,13 +1,46 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
 
 .icon {
     width: 12%;
     height: 12%;
     border-radius: 50%;
     box-shadow: $shadow-button-secondary;
-}
 
-.icon--small {
-    font-size: 2rem;
+    &--small {
+        font-size: 2rem;
+    }
+
+    &--medium {
+        font-size: 2.8rem;
+    }
+
+    &-button {
+        border-radius: map-get($map: $border-radius, $key: 'lg');
+        background-color: $btn-secondary;
+        border: 1px solid $text-primary-10;
+        width: 6.4rem;
+        height: 6.4rem;
+        padding: 2rem;
+
+        @include mq-min('md') {
+            width: 10rem;
+            height: 10rem;
+            padding: 4rem;
+        }
+    }
+
+    &-button--small {
+        width: 3.2rem;
+        height: 3.2rem;
+        background-color: $btn-primary;
+    }
+
+    &-button:hover,
+    &-button--small:hover {
+        background-color: $btn-hover-color;
+        color: $white;
+        box-shadow: $shadow-button-secondary;
+    }
 }

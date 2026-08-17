@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Mark Smith",
+        "role": "Travel Enthusiast",
+        "image": "././assets/images/user-image.svg",
+        "rating": 5,
+        "text": "Implementing this platform was a turning point for our engineering division. The onboarding process was seamless, and the interface is intuitive enough that our team didn't need any formal training."
+    },
+    {
+        "name": "David Chen",
+        "role": "Founder & CEO",
+        "image": "././assets/images/user-image.svg",
+        "rating": 5,
+        "text": "The software handles scale incredibly well, but what sets this company apart is their support. Whenever we ran into custom integration bottlenecks, their engineering team responded within minutes."
+    },
+    {
+        "name": "Elena Rostova",
+        "role": "UI Designer",
+        "image": "././assets/images/user-image.svg",
+        "rating": 4,
+        "text": "As a designer, I am highly critical of application layouts. This tool is visually stunning and responsive. I am only deducting one star because the export feature limits large-batch data file downloads."
+    }
+]
