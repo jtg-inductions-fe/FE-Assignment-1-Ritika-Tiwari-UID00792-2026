@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 function renderData(value, title) {
     return `<div class="travel-point__data-point">
-                                <span class="value">${value}</span>
-                                <span class="title">${title}</span>
+                                <span class="travel-point__data-item-value">${value}</span>
+                                <span class="travel-point__data-item-title">${title}</span>
                             </div>`;
 }
 async function loadData() {
