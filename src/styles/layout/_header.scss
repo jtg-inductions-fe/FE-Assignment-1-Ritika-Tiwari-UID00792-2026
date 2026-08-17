@@ -126,33 +126,35 @@
 
 //responsive layout for tablet screens
 @include mq-min('md') {
-    .header__container {
-        max-width: map-get($breakpoints, xl);
+    .header {
+        &__container {
+            max-width: map-get($breakpoints, xl);
 
-        &__logo {
-            order: -1;
-            margin-left: 20rem;
+            &__logo {
+                order: -1;
+                margin-left: 20rem;
+            }
+
+            &__hamburger {
+                order: -2;
+            }
         }
 
-        &__hamburger {
-            order: -2;
+        .navigation {
+            bottom: 0;
+            left: 0;
+            transform-origin: left;
+            animation: openingEffect 1s;
         }
-    }
 
-    .navigation {
-        bottom: 0;
-        left: 0;
-        transform-origin: left;
-        animation: openingEffect 1s;
-    }
-
-    .auth__section {
-        max-width: 220px;
-        position: static;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        animation: none;
+        .auth__section {
+            max-width: 220px;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            animation: none;
+        }
     }
 }
 

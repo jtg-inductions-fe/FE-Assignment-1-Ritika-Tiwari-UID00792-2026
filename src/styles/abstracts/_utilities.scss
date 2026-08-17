@@ -11,4 +11,8 @@
     @include mq-min('xl') {
         margin-inline: map-get($map: $margin-inline, $key: 'lg');
     }
+    @include mq-min('xxl') {
+        margin-inline: auto;
+        max-width: 1536px;
+    }
 }
