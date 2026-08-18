@@ -105,6 +105,10 @@
         display: flex;
         gap: 2rem;
     }
+    &__image {
+        height: 12rem;
+        width: 12rem;
+    }
 
     &__description {
         color: $text-primary-75;

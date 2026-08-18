@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+@use '../base/layout-breakpoints' as *;
 
 .container {
     margin-inline: map-get($map: $margin-inline, $key: 'sm');
@@ -13,6 +14,6 @@
     }
     @include mq-min('xxl') {
         margin-inline: auto;
-        max-width: 1536px;
+        max-width: map-get($map: $breakpoints, $key: 'xxl');
     }
 }
