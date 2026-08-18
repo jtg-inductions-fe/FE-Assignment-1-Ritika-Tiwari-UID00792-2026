@@ -33,7 +33,7 @@
     }
 
     &--primary {
-        color: $btn-secondary !important;
+        color: $white;
         background-color: $btn-primary;
     }
 
@@ -52,9 +52,8 @@
 
     &:hover {
         //Adds a subtle elevation effect to indicate hover state of button
-        transform: translateY(-2px) scale(1.05);
+        transform: translateY(-2px) scale(1.02);
         box-shadow: $shadow-button-primary;
-        background-color: $btn-hover-color;
     }
 
     &:active {

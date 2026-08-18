@@ -40,7 +40,7 @@
 
 .navigation {
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
     width: 250px;
     height: 100vh;
@@ -80,8 +80,16 @@
         font-weight: $weight-bold;
     }
 
+    &__link.button--primary {
+        color: $white;
+        &:hover {
+            color: white;
+        }
+    }
+
     &__link:hover {
         text-decoration: underline;
+        color: $white;
     }
 
     &__link.is-active {
@@ -163,6 +171,7 @@
 @include mq-min('xl') {
     .header {
         background-color: $white;
+
         &__container {
             padding-block: 4.85rem;
             max-width: 100%;

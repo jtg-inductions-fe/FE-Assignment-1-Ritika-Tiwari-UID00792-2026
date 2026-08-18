@@ -14,6 +14,6 @@
     }
     @include mq-min('xxl') {
         margin-inline: auto;
-        max-width: map-get($map: $breakpoints, $key: 'xxl');
+        max-width: 1320px;
     }
 }
