@@ -1,0 +1,97 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../components/icon' as *;
+
+.footer {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 7.9rem;
+        padding-block: 6.4rem;
+    }
+
+    &__brand-information {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+
+    &__logo-container {
+        display: flex;
+        flex-direction: row;
+        gap: 1.6rem;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__brand-logo {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    &__brand-name {
+        font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+
+    &__description {
+        font-size: $body-normal;
+        color: $text-primary-50;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+    }
+
+    &__socials {
+        display: flex;
+        flex-direction: row;
+        gap: 3.2rem;
+    }
+
+    &__social-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+            color: $white;
+        }
+    }
+
+    &__naviagtions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7.9rem;
+    }
+
+    &__section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__section-header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $white;
+        border: none;
+    }
+
+    &__section-title {
+        font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+}
