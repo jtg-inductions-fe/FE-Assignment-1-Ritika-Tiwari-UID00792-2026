@@ -58,6 +58,7 @@
         //Adds a subtle elevation effect to indicate hover state of button
         transform: translateY(-2px) scale(1.05);
         box-shadow: $shadow-button-primary;
+        background-color: $btn-hover-color;
     }
 
     &:active {

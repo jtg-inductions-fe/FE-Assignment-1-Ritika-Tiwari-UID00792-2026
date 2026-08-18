@@ -56,10 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
 /**
  *  Function for create and render data in data points card from data.json file
  */
-function renderData(value, title) {
+function renderData(value, label) {
     return `<div class="travel-point__data-point">
                                 <span class="travel-point__data-item-value">${value}</span>
-                                <span class="travel-point__data-item-title">${title}</span>
+                                <span class="travel-point__data-item-title">${label}</span>
                             </div>`;
 }
 
@@ -68,21 +68,27 @@ function renderData(value, title) {
  */
 async function loadData() {
     try {
-        let response = await fetch('./src/script/data.json');
+        let response = await fetch('/data/data.json');
+        if (!response.ok) {
+            throw new Error(`Failed to load data: ${response.status}`);
+        }
         let data = await response.json();
         const dataItemContainer = document.querySelector(
             '.travel-point__data-container',
         );
-        for (let key in data[0]) {
-            let title = key;
-            let value = data[0][key];
-            dataItemContainer.innerHTML += renderData(value, title);
-        }
+        data.forEach(({ label, value }) => {
+            dataItemContainer.innerHTML += renderData(value, label);
+        });
     } catch (e) {
         const dataPointContainer = document.querySelector(
             '.travel-point__data-container',
         );
-        dataPointContainer.textContent = e;
+        if (e) {
+            dataPointContainer.textContent =
+                'Unable to load data, Please try again later.';
+            dataPointContainer.style.color = 'red';
+            dataPointContainer.style.fontSize = '2rem';
+        }
     }
 }
 

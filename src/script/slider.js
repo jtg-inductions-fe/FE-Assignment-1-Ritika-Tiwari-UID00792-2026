@@ -28,7 +28,7 @@ function renderData(name, role, image, rating, text) {
  * Async Function for fetch and render data in slides from slides.json file and initialization of swiper instance
  */
 async function loadData() {
-    let response = await fetch('./src/script/slides.json');
+    let response = await fetch('/data/slides.json');
     let testimonialsData = await response.json();
     testimonials.innerHTML = testimonialsData
         .map(({ name, role, image, rating, text }) =>
