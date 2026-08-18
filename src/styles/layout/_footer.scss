@@ -52,6 +52,10 @@
         color: $text-primary-50;
         line-height: map-get($map: $line-heights, $key: 'loose');
         font-weight: $weight-regular;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
     }
 
     &__socials {
