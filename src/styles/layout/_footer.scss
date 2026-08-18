@@ -147,9 +147,18 @@
 //reponsive layout for tablet screens
 @include mq-min('md') {
     .footer {
+        &__container {
+            margin-top: 9.6rem;
+        }
+
+        &__brand-information {
+            margin-top: 3.2rem;
+        }
+
         &__naviagtions {
             flex-direction: row;
             align-items: flex-start;
+            gap: 6.4rem;
         }
 
         &__section-close {
@@ -161,6 +170,10 @@
             max-height: initial;
             opacity: 1;
         }
+
+        &__description {
+            font-size: $body-lg;
+        }
     }
 }
 
@@ -168,18 +181,21 @@
     .footer {
         &__container {
             flex-direction: row;
+            margin-top: 20rem;
         }
 
         &__naviagtions {
             gap: 3.2rem;
+            width: 50%;
+        }
+
+        &__socials {
+            margin-top: 3.2rem;
         }
 
         &__brand-information {
             width: 50%;
-        }
-
-        &__naviagtions {
-            width: 50%;
+            margin-top: 0;
         }
     }
 }
