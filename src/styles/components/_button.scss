@@ -30,10 +30,6 @@
             width: fit-content;
             padding: 1.6rem 3.2rem;
         }
-        @include mq-min('lg') {
-            width: fit-content;
-            padding: 1.6rem 3.2rem;
-        }
     }
 
     &--primary {
