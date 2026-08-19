@@ -1,0 +1,197 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../components/icon' as *;
+
+.footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 7.9rem;
+        padding-block: 6.4rem;
+    }
+
+    &__brand-information {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+
+    &__logo-container {
+        display: flex;
+        flex-direction: row;
+        gap: 1.6rem;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &__brand-logo {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    &__brand-name {
+        font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+
+    &__description {
+        font-size: $body-normal;
+        color: $text-primary-50;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    &__socials {
+        display: flex;
+        flex-direction: row;
+        gap: 3.2rem;
+    }
+
+    &__social-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: $white;
+        }
+    }
+
+    &__naviagtions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7.9rem;
+    }
+
+    &__section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--open .footer__section-items {
+            opacity: 1;
+            max-height: 300px;
+            padding-top: 3.2rem;
+        }
+
+        &--open .footer__section-close-btn {
+            transform: rotate(180deg);
+        }
+
+        &--close {
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &__section-header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $white;
+        border: none;
+        padding: 0;
+    }
+
+    &__section-title {
+        font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+
+    &__section-items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+        padding-top: none;
+
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+            height 0.3s ease,
+            transform 0.3s ease,
+            opacity 0.2s ease;
+    }
+
+    &__navigation-links {
+        color: $text-primary-75;
+        font-size: $body-md;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+        text-decoration: none;
+    }
+}
+
+//reponsive layout for tablet screens
+@include mq-min('md') {
+    .footer {
+        &__brand-information {
+            margin-top: 3.2rem;
+        }
+
+        &__naviagtions {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 6.4rem;
+        }
+
+        &__section-close-btn {
+            display: none;
+        }
+
+        &__section-items {
+            padding-top: 3.2rem;
+            max-height: initial;
+            opacity: 1;
+        }
+
+        &__description {
+            font-size: $body-lg;
+        }
+    }
+}
+
+@include mq-min('xl') {
+    .footer {
+        &__container {
+            flex-direction: row;
+        }
+
+        &__naviagtions {
+            gap: 3.2rem;
+            width: 50%;
+        }
+
+        &__socials {
+            margin-top: 3.2rem;
+        }
+
+        &__brand-information {
+            width: 50%;
+            margin-top: 0;
+        }
+    }
+}

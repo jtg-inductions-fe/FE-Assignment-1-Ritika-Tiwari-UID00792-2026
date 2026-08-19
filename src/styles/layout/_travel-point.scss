@@ -20,7 +20,6 @@
         flex-direction: column;
         gap: 3.2rem;
         padding-block: 6.4rem;
-        margin-top: 6.4rem;
     }
 
     &__img-container {
@@ -95,8 +94,8 @@
 
     &__icon {
         position: absolute;
-        right: -25%;
-        top: -25%;
+        right: -28%;
+        top: -22%;
 
         img {
             width: 100%;
@@ -140,6 +139,7 @@
             object-fit: contain;
             object-position: center;
         }
+
         &__content {
             padding-inline: 0;
         }
@@ -171,8 +171,6 @@
             flex-direction: row;
             justify-content: space-between;
             gap: 0;
-            padding-top: 3.2rem;
-            padding-bottom: 0;
         }
 
         &__img {
