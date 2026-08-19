@@ -1,0 +1,192 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../components/icon' as *;
+
+.testimonials {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 6.4rem;
+        padding-block: 6.4rem;
+    }
+
+    &__heading-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+
+    &__heading--primary {
+        font-size: map-get($map: $sub-heading-h1, $key: 'sm');
+        color: $text-secondary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+        letter-spacing: 20%;
+        text-transform: uppercase;
+    }
+
+    &__heading--secondary {
+        font-size: map-get($map: $heading-h2, $key: 'sm');
+        color: $text-primary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+    }
+
+    &__slider-container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__slider-controls {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 5% 4% 0;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    &__button {
+        pointer-events: auto;
+    }
+
+    &__slider {
+        order: 2;
+    }
+
+    .swiper-slide-active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-content: center;
+        gap: 6.4rem;
+    }
+
+    &__data-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__name {
+        color: $text-user-data;
+        font-size: $heading-h4;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+    }
+
+    &__role {
+        color: $text-primary-75;
+        font-size: $heading-h4;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__rating {
+        display: flex;
+        gap: 2rem;
+    }
+    &__image {
+        height: 12rem;
+        width: 12rem;
+    }
+
+    &__description {
+        color: $text-primary-75;
+        font-size: $body-md;
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        gap: 2.4rem;
+    }
+    .swiper-pagination-bullet {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: map-get($map: $border-radius, $key: 'lg');
+        background-color: $bg-tracker-inactive;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: $bg-tracker-active;
+    }
+}
+
+//reponsive layout for tablet screens
+@include mq-min('md') {
+    .testimonials {
+        &__container {
+            gap: 5.6rem;
+            position: relative;
+        }
+
+        &__container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('../../../assets/images/testimonials-background.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        &__slider-controls {
+            padding: 10% 0% 0;
+        }
+
+        &__description {
+            padding-inline: 15%;
+        }
+
+        &__heading--primary {
+            font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        }
+
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'md');
+        }
+
+        &__button {
+            position: static;
+        }
+
+        &__description {
+            font-size: $body-lg;
+        }
+    }
+}
+
+//reponsive layout for desktop screens
+@include mq-min('xl') {
+    .testimonials {
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'lg');
+        }
+    }
+}

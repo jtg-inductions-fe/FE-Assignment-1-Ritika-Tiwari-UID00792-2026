@@ -1,0 +1,252 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../components/icon' as *;
+@use '../abstracts/utilities';
+
+.hero {
+    &__container {
+        margin-top: 6.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 6.4rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+
+    &__visuals {
+        width: 100%;
+        background-image: url('../../../assets/images/background-image.webp');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        padding-inline: 14.5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        position: relative;
+    }
+
+    &__image-container {
+        width: 100%;
+        display: flex;
+        margin-top: 10.85%;
+        flex-direction: row;
+        position: relative;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    &__image-group--left {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    &__image-group--right {
+        width: 50%;
+        height: 100%;
+    }
+
+    &__image-group img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .overlay-items {
+        position: absolute;
+    }
+
+    .profile-item {
+        bottom: -1%;
+        right: 22.2%;
+    }
+
+    .send-item {
+        top: 40%;
+        left: -5%;
+    }
+
+    .top-place-item {
+        width: 29%;
+        height: 8.8%;
+        left: 87%;
+        bottom: 25%;
+        border-radius: map-get($map: $border-radius, $key: 'md') 0px 0px
+            map-get($map: $border-radius, $key: 'md');
+        box-shadow: $shadow-button-secondary;
+    }
+
+    &__actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2.4rem;
+    }
+
+    &__tagline {
+        display: flex;
+        gap: 1.8rem;
+        align-items: end;
+        padding-inline: 3.2rem;
+        padding-block: 1.6rem;
+        border-radius: 100px;
+        box-shadow: $shadow-button-primary;
+        color: $text-secondary;
+        font-size: $body-sm;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-regular;
+        background-color: $btn-secondary;
+    }
+
+    &__heading {
+        font-size: map-get($map: $heading-h1, $key: 'sm');
+        text-align: center;
+        padding-inline: 1.5rem;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+    }
+
+    &__heading--highlight {
+        color: $text-secondary;
+    }
+
+    &__caption {
+        color: $text-primary-50;
+        font-size: $body-normal;
+        text-align: center;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+    }
+
+    &__button-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 2.4rem;
+    }
+
+    &__brands {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 2.7rem;
+        justify-content: center;
+    }
+}
+
+// Styling of hero section for tablet
+@include mq-min('md') {
+    .hero {
+        &__content {
+            padding-inline: 6.2rem;
+        }
+
+        &__visuals {
+            padding-inline: 10%;
+        }
+
+        &__image-container {
+            gap: 3.2rem;
+        }
+
+        &__image-group--left {
+            gap: 3.2rem;
+        }
+
+        &__actions {
+            gap: 4.3rem;
+        }
+
+        &__heading {
+            font-size: map-get($map: $heading-h1, $key: 'md');
+            text-align: center;
+            padding-inline: 10%;
+        }
+
+        &__caption {
+            font-size: $body-md;
+            padding-inline: 25%;
+        }
+
+        &__button-container {
+            width: 50%;
+            flex-direction: row;
+            gap: 1.6rem;
+            justify-content: center;
+        }
+
+        &__brands {
+            padding-block: 6.4rem;
+            justify-content: center;
+
+            &-image {
+                height: 32px;
+            }
+        }
+    }
+}
+
+// Styling of hero section for desktop
+@include mq-min('xl') {
+    .hero {
+        &__content {
+            flex-direction: row;
+            align-items: center;
+            padding: 0;
+            gap: 0;
+        }
+
+        &__visuals {
+            order: 2;
+            padding-inline: 8%;
+        }
+
+        &__actions {
+            width: 60%;
+            align-items: flex-start;
+        }
+
+        &__heading {
+            font-size: map-get($map: $heading-h1, $key: 'lg');
+            text-align: start;
+            padding: 0;
+        }
+
+        &__caption {
+            font-size: $body-md;
+            text-align: start;
+            padding: 0;
+        }
+
+        &__button-container {
+            width: 100%;
+            flex-direction: row;
+            gap: 1.6rem;
+            justify-content: start;
+        }
+
+        &__brands {
+            justify-content: space-between;
+        }
+    }
+}

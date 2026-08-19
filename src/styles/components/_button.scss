@@ -1,31 +1,63 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
 
 .button {
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     text-align: center;
-    padding: 1.6rem 3.2rem;
+    font-size: $body-sm;
+    line-height: map-get($map: $line-heights, $key: 'normal');
+    font-weight: $weight-bold;
     border-radius: map-get($map: $border-radius, $key: 'lg');
     cursor: pointer;
-    /* Crucial: Smoothly animates changes over 0.3 seconds */
+    border: none;
+    gap: 0.8rem;
     transition: all 0.3s ease;
-}
 
-.button--primary {
-    color: $btn-secondary !important;
-    background-color: $btn-primary;
-}
+    &--sm {
+        padding: 1.6rem 3.2rem;
+    }
 
-.button--secondary {
-    color: $text-primary !important;
-    background-color: $btn-secondary;
-}
+    &--md {
+        width: 100%;
+        padding: 2.4rem 3.2rem;
 
-.button:hover {
-    transform: translateY(-2px) scale(1.05); /* Lifts up and grows slightly */
-    box-shadow: $shadow-button-primary; /* Colored glow */
-}
+        @include mq-min('md') {
+            width: fit-content;
+            padding: 1.6rem 3.2rem;
+        }
+    }
 
-.button:active {
-    transform: translateY(0) scale(1); /* Shrinks back down when clicked */
+    &--primary {
+        color: $white;
+        background-color: $btn-primary;
+    }
+
+    &--shadow {
+        box-shadow: $shadow-button-secondary;
+    }
+
+    &--secondary {
+        color: $text-primary;
+        background-color: $btn-secondary;
+        border: 1px solid $text-primary-10;
+    }
+    &--round {
+        border-radius: map-get($map: $border-radius, $key: 'lg');
+    }
+
+    &:hover {
+        //Adds a subtle elevation effect to indicate hover state of button
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: $shadow-button-primary;
+    }
+
+    &:active {
+        //Return the button to its normal position while pressing
+        transform: translateY(0) scale(1);
+    }
 }

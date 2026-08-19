@@ -1,0 +1,209 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+
+.travel-point {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+        padding-block: 6.4rem;
+    }
+
+    &__img-container {
+        width: 100%;
+        height: 100%;
+        min-height: 34.2rem;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+
+    &__heading-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
+
+    &__text {
+        font-size: $body-normal;
+        color: $text-primary-50;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        font-weight: $weight-regular;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+    }
+
+    &__data-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(1, [col-start] 1fr);
+        gap: 1.6rem;
+    }
+
+    &__data-point {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.6rem;
+        padding: 3.2rem;
+        border: 1px solid $text-primary-10;
+        border-radius: map-get($map: $border-radius, $key: 'sm');
+    }
+
+    &__data-item-value {
+        color: $text-user-data;
+        font-size: $heading-h3;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__data-item-title {
+        color: $text-primary;
+        font-size: $body-md;
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+        text-align: center;
+    }
+
+    &__icon {
+        position: absolute;
+        right: -28%;
+        top: -22%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            box-shadow: none;
+        }
+
+        display: none;
+    }
+
+    &__heading--primary {
+        font-size: map-get($map: $sub-heading-h1, $key: 'sm');
+        color: $text-secondary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+        letter-spacing: 20%;
+    }
+
+    &__heading--secondary {
+        font-size: map-get($map: $heading-h2, $key: 'sm');
+        color: $text-primary;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-weight: $weight-bold;
+        text-align: center;
+    }
+}
+
+//reponsive layout for tablet screens
+@include mq-min('md') {
+    .travel-point {
+        display: flex;
+
+        &__container {
+            gap: 6.4rem;
+        }
+
+        &__img {
+            height: 780px;
+            display: block;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        &__content {
+            padding-inline: 0;
+        }
+
+        &__heading--primary {
+            font-size: map-get($map: $sub-heading-h1, $key: 'md');
+        }
+
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'md');
+        }
+
+        &__text {
+            font-size: $body-md;
+        }
+
+        &__data-container {
+            grid-template-columns: repeat(2, [col-start] 1fr);
+            gap: 3.2rem;
+            margin-top: 3.2rem;
+        }
+    }
+}
+
+//reponsive layout for desktop screens
+@include mq-min('xl') {
+    .travel-point {
+        &__container {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 0;
+        }
+
+        &__img {
+            object-fit: contain;
+        }
+
+        &__img-container {
+            width: 58%;
+        }
+
+        &__text {
+            text-align: start;
+        }
+
+        &__content {
+            width: 38%;
+        }
+
+        &__heading--primary {
+            text-align: start;
+        }
+
+        &__heading--secondary {
+            font-size: map-get($map: $heading-h2, $key: 'lg');
+            text-align: start;
+        }
+
+        &__content__text {
+            text-align: start;
+        }
+
+        &__icon {
+            display: block;
+        }
+    }
+}

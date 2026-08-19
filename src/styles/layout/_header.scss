@@ -7,11 +7,13 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 @use '../components/button' as *;
+@use '../abstracts/utilities';
 
 .header {
     width: 100%;
     position: sticky;
     top: 0;
+    z-index: 10;
     background-color: $white;
 
     &__container {
@@ -39,7 +41,7 @@
 
 .navigation {
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
     width: 250px;
     height: 100vh;
@@ -72,14 +74,26 @@
     &__link {
         text-decoration: none;
         text-align: center;
+        border: none;
         color: $text-primary-50;
         font-size: $body-sm;
         line-height: normal;
         font-weight: $weight-bold;
     }
 
+    &__link.button--primary {
+        color: $white;
+        &:hover {
+            color: $white;
+        }
+        &.is-active {
+            color: white;
+        }
+    }
+
     &__link:hover {
         text-decoration: underline;
+        color: $white;
     }
 
     &__link.is-active {
@@ -97,7 +111,6 @@
     position: fixed;
     top: 350px;
     right: 0;
-    z-index: 3;
     transform-origin: right;
     animation: openingEffect 1s;
     display: none;
@@ -126,33 +139,35 @@
 
 //responsive layout for tablet screens
 @include mq-min('md') {
-    .header__container {
-        max-width: map-get($breakpoints, xl);
+    .header {
+        &__container {
+            max-width: map-get($breakpoints, xl);
 
-        &__logo {
-            order: -1;
-            margin-left: 20rem;
+            &__logo {
+                order: -1;
+                margin-left: 20rem;
+            }
+
+            &__hamburger {
+                order: -2;
+            }
         }
 
-        &__hamburger {
-            order: -2;
+        .navigation {
+            bottom: 0;
+            left: 0;
+            transform-origin: left;
+            animation: openingEffect 1s;
         }
-    }
 
-    .navigation {
-        bottom: 0;
-        left: 0;
-        transform-origin: left;
-        animation: openingEffect 1s;
-    }
-
-    .auth__section {
-        max-width: 220px;
-        position: static;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        animation: none;
+        .auth__section {
+            max-width: 220px;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            animation: none;
+        }
     }
 }
 
@@ -161,14 +176,13 @@
     .header {
         background-color: $white;
         &__container {
-            max-width: 100%;
-            margin-inline: calc(
-                map-get($map: $margin-inline, $key: 'lg') - 6.5rem
-            );
+            padding-block: 4.85rem;
+            // max-width: 100%;
             top: 3.4rem;
             border-radius: 10px;
             padding-block: 4.9rem;
             background-color: $white;
+            align-items: center;
 
             &__hamburger {
                 display: none;
