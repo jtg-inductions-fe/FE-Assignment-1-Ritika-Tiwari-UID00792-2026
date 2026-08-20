@@ -1,0 +1,104 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../abstracts/utilities';
+
+.special-offer {
+    height: 100vh;
+    width: 100%;
+    background-color: $overlay-color;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    overscroll-behavior: contain;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline: 3.5rem;
+
+    &__container {
+        width: 360px;
+        margin-inline: auto;
+        background-color: $white;
+        margin-top: 20%;
+        align-self: flex-end;
+        border-radius: 2.4rem;
+        display: flex;
+        flex-direction: column;
+        padding: 2.4rem;
+        gap: 2rem;
+        animation: drawer-open 2s forwards;
+        transform-origin: bottom;
+        position: relative;
+    }
+
+    @keyframes drawer-open {
+        from {
+            transform: translateY(100%);
+        }
+        to {
+            transform: translateY(0%);
+        }
+    }
+
+    &__heading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    &__title {
+        color: $text-secondary;
+        font-weight: $weight-semibold;
+        font-size: $body-xs;
+        display: flex;
+        gap: 0.2rem;
+        text-align: end;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__heading {
+        color: $text-hero;
+        font-weight: $weight-bold;
+        font-size: map-get($map: $heading-h1, $key: 'xs');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__instruction {
+        color: $text-primary-50;
+        font-size: $body-xs;
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+    &__spin-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__spinner {
+        border-radius: 50%;
+        height: 228px;
+        width: 228px;
+        background-color: $wheel-base-color;
+    }
+    &__close-btn {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+    }
+}
+@include mq-min('md') {
+    .special-offer {
+        align-items: center;
+        justify-content: center;
+    }
+}

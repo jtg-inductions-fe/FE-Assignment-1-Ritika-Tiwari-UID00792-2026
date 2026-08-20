@@ -1,5 +1,6 @@
 import { accodion } from './accordion';
 import { slider } from './slider';
+import { Drawer } from './deals';
 /*
 Implementation of opening and closing logic of hamburger using toggle class.
  */
@@ -97,3 +98,4 @@ async function loadData() {
 loadData();
 slider();
 accodion();
+Drawer();
