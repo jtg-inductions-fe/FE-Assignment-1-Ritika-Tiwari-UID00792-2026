@@ -29,6 +29,7 @@ $line-heights: (
 
 //Font-sizes for Headings
 $heading-h1: (
+    'xs': 2rem,
     'sm': 4rem,
     'md': 5.6rem,
     'lg': 6.9rem,
@@ -50,7 +51,9 @@ $sub-heading-h1: (
 );
 $sub-heading-h2: 1.4rem;
 
-// Font-sizes for body text
+// Font-sizes for body text]
+$body-xs: 1rem;
+$body-xs: 1.2rem;
 $body-sm: 1.4rem;
 $body-normal: 1.6rem;
 $body-md: 1.8rem;

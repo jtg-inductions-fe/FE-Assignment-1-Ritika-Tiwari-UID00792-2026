@@ -1,6 +1,6 @@
 @font-face {
     font-family: icomoon;
-    src: url('../../../assets/fonts/icomoon-font-family/icomoon.woff?bkp1nz')
+    src: url('../../../public/assets/fonts/icomoon-font-family/icomoon.woff?7yis2l')
         format('woff');
     font-weight: normal;
     font-style: normal;
@@ -23,15 +23,15 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-close-outline:before {
-    content: '\e909';
-}
-.icon-close:before {
-    content: '\e90a';
+.icon-gift1:before {
+    content: '\e912';
 }
 .icon-instagram:before {
     content: '\e900';
     color: #fff;
+}
+.icon-location:before {
+    content: '\e947';
 }
 .icon-menu:before {
     content: '\e9bd';
@@ -42,8 +42,17 @@
 .icon-twitter:before {
     content: '\ea96';
 }
-.icon-star:before {
-    content: '\e901';
+.icon-triangle-down:before {
+    content: '\e910';
+}
+.icon-close-outline:before {
+    content: '\e909';
+}
+.icon-close:before {
+    content: '\e90a';
+}
+.icon-arrow-circle-down:before {
+    content: '\e902';
 }
 .icon-arrow-left:before {
     content: '\e903';
@@ -51,9 +60,9 @@
 .icon-arrow-right:before {
     content: '\e904';
 }
-.icon-bag:before {
-    content: '\e905';
-    color: #f85e9f;
+.icon-triangle-down-1:before {
+    content: '\e90f';
+    color: #f4436c;
 }
 .icon-arrow-circle-down:before {
     content: '\e902';
@@ -79,4 +88,22 @@
 .icon-yellow-star:before {
     content: '\e908';
     color: #facd49;
+}
+.icon-gift:before {
+    content: '\e911';
+}
+.icon-check-square:before {
+    content: '\e90c';
+}
+.icon-copy:before {
+    content: '\e90b';
+}
+.icon-facebook:before {
+    content: '\ea90';
+}
+.icon-twitter:before {
+    content: '\ea96';
+}
+.icon-star:before {
+    content: '\e901';
 }
