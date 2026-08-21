@@ -227,12 +227,14 @@
         font-weight: $weight-bold;
     }
 
+
     &__view-unlock-deals-btn {
         width: 100%;
         font-size: $body-sm;
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
     }
+
 
     &__bubble-counter {
         height: 1.8rem;

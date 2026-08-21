@@ -60,6 +60,33 @@ export const drawer = () => {
         e.stopPropagation();
     });
 
+    //fetch api
+    let dealsOnWheel = [];
+    const unloackedDeals = [
+        { label: '20% Off Flights', promoCode: 'FLY20-X8J2', validFor: 13 },
+        { label: 'VIP Lounge', promoCode: 'VIP-LMN9', validFor: 29 },
+    ];
+    async function fetchDeals() {
+        const response = await fetch(
+            'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
+        );
+        const data = await response.json();
+        //filter null values
+        for (let i in data) {
+            if (data[i]['validFor'] == null) {
+                data[i]['validFor'] = 7;
+            }
+        }
+        dealsOnWheel = data.filter(
+            (Item) =>
+                !unloackedDeals.some(
+                    (excludeItem) => excludeItem.label === Item.label,
+                ),
+        );
+        spinWheel(dealsOnWheel);
+    }
+    fetchDeals();
+
     /**
      * Async function to fetch special offer deals from api and initialize the deals
      */
