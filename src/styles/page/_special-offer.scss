@@ -7,6 +7,7 @@
 @use '../vendors/fonts.scss' as *;
 @use '../base/layout-breakpoints' as *;
 @use '../components/button' as *;
+@use '../components/card' as *;
 @use '../abstracts/utilities';
 
 .special-offer {

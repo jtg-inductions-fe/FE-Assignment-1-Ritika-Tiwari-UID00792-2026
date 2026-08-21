@@ -58,7 +58,6 @@ export function Drawer() {
         });
 
         let currentRotation = 0;
-
         spinBtn.addEventListener('click', () => {
             const randomIndex = Math.floor(Math.random() * items.length);
             // calcualtion of the target angle of the winner slice from its initial angle
