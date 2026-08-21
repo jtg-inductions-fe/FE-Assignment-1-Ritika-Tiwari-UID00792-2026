@@ -108,6 +108,7 @@
     }
 
     &__items {
+        width: 70px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -126,8 +127,9 @@
     }
 
     &__deals-slice {
-        width: 60%;
-        height: 60%;
+        width: 200px;
+        height: 200px;
+        text-align: center;
     }
 
     &__spin-btn {
@@ -146,12 +148,14 @@
         color: $text-secondary;
         box-shadow: $shadow-wheel-secondary;
     }
+
     &__view-unlock-deals-btn {
         width: 100%;
         font-size: $body-sm;
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
     }
+
     &__bubble-counter {
         height: 1.8rem;
         width: 1.8rem;
@@ -162,6 +166,13 @@
         line-height: map-get($map: $line-heights, $key: 'normal');
         color: $white;
         padding: 0.3rem;
+    }
+
+    &__win-message {
+        font-size: $body-sm;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
     }
 }
 
