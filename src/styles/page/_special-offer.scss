@@ -103,14 +103,18 @@
         transition: transform 4s cubic-bezier(0.15, 0, 0.2, 1);
         position: relative;
         border: 4px solid $white;
-        box-shadow: $shadow-button-secondary;
+        box-shadow: $shadow-wheel-primary;
     }
+
     &__items {
         position: absolute;
         top: 50%;
         left: 50%;
         text-align: center;
-        color: $black;
+        color: $white;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-size: $body-xs;
         transform-origin: 0 0;
     }
 
@@ -124,6 +128,7 @@
         width: 60%;
         height: 60%;
     }
+
     &__spin-btn {
         width: 4.4rem;
         height: 4.4rem;
@@ -138,6 +143,24 @@
         background-color: $white;
         border-radius: 50%;
         color: $text-secondary;
+        box-shadow: $shadow-wheel-secondary;
+    }
+    &__view-unlock-deals-btn {
+        width: 100%;
+        font-size: $body-sm;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+    &__bubble-counter {
+        height: 1.8rem;
+        width: 1.8rem;
+        background-color: $wheel-color-secondary;
+        border-radius: 50%;
+        font-size: $body-xs;
+        font-weight: $weight-medium;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        color: $white;
+        padding: 0.3rem;
     }
 }
 
