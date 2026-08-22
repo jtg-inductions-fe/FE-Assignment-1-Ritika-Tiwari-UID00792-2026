@@ -8,29 +8,39 @@ export function Drawer() {
     const closeBtn = document.querySelector('.special-offer__close-btn');
     const winPin = document.querySelector('.icon-triangle-down');
 
-    //Drawer open / close state handler function
-    function closeDrawer() {
-        overlay.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-    }
+    /**
+     * Top level unlocked deals data-structure
+     */
+    const unlockedDeals = [];
+
+    /**
+     * Drawer open state handler function
+     */
     function openDrawer() {
         header.classList.remove('navigation-open');
         overlay.style.display = 'flex';
         document.body.classList.add('no-scroll');
     }
 
-    specialDeals.addEventListener('click', openDrawer);
+    /**
+     * Drawer close state handler function
+     */
+    function closeDrawer() {
+        overlay.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    }
 
+    specialDeals.addEventListener('click', openDrawer);
     overlay.addEventListener('click', (e) => {
         if (e.target == e.currentTarget) {
             closeDrawer();
         }
     });
-
     closeBtn.addEventListener('click', closeDrawer);
 
-    //fetch api and initialize the deals
-    const unlockedDeals = [];
+    /**
+     * Async function to fetch special offer deals from api and initialize the deals
+     */
     async function fetchDeals() {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
@@ -53,6 +63,7 @@ export function Drawer() {
                 }
             }
 
+            // filter unlocked deals from the deals coming from api to show locked deals on wheel
             const unlockedList =
                 typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
@@ -70,9 +81,11 @@ export function Drawer() {
             if (loader) loader.style.display = 'none';
         }
     }
-
     fetchDeals();
 
+    /**
+     * Async function to copy code for deals on clipboard
+     */
     async function copyCodeToClipboard(code, copyIcon) {
         try {
             await navigator.clipboard.writeText(code);
@@ -82,12 +95,18 @@ export function Drawer() {
             void e;
         }
     }
+
+    /**
+     * function to update unlocked deals count on bubble on the button
+     */
     function displayCountOfUnlockedDeals(count) {
         const bubble = document.querySelector('.special-offer__bubble-counter');
         bubble.textContent = count;
     }
 
-    // Spin wheel login in js and dynamically render the items in the wheel
+    /**
+     * Spin wheel logic in js and dynamically render the items in wheel
+     */
     function spinWheel(dealsOnWheel) {
         if (!dealsOnWheel || dealsOnWheel.length === 0) return;
         const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
@@ -134,8 +153,8 @@ export function Drawer() {
             // Add extra rotation to the wheel
             const extraRotation = 360 * 3;
 
-            // calculate the exact degrees needed to move from the current position
-            // we subtract the target angle to rotate the wheel backwards so the slice lands at the top pointer
+            /* Calculate the exact degrees needed to move from the current position,
+            we subtract the target angle to rotate the wheel backwards so the slice lands at the top pointer */
             const rotation =
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
 
@@ -156,10 +175,12 @@ export function Drawer() {
                 );
                 unloackedDealsCard.style.display = 'block';
 
+                // Check to ensure unlock data structure do not contain duplicate deals
                 if (!unlockedDeals.includes(winningDeal)) {
                     unlockedDeals.push(winningDeal);
                 }
-                //calling unlock deals function to show the number of deals into bubble
+
+                // Calling unlock deals function to show the number of deals into bubble
                 displayCountOfUnlockedDeals(unlockedDeals.length);
                 unloackedDealsCard.children[1].children[0].children[0].children[0].textContent =
                     winningDeal.label;
