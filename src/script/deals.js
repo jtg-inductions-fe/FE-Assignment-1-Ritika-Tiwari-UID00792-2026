@@ -1,4 +1,3 @@
-// import colors from '../styles/abstracts/colors';
 export function Drawer() {
     const overlay = document.body.querySelector('.special-offer');
     const specialDeals = document.getElementById('deals');
@@ -9,7 +8,7 @@ export function Drawer() {
     const closeBtn = document.querySelector('.special-offer__close-btn');
     const winPin = document.querySelector('.icon-triangle-down');
 
-    //Drawer open/ close state handler function
+    //Drawer open / close state handler function
     function closeDrawer() {
         overlay.style.display = 'none';
         document.body.classList.remove('no-scroll');
@@ -88,7 +87,7 @@ export function Drawer() {
         bubble.textContent = count;
     }
 
-    //Spin wheel login in js and dynamically render the items in the wheel
+    // Spin wheel login in js and dynamically render the items in the wheel
     function spinWheel(dealsOnWheel) {
         if (!dealsOnWheel || dealsOnWheel.length === 0) return;
         const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
@@ -106,6 +105,7 @@ export function Drawer() {
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
+        let sliceTextPosition = [0, -90, 90, 180];
         items.forEach((item, index) => {
             const sliceText = document.createElement('span');
             sliceText.setAttribute(
@@ -113,26 +113,29 @@ export function Drawer() {
                 'special-offer__spinner-items-label',
             );
             sliceText.textContent = item.label;
-            let angle = -45;
-            sliceText.style.transform = `rotate(${angle}deg)`;
-            angle += 90;
+            sliceText.style.transform = `rotate(${sliceTextPosition[index] - 45}deg)`;
             slices[index].appendChild(sliceText);
         });
 
         let temp = document.getElementsByTagName('template')[0];
-        let unloackedDealsCard = temp.content.cloneNode(true);
+        let clone = temp.content.cloneNode(true);
+        let unloackedDealsCard = clone.firstElementChild;
 
         spinBtn.addEventListener('click', () => {
+            if (specialOfferContainer.contains(unloackedDealsCard)) {
+                unloackedDealsCard.style.display = 'none';
+            }
             const randomIndex = Math.floor(Math.random() * items.length);
+
             // calcualtion of the target angle of the winner slice from its initial angle
             const slicePosition = [0, -90, 90, 180];
             const targetAngle = slicePosition[randomIndex];
+
             // Add extra rotation to the wheel
             const extraRotation = 360 * 3;
 
             // calculate the exact degrees needed to move from the current position
             // we subtract the target angle to rotate the wheel backwards so the slice lands at the top pointer
-
             const rotation =
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
 
@@ -146,18 +149,22 @@ export function Drawer() {
                 sliceTextList[randomIndex].style.color = 'black';
                 const winningDeal = items[randomIndex];
                 specialOfferContainer.insertBefore(
-                    unloackedDealsCard,
+                    clone,
                     document.querySelector(
                         '.special-offer__view-unlock-deals-btn',
                     ),
                 );
-                unlockedDeals.push(winningDeal);
+                unloackedDealsCard.style.display = 'block';
+
+                if (!unlockedDeals.includes(winningDeal)) {
+                    unlockedDeals.push(winningDeal);
+                }
                 //calling unlock deals function to show the number of deals into bubble
                 displayCountOfUnlockedDeals(unlockedDeals.length);
-                specialOfferContainer.children[4].children[0].children[0].children[0].textContent =
+                unloackedDealsCard.children[1].children[0].children[0].children[0].textContent =
                     winningDeal.label;
-                specialOfferContainer.children[4].children[0].children[0].children[1].textContent = `Expires in ${winningDeal.validFor}d`;
-                specialOfferContainer.children[4].children[0].children[1].children[0].textContent =
+                unloackedDealsCard.children[1].children[0].children[0].children[1].textContent = `Expires in ${winningDeal.validFor}d`;
+                unloackedDealsCard.children[1].children[0].children[1].children[0].textContent =
                     winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');

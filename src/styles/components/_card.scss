@@ -18,9 +18,11 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        gap: 0.3rem;
     }
 
     &__name {
+        width: 100%;
         font-size: $body-sm;
         font-weight: $weight-semibold;
         line-height: map-get($map: $line-heights, $key: 'normal');
