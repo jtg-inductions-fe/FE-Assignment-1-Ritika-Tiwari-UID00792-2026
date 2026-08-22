@@ -307,5 +307,96 @@ export const drawer = () => {
             e.stopPropagation();
         }
         });
-    };
-};
+
+        // Handle Navigation to Unlocked Deals view
+        let isUnlockedView = false;
+        let navBtn = document.querySelector(
+            '.special-offer__view-unlock-deals-btn',
+        );
+        let unlockedDealsContainer = document.querySelector(
+            '.special-offer__unlocked-deals-card-container',
+        );
+        let spinnerContainer = document.querySelector(
+            '.special-offer__spin-container',
+        );
+        const template = document.querySelector('template');
+
+        /**
+         * Function for rendering deals cards in the View
+         */
+        function renderUnlockedDeals(deals) {
+            if (!unlockedDealsContainer || !template) return;
+            deals.forEach((deal) => {
+                const alreadyExist = unlockedDealsContainer.querySelector(
+                    `[data-promo-code="${deal.promoCode}"]`,
+                );
+                if (alreadyExist) return;
+                const card =
+                    template.content.cloneNode(true).firstElementChild
+                        .children[1];
+                card.setAttribute('data-promo-code', deal.promoCode);
+                const dealName = card.querySelector(
+                    '.special-offer__deal-name',
+                );
+                const dealValidity = card.querySelector(
+                    '.special-offer__deal-validity',
+                );
+                const dealCode = card.querySelector(
+                    '.special-offer__deal-code',
+                );
+                const copyBtn = card.querySelector('.icon-copy');
+                if (dealName) dealName.textContent = deal.label;
+                if (dealValidity)
+                    dealValidity.textContent = `Expires in ${deal.validFor}d`;
+                if (dealCode) dealCode.textContent = deal.promoCode;
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', () => {
+                        copyCodeToClipboard(deal.promoCode, copyBtn);
+                    });
+                }
+                unlockedDealsContainer.appendChild(card);
+            });
+        }
+        /**
+         * Function for showing Unlocked Deals on the Unlocked deals container
+         */
+        function displayUnlockedDeals() {
+            if (!unlockedDealsContainer || !template) return;
+            isUnlockedView = !isUnlockedView;
+            unlockedDealsContainer.style.display = isUnlockedView
+                ? 'flex'
+                : 'none';
+            spinnerContainer.style.display = isUnlockedView ? 'none' : 'flex';
+
+            if (unlockedDealsCard) {
+                unlockedDealsCard.style.display = isUnlockedView
+                    ? 'none'
+                    : 'block';
+            }
+            navBtn.classList.toggle('special-offer__back-btn', isUnlockedView);
+            const textSpan = navBtn.querySelector('.special-offer__btn-label');
+            const targetLabel = isUnlockedView
+                ? 'Go Back'
+                : 'View All Unlocked Deals';
+
+            if (textSpan) {
+                textSpan.textContent = targetLabel;
+            } else {
+                navBtn.childNodes[0].nodeValue = targetLabel;
+            }
+
+            const countBubble = navBtn.querySelector(
+                '.special-offer__bubble-counter',
+            );
+            if (countBubble) {
+                countBubble.style.display = isUnlockedView ? 'none' : 'flex';
+            }
+
+            if (isUnlockedView) {
+                renderUnlockedDeals(unlockedDeals);
+            }
+        }
+
+        navBtn.addEventListener('click', displayUnlockedDeals);
+    }
+}

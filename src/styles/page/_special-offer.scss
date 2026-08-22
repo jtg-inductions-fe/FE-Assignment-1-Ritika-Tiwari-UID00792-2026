@@ -284,7 +284,9 @@
         font-weight: $weight-medium;
         line-height: map-get($map: $line-heights, $key: 'normal');
         color: $white;
-        padding: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &__win-message {
@@ -293,6 +295,18 @@
         line-height: map-get($map: $line-heights, $key: 'normal');
         text-align: center;
         margin-bottom: 0.8rem;
+    }
+
+    &__unlocked-deals-card-container {
+        display: flex;
+        flex-direction: column;
+        max-height: 222px;
+        align-items: center;
+        overflow-y: scroll;
+        gap: 1rem;
+    }
+    &__card {
+        width: 100%;
     }
 }
 
