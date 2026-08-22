@@ -60,8 +60,9 @@ export const drawer = () => {
         e.stopPropagation();
     });
 
-    //fetch api and initialize the deals
-    const unlockedDeals = [];
+    /**
+     * Async function to fetch special offer deals from api and initialize the deals
+     */
     async function fetchDeals() {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
@@ -84,6 +85,7 @@ export const drawer = () => {
                 }
             }
 
+            // filter unlocked deals from the deals coming from api to show locked deals on wheel
             const unlockedList =
                 typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
@@ -101,9 +103,11 @@ export const drawer = () => {
             if (loader) loader.style.display = 'none';
         }
     }
-
     fetchDeals();
 
+    /**
+     * Async function to copy code for deals on clipboard
+     */
     async function copyCodeToClipboard(code, copyIcon) {
         try {
             await navigator.clipboard.writeText(code);
