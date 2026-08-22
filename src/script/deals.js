@@ -56,23 +56,8 @@ export function Drawer() {
             // console.log("loading...");
         }
     }
+
     fetchDeals();
-
-    /*
-     * Calculates a CSS poygon clippath for any angle theta
-     */
-    function getSliceClipPath(angle) {
-        const rad = (angle * Math.PI) / 180;
-        const x = (50 + 50 * Math.sin(rad)).toFixed(2);
-        const y = (50 - 50 * Math.cos(rad)).toFixed(2);
-        const points = ['50% 50%', '50% 0%'];
-        if (angle > 90) points.join('100% 0%');
-        if (angle > 180) points.join('100% 100%');
-        if (angle > 270) points.join('0% 100%');
-        points.push(`${x}% ${y}%`);
-
-        return `polygon(${points.join(', ')})`;
-    }
 
     async function copyCodeToClipboard(code, copyIcon) {
         try {
@@ -104,26 +89,21 @@ export function Drawer() {
         winPin.style.color = '#f85e9f';
 
         if (!wheel || !spinBtn) return;
-
-        let colorList = ['#5d50c6', '#facd49', '#06b6d4', '#f85e9f'];
-        const sliceAngle = 360 / items.length;
         let currentRotation = 0;
-        // wheel.innerHTML = '';
-        const clipPath = getSliceClipPath(sliceAngle);
+        const slices = document.querySelectorAll(
+            '.special-offer__spinner-items',
+        );
         items.forEach((item, index) => {
-            const slice = document.createElement('div');
-            slice.className = 'special-offer__deals-slice';
-            slice.style.backgroundColor = colorList[index % colorList.length];
-            slice.style.setProperty('clip-path', clipPath);
-            slice.style.transform = `rotate(${index * sliceAngle}deg)`;
-            const text = document.createElement('span');
-            text.className = 'special-offer__items';
-            text.textContent = item.label;
-
-            // rotate the text to half of slice angle to place it in the center of slice
-            text.style.transform = `rotate(${sliceAngle}deg) translateX(-100%)`;
-            slice.appendChild(text);
-            wheel.appendChild(slice);
+            const sliceText = document.createElement('span');
+            sliceText.setAttribute(
+                'class',
+                'special-offer__spinner-items-label',
+            );
+            sliceText.textContent = item.label;
+            let angle = -45;
+            sliceText.style.transform = `rotate(${angle}deg)`;
+            angle += 90;
+            slices[index].appendChild(sliceText);
         });
 
         let temp = document.getElementsByTagName('template')[0];
@@ -132,7 +112,8 @@ export function Drawer() {
         spinBtn.addEventListener('click', () => {
             const randomIndex = Math.floor(Math.random() * items.length);
             // calcualtion of the target angle of the winner slice from its initial angle
-            const targetAngle = randomIndex * sliceAngle + sliceAngle / 2;
+            const slicePosition = [0, -90, 90, 180];
+            const targetAngle = slicePosition[randomIndex];
             // Add extra rotation to the wheel
             const extraRotation = 360 * 3;
 
@@ -143,9 +124,13 @@ export function Drawer() {
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
 
             currentRotation += rotation;
-            wheel.style.transform = `rotate(${currentRotation}deg)`;
+            wheel.style.transform = `rotate(${currentRotation + 45}deg)`;
 
             setTimeout(() => {
+                const sliceTextList = document.querySelectorAll(
+                    '.special-offer__spinner-items-label',
+                );
+                sliceTextList[randomIndex].style.color = 'black';
                 const winningDeal = items[randomIndex];
                 specialOfferConatiner.insertBefore(
                     unloackedDealsCard,
