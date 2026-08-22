@@ -115,6 +115,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        i {
+            font-size: 1.6rem;
+        }
     }
 
     &__spinner-wrapper {
