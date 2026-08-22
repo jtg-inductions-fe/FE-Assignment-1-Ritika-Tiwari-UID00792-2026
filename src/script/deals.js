@@ -60,32 +60,64 @@ export const drawer = () => {
         e.stopPropagation();
     });
 
-    //fetch api
-    let dealsOnWheel = [];
-    const unloackedDeals = [
-        { label: '20% Off Flights', promoCode: 'FLY20-X8J2', validFor: 13 },
-        { label: 'VIP Lounge', promoCode: 'VIP-LMN9', validFor: 29 },
-    ];
+    //fetch api and initialize the deals
+
     async function fetchDeals() {
-        const response = await fetch(
-            'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
-        );
-        const data = await response.json();
-        //filter null values
-        for (let i in data) {
-            if (data[i]['validFor'] == null) {
-                data[i]['validFor'] = 7;
+        const unloackedDeals = [
+            { label: '20% Off Flights', promoCode: 'FLY20-X8J2', validFor: 13 },
+            { label: 'VIP Lounge', promoCode: 'VIP-LMN9', validFor: 29 },
+        ];
+        try {
+            const response = await fetch(
+                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
+            );
+            const data = await response.json();
+            //filter null values
+            for (let i in data) {
+                if (data[i]['validFor'] == null) {
+                    data[i]['validFor'] = 7;
+                }
             }
+            let dealsOnWheel = data.filter(
+                (Item) =>
+                    !unloackedDeals.some(
+                        (unlocked) => unlocked.label === Item.label,
+                    ),
+            );
+            spinWheel(dealsOnWheel);
+        } catch (e) {
+            void e;
+        } finally {
+            // console.log("loading...");
         }
-        dealsOnWheel = data.filter(
-            (Item) =>
-                !unloackedDeals.some(
-                    (excludeItem) => excludeItem.label === Item.label,
-                ),
-        );
-        spinWheel(dealsOnWheel);
     }
     fetchDeals();
+
+    /*
+     * Calculates a CSS poygon clippath for any angle theta
+     */
+    function getSliceClipPath(angle) {
+        const rad = (angle * Math.PI) / 180;
+        const x = (50 + 50 * Math.sin(rad)).toFixed(2);
+        const y = (50 - 50 * Math.cos(rad)).toFixed(2);
+        const points = ['50% 50%', '50% 0%'];
+        if (angle > 90) points.join('100% 0%');
+        if (angle > 180) points.join('100% 100%');
+        if (angle > 270) points.join('0% 100%');
+        points.push(`${x}% ${y}%`);
+
+        return `polygon(${points.join(', ')})`;
+    }
+
+    async function copyCodeToClipboard(code, copyIcon) {
+        try {
+            await navigator.clipboard.writeText(code);
+            copyIcon.classList.remove('icon-copy');
+            copyIcon.classList.add('icon-check-square');
+        } catch (e) {
+            void e;
+        }
+    }
 
     /**
      * Async function to fetch special offer deals from api and initialize the deals
