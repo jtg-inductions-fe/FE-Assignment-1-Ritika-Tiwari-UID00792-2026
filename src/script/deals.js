@@ -87,23 +87,8 @@ export const drawer = () => {
             // console.log("loading...");
         }
     }
+
     fetchDeals();
-
-    /*
-     * Calculates a CSS poygon clippath for any angle theta
-     */
-    function getSliceClipPath(angle) {
-        const rad = (angle * Math.PI) / 180;
-        const x = (50 + 50 * Math.sin(rad)).toFixed(2);
-        const y = (50 - 50 * Math.cos(rad)).toFixed(2);
-        const points = ['50% 50%', '50% 0%'];
-        if (angle > 90) points.join('100% 0%');
-        if (angle > 180) points.join('100% 100%');
-        if (angle > 270) points.join('0% 100%');
-        points.push(`${x}% ${y}%`);
-
-        return `polygon(${points.join(', ')})`;
-    }
 
     async function copyCodeToClipboard(code, copyIcon) {
         try {
