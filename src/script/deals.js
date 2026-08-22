@@ -2,12 +2,13 @@
 export function Drawer() {
     const overlay = document.body.querySelector('.special-offer');
     const specialDeals = document.getElementById('deals');
-    const specialOfferConatiner = document.querySelector(
+    const specialOfferContainer = document.querySelector(
         '.special-offer__container',
     );
     const header = document.querySelector('.header__container');
     const closeBtn = document.querySelector('.special-offer__close-btn');
-    const unloackedDeals = [];
+    const winPin = document.querySelector('.icon-triangle-down');
+
     //Drawer open/ close state handler function
     function closeDrawer() {
         overlay.style.display = 'none';
@@ -30,30 +31,44 @@ export function Drawer() {
     closeBtn.addEventListener('click', closeDrawer);
 
     //fetch api and initialize the deals
-
+    const unlockedDeals = [];
     async function fetchDeals() {
+        const spinner = document.querySelector('.special-offer__spinner');
+        const loader = document.querySelector('.special-offer__loader');
+
+        if (typeof winPin !== 'undefined') {
+            winPin.style.color = '#eeeeee';
+        }
+        if (spinner) spinner.style.display = 'none';
+        if (loader) loader.style.display = 'flex';
         try {
             const response = await fetch(
-                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
+                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/',
             );
             const data = await response.json();
-            //filter null values
+
+            // filter null values
             for (let i in data) {
                 if (data[i]['validFor'] == null) {
                     data[i]['validFor'] = 7;
                 }
             }
+
+            const unlockedList =
+                typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
                 (Item) =>
-                    !unloackedDeals.some(
+                    !unlockedList.some(
                         (unlocked) => unlocked.label === Item.label,
                     ),
             );
+
             spinWheel(dealsOnWheel);
         } catch (e) {
             void e;
         } finally {
-            // console.log("loading...");
+            if (spinner) spinner.style.display = 'flex';
+            if (loader) loader.style.display = 'none';
         }
     }
 
@@ -83,8 +98,6 @@ export function Drawer() {
                 return item;
             });
         const wheel = document.querySelector('.special-offer__spinner');
-        const winPin = document.querySelector('.icon-triangle-down');
-
         const spinBtn = document.querySelector('.special-offer__spin-btn');
         winPin.style.color = '#f85e9f';
 
@@ -132,19 +145,19 @@ export function Drawer() {
                 );
                 sliceTextList[randomIndex].style.color = 'black';
                 const winningDeal = items[randomIndex];
-                specialOfferConatiner.insertBefore(
+                specialOfferContainer.insertBefore(
                     unloackedDealsCard,
                     document.querySelector(
                         '.special-offer__view-unlock-deals-btn',
                     ),
                 );
-                unloackedDeals.push(winningDeal);
+                unlockedDeals.push(winningDeal);
                 //calling unlock deals function to show the number of deals into bubble
-                displayCountOfUnlockedDeals(unloackedDeals.length);
-                specialOfferConatiner.children[4].children[0].children[0].children[0].textContent =
+                displayCountOfUnlockedDeals(unlockedDeals.length);
+                specialOfferContainer.children[4].children[0].children[0].children[0].textContent =
                     winningDeal.label;
-                specialOfferConatiner.children[4].children[0].children[0].children[1].textContent = `Expires in ${winningDeal.validFor}d`;
-                specialOfferConatiner.children[4].children[0].children[1].children[0].textContent =
+                specialOfferContainer.children[4].children[0].children[0].children[1].textContent = `Expires in ${winningDeal.validFor}d`;
+                specialOfferContainer.children[4].children[0].children[1].children[0].textContent =
                     winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
