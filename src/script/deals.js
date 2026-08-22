@@ -61,30 +61,44 @@ export const drawer = () => {
     });
 
     //fetch api and initialize the deals
-
+    const unlockedDeals = [];
     async function fetchDeals() {
+        const spinner = document.querySelector('.special-offer__spinner');
+        const loader = document.querySelector('.special-offer__loader');
+
+        if (typeof winPin !== 'undefined') {
+            winPin.style.color = '#eeeeee';
+        }
+        if (spinner) spinner.style.display = 'none';
+        if (loader) loader.style.display = 'flex';
         try {
             const response = await fetch(
-                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
+                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/',
             );
             const data = await response.json();
-            //filter null values
+
+            // filter null values
             for (let i in data) {
                 if (data[i]['validFor'] == null) {
                     data[i]['validFor'] = 7;
                 }
             }
+
+            const unlockedList =
+                typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
                 (Item) =>
-                    !unloackedDeals.some(
+                    !unlockedList.some(
                         (unlocked) => unlocked.label === Item.label,
                     ),
             );
+
             spinWheel(dealsOnWheel);
         } catch (e) {
             void e;
         } finally {
-            // console.log("loading...");
+            if (spinner) spinner.style.display = 'flex';
+            if (loader) loader.style.display = 'none';
         }
     }
 
