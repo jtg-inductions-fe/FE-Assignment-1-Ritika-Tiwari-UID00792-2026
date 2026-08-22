@@ -63,10 +63,6 @@ export const drawer = () => {
     //fetch api and initialize the deals
 
     async function fetchDeals() {
-        const unloackedDeals = [
-            { label: '20% Off Flights', promoCode: 'FLY20-X8J2', validFor: 13 },
-            { label: 'VIP Lounge', promoCode: 'VIP-LMN9', validFor: 29 },
-        ];
         try {
             const response = await fetch(
                 'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/ ',
