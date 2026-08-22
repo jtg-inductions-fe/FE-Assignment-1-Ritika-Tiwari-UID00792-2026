@@ -24,7 +24,7 @@
         font-size: $body-sm;
         font-weight: $weight-semibold;
         line-height: map-get($map: $line-heights, $key: 'normal');
-        text-align: center;
+        text-align: start;
         color: $text-primary;
     }
 
