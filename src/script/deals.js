@@ -11,6 +11,8 @@ export const drawer = () => {
     const primaryWheelColor = colors.getPropertyValue('--wheel-color-primary');
     const successColor = colors.getPropertyValue('--copy-code-success');
     const textHeroColor = colors.getPropertyValue('--text-hero');
+    const textPrimaryVariant = colors.getPropertyValue('--text-primary-50');
+
     const overlay = document.body.querySelector('.special-offer');
     const specialDeals = document.getElementById('deals');
     const specialOfferContainer = document.querySelector(
@@ -338,9 +340,13 @@ export const drawer = () => {
                     `[data-promo-code="${deal.promoCode}"]`,
                 );
                 if (alreadyExist) return;
+                const isExpired = deal.validFor <= 0 ? true : false;
                 const card =
                     template.content.cloneNode(true).firstElementChild
                         .children[1];
+                const cardContent = card.querySelector(
+                    '.special-offer__card-content',
+                );
                 card.setAttribute('data-promo-code', deal.promoCode);
                 const dealName = card.querySelector(
                     '.special-offer__deal-name',
@@ -354,12 +360,19 @@ export const drawer = () => {
                 const copyBtn = card.querySelector('.icon-copy');
                 if (dealName) dealName.textContent = deal.label;
                 if (dealValidity)
-                    dealValidity.textContent = `Expires in ${deal.validFor}d`;
+                    dealValidity.textContent = isExpired
+                        ? 'Deal Expired'
+                        : `Expires in ${deal.validFor}d`;
                 if (dealCode) dealCode.textContent = deal.promoCode;
-                if (copyBtn) {
+                if (copyBtn && !isExpired) {
                     copyBtn.addEventListener('click', () => {
                         copyCodeToClipboard(deal.promoCode, copyBtn);
                     });
+                }
+                if (isExpired) {
+                    cardContent.classList.add('card--expired');
+                    dealValidity.classList.add('card__validity--expired');
+                    copyBtn.style.color = textPrimaryVariant;
                 }
                 unlockedDealsContainer.appendChild(card);
             });

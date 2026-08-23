@@ -38,6 +38,10 @@
         color: $deals-validity-highlight;
     }
 
+    &__validity--expired {
+        color: $text-primary-50;
+    }
+
     &__code-container {
         display: flex;
         flex-direction: row;
@@ -62,4 +66,10 @@
         border-radius: map-get($map: $border-radius, $key: 'xs');
         background-color: $white;
     }
+}
+
+.card--expired {
+    background: none;
+    background-color: $wheel-base-color;
+    border-color: $text-primary-50;
 }
