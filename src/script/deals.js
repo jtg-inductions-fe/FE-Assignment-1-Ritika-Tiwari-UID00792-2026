@@ -2,6 +2,9 @@
  * Drawer to show spin wheel and its functionality
  */
 export const drawer = () => {
+    const DEALS_API_URL =
+        'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/';
+
     // colors variables import from colors.scss
     const colors = getComputedStyle(document.documentElement);
     const wheelBaseColor = colors.getPropertyValue('--wheel-base-color');
@@ -61,25 +64,21 @@ export const drawer = () => {
         if (spinner) spinner.style.display = 'none';
         if (loader) loader.style.display = 'flex';
         try {
-            const response = await fetch(
-                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/',
-            );
+            const response = await fetch(DEALS_API_URL);
             const data = await response.json();
+            const defaultValidityDuration = 7;
 
             // filter null values
             for (let i in data) {
-                if (data[i]['validFor'] === null) {
-                    data[i]['validFor'] = 7;
-                }
+                let validity = data[i]['validFor'];
+                validity = validity ?? defaultValidityDuration;
             }
 
             // filter unlocked deals from the deals coming from api to show locked deals on wheel
-            const unlockedList =
-                typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
-                (Item) =>
-                    !unlockedList.some(
-                        (unlocked) => unlocked.label === Item.label,
+                (item) =>
+                    !unlockedDeals.some(
+                        (unlocked) => unlocked.label === item.label,
                     ),
             );
 
@@ -127,13 +126,13 @@ export const drawer = () => {
      * Spin wheel logic in js and dynamically render the items in wheel
      */
     const spinWheel = (dealsOnWheel) => {
-        if (!dealsOnWheel || dealsOnWheel.length === 0) return;
+        const MAX_WHEEL_SLICES = 4;
+        if (!dealsOnWheel?.length) return;
         const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
-        let items = shuffled
-            .slice(0, Math.min(4, dealsOnWheel.length))
-            .map((item) => {
-                return item;
-            });
+        let items = shuffled.slice(
+            0,
+            Math.min(MAX_WHEEL_SLICES, dealsOnWheel.length),
+        );
         const wheel = document.querySelector('.special-offer__spinner');
         const spinBtn = document.querySelector('.special-offer__spin-btn');
         winPin.style.color = primaryWheelColor;

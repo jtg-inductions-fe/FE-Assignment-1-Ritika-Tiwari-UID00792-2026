@@ -394,9 +394,9 @@
         <!-- Special Offer Deals -->
         <section class="special-offer">
             <div class="special-offer__container">
-                <div class="special-offer__close-btn">
+                <button class="special-offer__close-btn">
                     <i class="icon-close icon icon--small"></i>
-                </div>
+                </button>
                 <div class="special-offer__heading-container">
                     <h1 class="special-offer__title">
                         <i class="icon-gift icon icon--small"></i>SPECIAL DEALS
@@ -413,30 +413,33 @@
 
                         <div class="special-offer__spinner">
                             <div
-                                class="special-offer__spinner-items item-1"
+                                class="special-offer__spinner-items special-offer__spinner-item-1"
                             ></div>
                             <div
-                                class="special-offer__spinner-items item-2"
+                                class="special-offer__spinner-items special-offer__spinner-item-2"
                             ></div>
                             <div
-                                class="special-offer__spinner-items item-3"
+                                class="special-offer__spinner-items special-offer__spinner-item-3"
                             ></div>
                             <div
-                                class="special-offer__spinner-items item-4"
+                                class="special-offer__spinner-items special-offer__spinner-item-4"
                             ></div>
-                            <div class="special-offer__spin-btn">
-                                <span>Spin</span>
-                            </div>
+                            <button class="special-offer__spin-btn">
+                                <span class="special-offer__spin-btn-text"
+                                    >Spin</span
+                                >
+                            </button>
                         </div>
                     </div>
                 </div>
                 <button
+                    type="button"
                     class="special-offer__view-unlock-deals-btn button button--md button--secondary"
                 >
                     View All Unlocked Deals
                     <div class="special-offer__bubble-counter">0</div>
                 </button>
-                <template>
+                <template id="special-offer__wining-status-template">
                     <div class="special-offer__wining-status-container">
                         <p class="special-offer__win-message">You won!</p>
                         <article class="special-offer__card">
@@ -474,6 +477,5 @@
             </div>
         </section>
         <script type="module" src="./src/script/index.js" defer></script>
-        <script type="module" src="./src/script/deals.js" defer></script>
     </body>
 </html>

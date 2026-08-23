@@ -24,7 +24,7 @@
     padding-inline: 3.5rem;
 
     &__container {
-        width: 360px;
+        width: 36rem;
         margin-inline: auto;
         background-color: $white;
         border-radius: 2.4rem 2.4rem 0 0;
@@ -102,8 +102,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 228px;
-        width: 228px;
+        height: 22.8rem;
+        width: 22.8rem;
     }
 
     &__loader {
@@ -112,16 +112,16 @@
         border: 10px solid $white;
         border-top: 10px solid $wheel-color-primary;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 5rem;
+        height: 5rem;
         animation: spin 2s linear infinite;
         display: none;
     }
 
     &__spinner {
         border-radius: 50%;
-        height: 228px;
-        width: 228px;
+        height: 22.8rem;
+        width: 22.8rem;
         background-color: $wheel-base-color;
         transition: transform 4s cubic-bezier(0.15, 0, 0.2, 1);
         position: relative;
@@ -140,6 +140,8 @@
         position: absolute;
         top: 5%;
         right: 5%;
+        background-color: transparent;
+        border: none;
     }
 
     &__spinner-items {
@@ -150,29 +152,29 @@
         justify-content: center;
     }
 
-    .item-1 {
+    &__spinner-item-1 {
         border-right: 4px solid white;
         border-bottom: 4px solid white;
 
         background-color: $wheel-color-primary;
     }
 
-    .item-2 {
+    &__spinner-item-2 {
         border-right: 4px solid white;
         background-color: $wheel-color-accent-2;
     }
 
-    .item-3 {
+    &__spinner-item-3 {
         background-color: $wheel-color-secondary;
     }
 
-    .item-4 {
+    &__spinner-item-4 {
         background-color: $wheel-color-accent-1;
         border-top: 4px solid white;
     }
 
     &__spinner-items-label {
-        width: 70px;
+        width: 7rem;
         text-align: center;
         color: $white;
         font-weight: $weight-bold;
@@ -190,9 +192,15 @@
         justify-content: center;
         background-color: $white;
         border-radius: 50%;
-        color: $text-secondary;
         box-shadow: $shadow-wheel-secondary;
         z-index: 10;
+    }
+
+    &__spin-btn-text {
+        color: $text-secondary;
+        font-size: $body-xs;
+        line-height: map-get($map: $line-heights, $key: 'noraml');
+        font-weight: $weight-bold;
     }
 
     &__view-unlock-deals-btn {
