@@ -235,11 +235,19 @@ export const drawer = () => {
 
                 // Calling unlock deals function to show the number of deals into bubble
                 displayCountOfUnlockedDeals(unlockedDeals.length);
-                unloackedDealsCard.children[1].children[0].children[0].children[0].textContent =
-                    winningDeal.label;
-                unloackedDealsCard.children[1].children[0].children[0].children[1].textContent = `Expires in ${winningDeal.validFor}d`;
-                unloackedDealsCard.children[1].children[0].children[1].children[0].textContent =
-                    winningDeal.promoCode;
+                const dealName = document.querySelector(
+                    '.special-offer__deal-name',
+                );
+                const dealValidity = document.querySelector(
+                    '.special-offer__deal-validity',
+                );
+                const dealCode = document.querySelector(
+                    '.special-offer__deal-code',
+                );
+                if (dealName) dealName.textContent = winningDeal.label;
+                if (dealValidity)
+                    dealValidity.textContent = `Expires in ${winningDeal.validFor}d`;
+                if (dealCode) dealCode.textContent = winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
                 copyIcon.addEventListener('click', () => {
