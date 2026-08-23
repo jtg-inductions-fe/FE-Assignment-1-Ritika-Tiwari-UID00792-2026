@@ -80,7 +80,7 @@ export const drawer = () => {
 
             // filter null values
             for (const item in data) {
-                data[item].validFor = defaultValidityDuration;
+                data[item].validFor ??= defaultValidityDuration;
             }
 
             // filter unlocked deals from the deals coming from api to show locked deals on wheel
@@ -326,7 +326,10 @@ export const drawer = () => {
          */
         function renderUnlockedDeals(deals) {
             if (!unlockedDealsContainer || !template) return;
-            deals.forEach((deal) => {
+            const sortedDeals = [...deals].sort(
+                (a, b) => a.validFor - b.validFor,
+            );
+            sortedDeals.forEach((deal) => {
                 const alreadyExist = unlockedDealsContainer.querySelector(
                     `[data-promo-code="${deal.promoCode}"]`,
                 );
@@ -398,5 +401,5 @@ export const drawer = () => {
         }
 
         navBtn.addEventListener('click', displayUnlockedDeals);
-    }
-}
+    };
+};
