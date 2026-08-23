@@ -122,27 +122,24 @@ export const drawer = () => {
         bubble.textContent = count;
     };
 
+    const slicePosition = [0, -90, 90, 180];
+    let rotateDegreeOfLabel = 0;
     /**
-     * Spin wheel logic in js and dynamically render the items in wheel
+     * function to render fresh deals on slide on every spin
      */
-    const spinWheel = (dealsOnWheel) => {
-        const MAX_WHEEL_SLICES = 4;
-        if (!dealsOnWheel?.length) return;
-        const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
-        let items = shuffled.slice(
-            0,
-            Math.min(MAX_WHEEL_SLICES, dealsOnWheel.length),
-        );
-        const wheel = document.querySelector('.special-offer__spinner');
-        const spinBtn = document.querySelector('.special-offer__spin-btn');
-        winPin.style.color = primaryWheelColor;
-
-        if (!wheel || !spinBtn) return;
-        let currentRotation = 0;
+    const renderSlice = (items) => {
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
-        let sliceTextPosition = [0, -90, 90, 180];
+
+        slices.forEach((slice) => {
+            slice.replaceChildren();
+        });
+
+        winPin.style.color = primaryWheelColor;
+
+        const sliceAngle = 360 / items.length;
+        rotateDegreeOfLabel = sliceAngle / 2;
         items.forEach((item, index) => {
             const sliceText = document.createElement('span');
             sliceText.setAttribute(
@@ -150,26 +147,64 @@ export const drawer = () => {
                 'special-offer__spinner-items-label',
             );
             sliceText.textContent = item.label;
-            sliceText.style.transform = `rotate(${sliceTextPosition[index] - 45}deg)`;
+            sliceText.style.transform = `rotate(${slicePosition[index] - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
         });
+    };
 
-        let temp = document.getElementsByTagName('template')[0];
-        let clone = temp.content.cloneNode(true);
+    /**
+     * Spin wheel logic in js and dynamically render the items in wheel
+     */
+    const spinWheel = (dealsOnWheel) => {
+        const MAX_WHEEL_SLICES = 4;
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        if (!dealsOnWheel?.length) return;
+        const wheel = document.querySelector('.special-offer__spinner');
+        const spinBtn = document.querySelector('.special-offer__spin-btn');
+
+        if (!wheel || !spinBtn) return;
+        let winningStatusTemplate = document.getElementById(
+            'special-offer__wining-status-template',
+        );
+        let clone = winningStatusTemplate.content.cloneNode(true);
         let unloackedDealsCard = clone.firstElementChild;
-
+        renderSlice(
+            dealsOnWheel.slice(
+                0,
+                Math.min(MAX_WHEEL_SLICES, dealsOnWheel.length),
+            ),
+        );
         spinBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+            const availableDeals = dealsOnWheel
+                .filter((deal) => {
+                    return !unlockedDeals.some((unlocked) => {
+                        return unlocked.label === deal.label;
+                    });
+                })
+                .sort((a, b) => a.validFor - b.validFor);
+            if (!availableDeals.length) return;
+            isSpinning = true;
+
+            const items = availableDeals.slice(
+                0,
+                Math.min(MAX_WHEEL_SLICES, availableDeals.length),
+            );
+
+            renderSlice(items);
+
             if (specialOfferContainer.contains(unloackedDealsCard)) {
                 unloackedDealsCard.style.display = 'none';
             }
             const randomIndex = Math.floor(Math.random() * items.length);
 
             // calcualtion of the target angle of the winner slice from its initial angle
-            const slicePosition = [0, -90, 90, 180];
             const targetAngle = slicePosition[randomIndex];
 
             // Add extra rotation to the wheel
-            const extraRotation = 360 * 3;
+            const extraRotation = 360 * 6;
 
             /* Calculate the exact degrees needed to move from the current position,
             we subtract the target angle to rotate the wheel backwards so the slice lands at the top pointer */
@@ -177,7 +212,7 @@ export const drawer = () => {
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
 
             currentRotation += rotation;
-            wheel.style.transform = `rotate(${currentRotation + 45}deg)`;
+            wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
 
             setTimeout(() => {
                 const sliceTextList = document.querySelectorAll(
@@ -210,6 +245,7 @@ export const drawer = () => {
                 copyIcon.addEventListener('click', () => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
                 });
+                isSpinning = false;
             }, 4000);
         });
     };
