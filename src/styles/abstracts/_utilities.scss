@@ -21,3 +21,10 @@
 .no-scroll {
     overflow: hidden;
 }
+// truncate utility class for lengthy text
+.truncate-text {
+    width: 15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

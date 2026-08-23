@@ -82,6 +82,7 @@
         font-size: $heading-h3;
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
     }
 
     &__data-item-title {

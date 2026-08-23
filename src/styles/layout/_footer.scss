@@ -48,6 +48,10 @@
         font-weight: $weight-bold;
         cursor: pointer;
     }
+    &__brand-name-link {
+        color: $text-hero;
+        text-decoration: none;
+    }
 
     &__description {
         font-size: $body-normal;

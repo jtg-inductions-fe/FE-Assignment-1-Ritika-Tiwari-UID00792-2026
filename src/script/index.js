@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 const renderData = (value, label) => {
     return `<div class="travel-point__data-point">
-                                <span class="travel-point__data-item-value">${value}</span>
-                                <span class="travel-point__data-item-title">${label}</span>
+                                <span class="travel-point__data-item-value truncate-text">${value}</span>
+                                <span class="travel-point__data-item-title truncate-text">${label}</span>
                             </div>`;
 };
 
