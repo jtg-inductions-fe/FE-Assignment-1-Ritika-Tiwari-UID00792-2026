@@ -164,6 +164,15 @@ export const drawer = () => {
 
         sliceAngle = 360 / items.length;
         rotateDegreeOfLabel = sliceAngle / 2;
+
+        slices.forEach((slice) => {
+            slice.replaceChildren();
+        });
+
+        winPin.style.color = primaryWheelColor;
+
+        const sliceAngle = 360 / items.length;
+        rotateDegreeOfLabel = sliceAngle / 2;
         items.forEach((item, index) => {
             const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
@@ -281,6 +290,7 @@ export const drawer = () => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
                     e.stopPropagation();
                 });
+                isSpinning = false;
                 isSpinning = false;
             }, 4000);
             e.stopPropagation();
