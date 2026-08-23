@@ -319,6 +319,10 @@ export const drawer = () => {
         let spinnerContainer = document.querySelector(
             '.special-offer__spin-container',
         );
+        let headingOnDrawer = document.querySelector('.special-offer__heading');
+        let instructionOnDrawer = document.querySelector(
+            '.special-offer__instruction',
+        );
         const template = document.querySelector('template');
 
         /**
@@ -378,6 +382,13 @@ export const drawer = () => {
             }
             navBtn.classList.toggle('special-offer__back-btn', isUnlockedView);
             const textSpan = navBtn.querySelector('.special-offer__btn-label');
+            const heading = isUnlockedView ? 'Unlocked Deals' : 'Spin & Win!';
+            const instruction = isUnlockedView
+                ? 'All the deals you’ve unlocked yet!'
+                : 'Tap the center of the wheel to spin';
+            if (headingOnDrawer) headingOnDrawer.textContent = heading;
+            if (instructionOnDrawer)
+                instructionOnDrawer.textContent = instruction;
             const targetLabel = isUnlockedView
                 ? 'Go Back'
                 : 'View All Unlocked Deals';
