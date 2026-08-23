@@ -163,7 +163,6 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        transform: rotate(45deg);
     }
 
     &__close-btn {
@@ -187,37 +186,23 @@
     }
 
     &__spinner-item-1 {
-<<<<<<< HEAD
-=======
-        border-right: 4px solid white;
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         border-bottom: 4px solid white;
         background-color: $wheel-color-primary;
     }
 
     &__spinner-item-2 {
-<<<<<<< HEAD
         border-left: 4px solid white;
-=======
-        border-right: 4px solid white;
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-accent-2;
     }
 
     &__spinner-item-3 {
-<<<<<<< HEAD
         border-top: 4px solid white;
-=======
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-secondary;
         order: 4;
     }
 
     &__spinner-item-4 {
-<<<<<<< HEAD
         border-right: 4px solid white;
-=======
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-accent-1;
         order: 3;
     }

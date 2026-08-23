@@ -152,6 +152,14 @@ export const drawer = () => {
 
         if (!wheel || !spinBtn) return;
         let currentRotation = 0;
+    };
+
+    let rotateDegreeOfLabel = 0;
+    let sliceAngle = 0;
+    /**
+     * function to render fresh deals on slide on every spin
+     */
+    const renderSlice = (items) => {
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
@@ -181,6 +189,7 @@ export const drawer = () => {
                 'special-offer__spinner-items-label',
             );
             sliceText.textContent = item.label;
+            sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
         });
@@ -229,6 +238,9 @@ export const drawer = () => {
             sliceAngle = 360 / items.length;
             if (specialOfferContainer.contains(unlockedDealsCard)) {
                 unlockedDealsCard.style.display = 'none';
+            sliceAngle = 360 / items.length;
+            if (specialOfferContainer.contains(unloackedDealsCard)) {
+                unloackedDealsCard.style.display = 'none';
             }
             const randomIndex = Math.floor(Math.random() * items.length);
 
@@ -291,9 +303,9 @@ export const drawer = () => {
                     e.stopPropagation();
                 });
                 isSpinning = false;
-                isSpinning = false;
             }, 4000);
             e.stopPropagation();
+        }
         });
     };
 };
