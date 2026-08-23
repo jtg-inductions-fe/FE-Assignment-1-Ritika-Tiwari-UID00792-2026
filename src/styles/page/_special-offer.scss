@@ -129,11 +129,10 @@
         box-shadow: $shadow-wheel-primary;
         overflow: hidden;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        transform: rotate(45deg);
     }
 
     &__close-btn {
@@ -153,24 +152,25 @@
     }
 
     &__spinner-item-1 {
-        border-right: 4px solid white;
         border-bottom: 4px solid white;
-
         background-color: $wheel-color-primary;
     }
 
     &__spinner-item-2 {
-        border-right: 4px solid white;
+        border-left: 4px solid white;
         background-color: $wheel-color-accent-2;
     }
 
     &__spinner-item-3 {
+        border-top: 4px solid white;
         background-color: $wheel-color-secondary;
+        order: 4;
     }
 
     &__spinner-item-4 {
+        border-right: 4px solid white;
         background-color: $wheel-color-accent-1;
-        border-top: 4px solid white;
+        order: 3;
     }
 
     &__spinner-items-label {

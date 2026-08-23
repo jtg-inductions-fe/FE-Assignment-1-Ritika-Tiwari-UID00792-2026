@@ -122,8 +122,8 @@ export const drawer = () => {
         bubble.textContent = count;
     };
 
-    const slicePosition = [0, -90, 90, 180];
     let rotateDegreeOfLabel = 0;
+    let sliceAngle = 0;
     /**
      * function to render fresh deals on slide on every spin
      */
@@ -138,16 +138,17 @@ export const drawer = () => {
 
         winPin.style.color = primaryWheelColor;
 
-        const sliceAngle = 360 / items.length;
+        sliceAngle = 360 / items.length;
         rotateDegreeOfLabel = sliceAngle / 2;
         items.forEach((item, index) => {
+            const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
             sliceText.setAttribute(
                 'class',
                 'special-offer__spinner-items-label',
             );
             sliceText.textContent = item.label;
-            sliceText.style.transform = `rotate(${slicePosition[index] - rotateDegreeOfLabel}deg)`;
+            sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
         });
     };
@@ -194,14 +195,14 @@ export const drawer = () => {
             );
 
             renderSlice(items);
-
+            sliceAngle = 360 / items.length;
             if (specialOfferContainer.contains(unloackedDealsCard)) {
                 unloackedDealsCard.style.display = 'none';
             }
             const randomIndex = Math.floor(Math.random() * items.length);
 
             // calcualtion of the target angle of the winner slice from its initial angle
-            const targetAngle = slicePosition[randomIndex];
+            const targetAngle = randomIndex * sliceAngle;
 
             // Add extra rotation to the wheel
             const extraRotation = 360 * 6;

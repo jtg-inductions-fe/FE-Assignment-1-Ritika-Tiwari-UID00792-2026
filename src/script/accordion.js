@@ -1,3 +1,6 @@
+/**
+ * Function for accordion in the footer
+ */
 export const accodion = () => {
     const footerSection = Array.from(
         document.querySelectorAll('.footer__section'),

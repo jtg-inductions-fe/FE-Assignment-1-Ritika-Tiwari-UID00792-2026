@@ -2,6 +2,9 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
+/**
+ * function for slider functionality using swiper library in js
+ */
 export const slider = () => {
     const testimonials = document.querySelector('.testimonials__list');
 
