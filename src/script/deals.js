@@ -170,7 +170,7 @@ export const drawer = () => {
             'special-offer__wining-status-template',
         );
         let clone = winningStatusTemplate.content.cloneNode(true);
-        let unloackedDealsCard = clone.firstElementChild;
+        let unlockedDealsCard = clone.firstElementChild;
         renderSlice(
             dealsOnWheel.slice(
                 0,
@@ -196,8 +196,8 @@ export const drawer = () => {
 
             renderSlice(items);
             sliceAngle = 360 / items.length;
-            if (specialOfferContainer.contains(unloackedDealsCard)) {
-                unloackedDealsCard.style.display = 'none';
+            if (specialOfferContainer.contains(unlockedDealsCard)) {
+                unlockedDealsCard.style.display = 'none';
             }
             const randomIndex = Math.floor(Math.random() * items.length);
 
@@ -227,7 +227,7 @@ export const drawer = () => {
                         '.special-offer__view-unlock-deals-btn',
                     ),
                 );
-                unloackedDealsCard.style.display = 'block';
+                unlockedDealsCard.style.display = 'block';
 
                 // Check to ensure unlock data structure do not contain duplicate deals
                 if (!unlockedDeals.includes(winningDeal)) {
