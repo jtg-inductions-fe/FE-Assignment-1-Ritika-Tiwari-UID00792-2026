@@ -133,7 +133,11 @@
         z-index: 1000;
         border: 10px solid $white;
         border-top: 10px solid $wheel-color-primary;
+<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
+=======
+        border-radius: 50%;
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         width: 5rem;
         height: 5rem;
         animation: spin 2s linear infinite;
@@ -141,7 +145,11 @@
     }
 
     &__spinner {
+<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
+=======
+        border-radius: 50%;
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         height: 22.8rem;
         width: 22.8rem;
         background-color: $wheel-base-color;
@@ -164,7 +172,10 @@
         right: 5%;
         background-color: transparent;
         border: none;
+<<<<<<< HEAD
         cursor: pointer;
+=======
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
     }
 
     &__spinner-items {
@@ -176,23 +187,37 @@
     }
 
     &__spinner-item-1 {
+<<<<<<< HEAD
+=======
+        border-right: 4px solid white;
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         border-bottom: 4px solid white;
         background-color: $wheel-color-primary;
     }
 
     &__spinner-item-2 {
+<<<<<<< HEAD
         border-left: 4px solid white;
+=======
+        border-right: 4px solid white;
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-accent-2;
     }
 
     &__spinner-item-3 {
+<<<<<<< HEAD
         border-top: 4px solid white;
+=======
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-secondary;
         order: 4;
     }
 
     &__spinner-item-4 {
+<<<<<<< HEAD
         border-right: 4px solid white;
+=======
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         background-color: $wheel-color-accent-1;
         order: 3;
     }
@@ -215,7 +240,11 @@
         align-items: center;
         justify-content: center;
         background-color: $white;
+<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
+=======
+        border-radius: 50%;
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         box-shadow: $shadow-wheel-secondary;
         z-index: 10;
         cursor: pointer;
@@ -228,7 +257,10 @@
         font-weight: $weight-bold;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
     &__view-unlock-deals-btn {
         width: 100%;
         font-size: $body-sm;
