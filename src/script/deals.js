@@ -1,4 +1,14 @@
-export function Drawer() {
+/**
+ * Drawer to show spin wheel and its functionality
+ */
+export const drawer = () => {
+    // colors variables import from colors.scss
+    const colors = getComputedStyle(document.documentElement);
+    const wheelBaseColor = colors.getPropertyValue('--wheel-base-color');
+    const primaryWheelColor = colors.getPropertyValue('--wheel-color-primary');
+    const successColor = colors.getPropertyValue('--copy-code-success');
+    const textHeroColor = colors.getPropertyValue('--text-hero');
+
     const overlay = document.body.querySelector('.special-offer');
     const specialDeals = document.getElementById('deals');
     const specialOfferContainer = document.querySelector(
@@ -16,23 +26,23 @@ export function Drawer() {
     /**
      * Drawer open state handler function
      */
-    function openDrawer() {
+    const openDrawer = () => {
         header.classList.remove('navigation-open');
         overlay.style.display = 'flex';
         document.body.classList.add('no-scroll');
-    }
+    };
 
     /**
      * Drawer close state handler function
      */
-    function closeDrawer() {
+    const closeDrawer = () => {
         overlay.style.display = 'none';
         document.body.classList.remove('no-scroll');
-    }
+    };
 
     specialDeals.addEventListener('click', openDrawer);
     overlay.addEventListener('click', (e) => {
-        if (e.target == e.currentTarget) {
+        if (e.target === e.currentTarget) {
             closeDrawer();
         }
     });
@@ -41,12 +51,12 @@ export function Drawer() {
     /**
      * Async function to fetch special offer deals from api and initialize the deals
      */
-    async function fetchDeals() {
+    const fetchDeals = async () => {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
 
         if (typeof winPin !== 'undefined') {
-            winPin.style.color = '#eeeeee';
+            winPin.style.color = wheelBaseColor;
         }
         if (spinner) spinner.style.display = 'none';
         if (loader) loader.style.display = 'flex';
@@ -58,7 +68,7 @@ export function Drawer() {
 
             // filter null values
             for (let i in data) {
-                if (data[i]['validFor'] == null) {
+                if (data[i]['validFor'] === null) {
                     data[i]['validFor'] = 7;
                 }
             }
@@ -80,34 +90,43 @@ export function Drawer() {
             if (spinner) spinner.style.display = 'flex';
             if (loader) loader.style.display = 'none';
         }
-    }
+    };
     fetchDeals();
 
     /**
      * Async function to copy code for deals on clipboard
      */
-    async function copyCodeToClipboard(code, copyIcon) {
+    const copyCodeToClipboard = async (code, copyIcon) => {
         try {
             await navigator.clipboard.writeText(code);
             copyIcon.classList.remove('icon-copy');
             copyIcon.classList.add('icon-check-square');
+
+            copyIcon.style.color = successColor;
+
+            // reset icon state after 1 second
+            setTimeout(() => {
+                copyIcon.classList.remove('icon-check-sqaure');
+                copyIcon.classList.add('icon-copy');
+                copyIcon.style.color = primaryWheelColor;
+            }, 1000);
         } catch (e) {
             void e;
         }
-    }
+    };
 
     /**
      * function to update unlocked deals count on bubble on the button
      */
-    function displayCountOfUnlockedDeals(count) {
+    const displayCountOfUnlockedDeals = (count) => {
         const bubble = document.querySelector('.special-offer__bubble-counter');
         bubble.textContent = count;
-    }
+    };
 
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
      */
-    function spinWheel(dealsOnWheel) {
+    const spinWheel = (dealsOnWheel) => {
         if (!dealsOnWheel || dealsOnWheel.length === 0) return;
         const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
         let items = shuffled
@@ -117,7 +136,7 @@ export function Drawer() {
             });
         const wheel = document.querySelector('.special-offer__spinner');
         const spinBtn = document.querySelector('.special-offer__spin-btn');
-        winPin.style.color = '#f85e9f';
+        winPin.style.color = primaryWheelColor;
 
         if (!wheel || !spinBtn) return;
         let currentRotation = 0;
@@ -165,7 +184,7 @@ export function Drawer() {
                 const sliceTextList = document.querySelectorAll(
                     '.special-offer__spinner-items-label',
                 );
-                sliceTextList[randomIndex].style.color = 'black';
+                sliceTextList[randomIndex].style.color = textHeroColor;
                 const winningDeal = items[randomIndex];
                 specialOfferContainer.insertBefore(
                     clone,
@@ -189,14 +208,10 @@ export function Drawer() {
                     winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
-                if (copyIcon.classList.contains('icon-check-square')) {
-                    copyIcon.classList.remove('icon-check-sqaure');
-                    copyIcon.classList.add('icon-copy');
-                }
                 copyIcon.addEventListener('click', () => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
                 });
             }, 4000);
         });
-    }
-}
+    };
+};

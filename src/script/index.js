@@ -1,6 +1,6 @@
 import { accodion } from './accordion';
 import { slider } from './slider';
-import { Drawer } from './deals';
+import { drawer } from './deals';
 
 /*
 Implementation of opening and closing logic of hamburger using toggle class.
@@ -12,16 +12,16 @@ const closingButton = document.querySelector('.navigation__close-btn');
 /**
  * Function for toggle navigation open and close state
  */
-function toggleNav() {
+const toggleNav = () => {
     header.classList.toggle('navigation-open');
-}
+};
 
 /**
  * Function for closing navigation menu
  */
-function closeNav() {
+const closeNav = () => {
     header.classList.remove('navigation-open');
-}
+};
 
 hamburger.addEventListener('click', toggleNav);
 closingButton.addEventListener('click', closeNav);
@@ -60,17 +60,17 @@ document.addEventListener('DOMContentLoaded', function () {
 /**
  *  Function for create and render data in data points card from data.json file
  */
-function renderData(value, label) {
+const renderData = (value, label) => {
     return `<div class="travel-point__data-point">
                                 <span class="travel-point__data-item-value">${value}</span>
                                 <span class="travel-point__data-item-title">${label}</span>
                             </div>`;
-}
+};
 
 /**
  * Async Function for fetch and render data in data points card from data.json file
  */
-async function loadData() {
+const loadData = async () => {
     try {
         let response = await fetch('/data/data.json');
         if (!response.ok) {
@@ -94,9 +94,9 @@ async function loadData() {
             dataPointContainer.style.fontSize = '2rem';
         }
     }
-}
+};
 
 loadData();
 slider();
 accodion();
-Drawer();
+drawer();
