@@ -79,10 +79,8 @@ export const drawer = () => {
             const data = await response.json();
 
             // filter null values
-            for (let i in data) {
-                if (data[i]['validFor'] === null) {
-                    data[i]['validFor'] = 7;
-                }
+            for (const item in data) {
+                data[item].validFor ??= defaultValidityDuration;
             }
 
             // filter unlocked deals from the deals coming from api to show locked deals on wheel
