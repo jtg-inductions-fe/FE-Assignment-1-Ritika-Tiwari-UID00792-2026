@@ -63,12 +63,12 @@ export const drawer = () => {
     /**
      * Async function to fetch special offer deals from api and initialize the deals
      */
-    async function fetchDeals() {
+    const fetchDeals = async () => {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
 
         if (typeof winPin !== 'undefined') {
-            winPin.style.color = '#eeeeee';
+            winPin.style.color = wheelBaseColor;
         }
         if (spinner) spinner.style.display = 'none';
         if (loader) loader.style.display = 'flex';
@@ -80,7 +80,7 @@ export const drawer = () => {
 
             // filter null values
             for (let i in data) {
-                if (data[i]['validFor'] == null) {
+                if (data[i]['validFor'] === null) {
                     data[i]['validFor'] = 7;
                 }
             }
@@ -102,62 +102,6 @@ export const drawer = () => {
             if (spinner) spinner.style.display = 'flex';
             if (loader) loader.style.display = 'none';
         }
-    }
-    fetchDeals();
-
-    /**
-     * Async function to copy code for deals on clipboard
-     */
-    async function copyCodeToClipboard(code, copyIcon) {
-        try {
-            await navigator.clipboard.writeText(code);
-            copyIcon.classList.remove('icon-copy');
-            copyIcon.classList.add('icon-check-square');
-        } catch (e) {
-            void e;
-        }
-    }
-
-    /**
-     * Async function to fetch special offer deals from api and initialize the deals
-     */
-    const fetchDeals = async () => {
-        const spinner = document.querySelector('.special-offer__spinner');
-        const loader = document.querySelector('.special-offer__loader');
-
-        if (!winPin) {
-            winPin.style.color = wheelBaseColor;
-        }
-        if (spinner) spinner.style.display = 'none';
-        if (loader) loader.style.display = 'flex';
-        try {
-            const response = await fetch(DEALS_API_URL);
-            const data = await response.json();
-            const defaultValidityDuration = 7;
-            // filter null values
-            for (const item in data) {
-                data[item].validFor ??= defaultValidityDuration;
-            }
-
-            // filter unlocked deals from the deals coming from api to show locked deals on wheel
-            let dealsOnWheel = data.filter(
-                (item) =>
-                    !unlockedDeals.some(
-                        (unlocked) => unlocked.label === item.label,
-                    ),
-            );
-
-            spinWheel(dealsOnWheel);
-        } catch (e) {
-            if (e) {
-                if (spinner) spinner.style.display = 'none';
-                spinner.innerHTML =
-                    '<span>Something went wrong, Try again later.</span>';
-            }
-        } finally {
-            if (spinner) spinner.style.display = 'flex';
-            if (loader) loader.style.display = 'none';
-        }
     };
     fetchDeals();
 
@@ -169,7 +113,9 @@ export const drawer = () => {
             await navigator.clipboard.writeText(code);
             copyIcon.classList.remove('icon-copy');
             copyIcon.classList.add('icon-check-square');
+
             copyIcon.style.color = successColor;
+
             // reset icon state after 1 second
             setTimeout(() => {
                 copyIcon.classList.remove('icon-check-sqaure');
@@ -177,9 +123,9 @@ export const drawer = () => {
                 copyIcon.style.color = primaryWheelColor;
             }, 1000);
         } catch (e) {
-            if (e) window.alert('Something went wrong, Try again later.');
+            void e;
         }
-    };
+    }
 
     /**
      * function to update unlocked deals count on bubble on the button
@@ -187,14 +133,25 @@ export const drawer = () => {
     const displayCountOfUnlockedDeals = (count) => {
         const bubble = document.querySelector('.special-offer__bubble-counter');
         bubble.textContent = count;
-    };
+    }
 
-    let rotateDegreeOfLabel = 0;
-    let sliceAngle = 0;
     /**
-     * function to render fresh deals on slide on every spin
+     * Spin wheel logic in js and dynamically render the items in wheel
      */
-    const renderSlice = (items) => {
+    function spinWheel(dealsOnWheel) {
+        if (!dealsOnWheel || dealsOnWheel.length === 0) return;
+        const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
+        let items = shuffled
+            .slice(0, Math.min(4, dealsOnWheel.length))
+            .map((item) => {
+                return item;
+            });
+        const wheel = document.querySelector('.special-offer__spinner');
+        const spinBtn = document.querySelector('.special-offer__spin-btn');
+        winPin.style.color = '#f85e9f';
+
+        if (!wheel || !spinBtn) return;
+        let currentRotation = 0;
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
@@ -316,7 +273,11 @@ export const drawer = () => {
                 if (dealCode) dealCode.textContent = winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
-                copyIcon.addEventListener('click', (e) => {
+                if (copyIcon.classList.contains('icon-check-square')) {
+                    copyIcon.classList.remove('icon-check-sqaure');
+                    copyIcon.classList.add('icon-copy');
+                }
+                copyIcon.addEventListener('click', () => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
                     e.stopPropagation();
                 });

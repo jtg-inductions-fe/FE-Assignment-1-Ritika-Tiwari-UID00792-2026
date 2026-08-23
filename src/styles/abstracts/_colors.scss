@@ -51,3 +51,15 @@ $deals-card-primary: linear-gradient(
     rgba(244, 67, 108, 0.05) 0%,
     rgba(124, 58, 237, 0.05) 100%
 );
+
+//expose to JS files as variables
+:root {
+    --wheel-base-color: #{$subtle-white};
+    --copy-code-success: #{$lime-green};
+    --wheel-color-primary: #{$hot-pink};
+    --wheel-color-secondary: #{$violet};
+    --wheel-color-accent-1: #{$yellow};
+    --wheel-color-accent-2: #{$cyan};
+    --text-primary-50: #{rgba($grey-scale-black, 0.5)};
+    --text-hero: #{$black};
+}

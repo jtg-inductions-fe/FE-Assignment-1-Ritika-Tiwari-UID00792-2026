@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 /**
  * Function for accordion in the footer
  */
+=======
+>>>>>>> aa70ba7 ([RT_A1_08]: Improve copy icon change state when code is copied to clip board.)
 export const accodion = () => {
     const footerSection = Array.from(
         document.querySelectorAll('.footer__section'),
