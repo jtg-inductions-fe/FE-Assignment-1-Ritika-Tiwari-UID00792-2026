@@ -83,23 +83,19 @@ export const drawer = () => {
         if (spinner) spinner.style.display = 'none';
         if (loader) loader.style.display = 'flex';
         try {
-            const response = await fetch(
-                'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/',
-            );
+            const response = await fetch(DEALS_API_URL);
             const data = await response.json();
-
+            const defaultValidityDuration = 7;
             // filter null values
             for (const item in data) {
                 data[item].validFor ??= defaultValidityDuration;
             }
 
             // filter unlocked deals from the deals coming from api to show locked deals on wheel
-            const unlockedList =
-                typeof unlockedDeals !== 'undefined' ? unlockedDeals : [];
             let dealsOnWheel = data.filter(
-                (Item) =>
-                    !unlockedList.some(
-                        (unlocked) => unlocked.label === Item.label,
+                (item) =>
+                    !unlockedDeals.some(
+                        (unlocked) => unlocked.label === item.label,
                     ),
             );
 
@@ -135,7 +131,7 @@ export const drawer = () => {
         } catch (e) {
             if (e) window.alert('Something went wrong, Try again later.');
         }
-    }
+    };
 
     /**
      * function to update unlocked deals count on bubble on the button
@@ -143,25 +139,6 @@ export const drawer = () => {
     const displayCountOfUnlockedDeals = (count) => {
         const bubble = document.querySelector('.special-offer__bubble-counter');
         bubble.textContent = count;
-    }
-
-    /**
-     * Spin wheel logic in js and dynamically render the items in wheel
-     */
-    function spinWheel(dealsOnWheel) {
-        if (!dealsOnWheel || dealsOnWheel.length === 0) return;
-        const shuffled = [...dealsOnWheel].sort(() => 0.5 - Math.random());
-        let items = shuffled
-            .slice(0, Math.min(4, dealsOnWheel.length))
-            .map((item) => {
-                return item;
-            });
-        const wheel = document.querySelector('.special-offer__spinner');
-        const spinBtn = document.querySelector('.special-offer__spin-btn');
-        winPin.style.color = '#f85e9f';
-
-        if (!wheel || !spinBtn) return;
-        let currentRotation = 0;
     };
 
     let rotateDegreeOfLabel = 0;
@@ -182,15 +159,6 @@ export const drawer = () => {
 
         sliceAngle = 360 / items.length;
         rotateDegreeOfLabel = sliceAngle / 2;
-
-        slices.forEach((slice) => {
-            slice.replaceChildren();
-        });
-
-        winPin.style.color = primaryWheelColor;
-
-        const sliceAngle = 360 / items.length;
-        rotateDegreeOfLabel = sliceAngle / 2;
         items.forEach((item, index) => {
             const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
@@ -199,7 +167,6 @@ export const drawer = () => {
                 'special-offer__spinner-items-label',
             );
             sliceText.textContent = item.label;
-            sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
         });
@@ -214,6 +181,9 @@ export const drawer = () => {
         if (!dealsOnWheel?.length) return;
         const wheel = document.querySelector('.special-offer__spinner');
         const spinBtn = document.querySelector('.special-offer__spin-btn');
+        const spinBtnText = document.querySelector(
+            '.special-offer__spin-btn-text',
+        );
 
         if (!wheel || !spinBtn) return;
         let winningStatusTemplate = document.getElementById(
@@ -247,9 +217,6 @@ export const drawer = () => {
             sliceAngle = 360 / items.length;
             if (specialOfferContainer.contains(unlockedDealsCard)) {
                 unlockedDealsCard.style.display = 'none';
-            sliceAngle = 360 / items.length;
-            if (specialOfferContainer.contains(unloackedDealsCard)) {
-                unloackedDealsCard.style.display = 'none';
             }
             const randomIndex = Math.floor(Math.random() * items.length);
 
@@ -266,8 +233,15 @@ export const drawer = () => {
 
             currentRotation += rotation;
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
+            spinBtn.classList.add('special-offer__spin-btn--disabled');
+            spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
 
             setTimeout(() => {
+                spinBtn.classList.remove('special-offer__spin-btn--disabled');
+                spinBtnText.classList.remove(
+                    'special-offer__spin-btn-text--disabled',
+                );
+
                 const sliceTextList = document.querySelectorAll(
                     '.special-offer__spinner-items-label',
                 );
@@ -303,18 +277,13 @@ export const drawer = () => {
                 if (dealCode) dealCode.textContent = winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
-                if (copyIcon.classList.contains('icon-check-square')) {
-                    copyIcon.classList.remove('icon-check-sqaure');
-                    copyIcon.classList.add('icon-copy');
-                }
-                copyIcon.addEventListener('click', () => {
+                copyIcon.addEventListener('click', (e) => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
                     e.stopPropagation();
                 });
                 isSpinning = false;
             }, 4000);
             e.stopPropagation();
-        }
         });
 
         // Handle Navigation to Unlocked Deals view
@@ -342,6 +311,16 @@ export const drawer = () => {
             const sortedDeals = [...deals].sort(
                 (a, b) => a.validFor - b.validFor,
             );
+            const noDealsText = document.querySelector(
+                '.special-offer__no-deals-unlock-state',
+            );
+
+            if (deals.length === 0) {
+                noDealsText.style.display = 'block';
+                return;
+            } else {
+                noDealsText.style.display = 'none';
+            }
             sortedDeals.forEach((deal) => {
                 const alreadyExist = unlockedDealsContainer.querySelector(
                     `[data-promo-code="${deal.promoCode}"]`,
@@ -384,6 +363,7 @@ export const drawer = () => {
                 unlockedDealsContainer.appendChild(card);
             });
         }
+
         /**
          * Function for showing Unlocked Deals on the Unlocked deals container
          */

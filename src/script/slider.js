@@ -2,12 +2,9 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
-<<<<<<< HEAD
 /**
  * function for slider functionality using swiper library in js
  */
-=======
->>>>>>> aa70ba7 ([RT_A1_08]: Improve copy icon change state when code is copied to clip board.)
 export const slider = () => {
     const testimonials = document.querySelector('.testimonials__list');
 

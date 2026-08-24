@@ -37,6 +37,7 @@
         transform-origin: bottom;
         position: relative;
     }
+
     &__container--close {
         animation: drawer-close 1s forwards;
     }
@@ -53,6 +54,7 @@
             transform: translateY(0%);
         }
     }
+
     @keyframes drawer-close {
         from {
             transform: translateY(0%);
@@ -81,6 +83,7 @@
             transform: scale(1);
         }
     }
+
     @keyframes pop-up-close {
         from {
             transform: scale(1);
@@ -154,11 +157,7 @@
         z-index: 1000;
         border: 10px solid $white;
         border-top: 10px solid $wheel-color-primary;
-<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
-=======
-        border-radius: 50%;
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         width: 5rem;
         height: 5rem;
         animation: spin 2s linear infinite;
@@ -166,11 +165,7 @@
     }
 
     &__spinner {
-<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
-=======
-        border-radius: 50%;
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         height: 22.8rem;
         width: 22.8rem;
         background-color: $wheel-base-color;
@@ -192,10 +187,7 @@
         right: 5%;
         background-color: transparent;
         border: none;
-<<<<<<< HEAD
         cursor: pointer;
-=======
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
     }
 
     &__spinner-items {
@@ -246,14 +238,17 @@
         align-items: center;
         justify-content: center;
         background-color: $white;
-<<<<<<< HEAD
         border-radius: map-get($map: $border-radius, $key: 'rounded');
-=======
-        border-radius: 50%;
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
         box-shadow: $shadow-wheel-secondary;
         z-index: 10;
         cursor: pointer;
+    }
+
+    &__spin-btn--disabled {
+        background-color: $wheel-base-color;
+        border-color: $text-primary-50;
+        opacity: 0.8;
+        cursor: none;
     }
 
     &__spin-btn-text {
@@ -262,18 +257,16 @@
         line-height: map-get($map: $line-heights, $key: 'noraml');
         font-weight: $weight-bold;
     }
+    &__spin-btn-text--disabled {
+        color: $text-primary-50;
+    }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c313fae ([RT_A1_08]: Solve review fixes in html and css like use correct BEM class and move no-scroll class to utility and remoove extra lines and use rem for the dimensions.)
     &__view-unlock-deals-btn {
         width: 100%;
         font-size: $body-sm;
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
     }
-
 
     &__bubble-counter {
         height: 1.8rem;
@@ -300,13 +293,23 @@
     &__unlocked-deals-card-container {
         display: flex;
         flex-direction: column;
-        max-height: 23rem;
         align-items: center;
+        max-height: 23rem;
         overflow-y: scroll;
         gap: 1rem;
     }
+
     &__card {
         width: 100%;
+    }
+
+    &__no-deals-unlock-state {
+        color: $text-hero;
+        font-size: $body-xs;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        display: none;
     }
 }
 
@@ -329,6 +332,7 @@
             animation-name: pop-up;
             transform-origin: initial;
         }
+
         &__container--close {
             animation: pop-up-close 1s forwards;
         }
