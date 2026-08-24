@@ -55,7 +55,11 @@ export const drawer = () => {
             closeDrawer();
         }
     });
-    closeBtn.addEventListener('click', closeDrawer);
+
+    closeBtn.addEventListener('click', (e) => {
+        closeDrawer();
+        e.stopPropagation();
+    });
 
     /**
      * Async function to fetch special offer deals from api and initialize the deals
@@ -182,7 +186,7 @@ export const drawer = () => {
                 Math.min(MAX_WHEEL_SLICES, dealsOnWheel.length),
             ),
         );
-        spinBtn.addEventListener('click', () => {
+        spinBtn.addEventListener('click', (e) => {
             if (isSpinning) return;
             const availableDeals = dealsOnWheel
                 .filter((deal) => {
@@ -256,11 +260,13 @@ export const drawer = () => {
                 if (dealCode) dealCode.textContent = winningDeal.promoCode;
 
                 const copyIcon = document.querySelector('.copy-icon');
-                copyIcon.addEventListener('click', () => {
+                copyIcon.addEventListener('click', (e) => {
                     copyCodeToClipboard(winningDeal.promoCode, copyIcon);
+                    e.stopPropagation();
                 });
                 isSpinning = false;
             }, 4000);
+            e.stopPropagation();
         });
     };
 };
