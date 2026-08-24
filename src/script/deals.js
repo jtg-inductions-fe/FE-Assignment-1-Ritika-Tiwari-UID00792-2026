@@ -67,7 +67,7 @@ export const drawer = () => {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
 
-        if (typeof winPin !== 'undefined') {
+        if (!winPin) {
             winPin.style.color = wheelBaseColor;
         }
         if (spinner) spinner.style.display = 'none';
@@ -95,7 +95,11 @@ export const drawer = () => {
 
             spinWheel(dealsOnWheel);
         } catch (e) {
-            void e;
+            if (e) {
+                if (spinner) spinner.style.display = 'none';
+                spinner.innerHTML =
+                    '<span>Something went wrong, Try again later.</span>';
+            }
         } finally {
             if (spinner) spinner.style.display = 'flex';
             if (loader) loader.style.display = 'none';
@@ -111,9 +115,7 @@ export const drawer = () => {
             await navigator.clipboard.writeText(code);
             copyIcon.classList.remove('icon-copy');
             copyIcon.classList.add('icon-check-square');
-
             copyIcon.style.color = successColor;
-
             // reset icon state after 1 second
             setTimeout(() => {
                 copyIcon.classList.remove('icon-check-sqaure');
@@ -121,7 +123,7 @@ export const drawer = () => {
                 copyIcon.style.color = primaryWheelColor;
             }, 1000);
         } catch (e) {
-            void e;
+            if (e) window.alert('Something went wrong, Try again later.');
         }
     }
 
