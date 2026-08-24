@@ -9,7 +9,7 @@
 @use '../components/button' as *;
 @use '../components/card' as *;
 @use '../abstracts/utilities';
-@use '../abstracts/partial-root';
+@use '../abstracts/root';
 
 .special-offer {
     height: 100vh;
