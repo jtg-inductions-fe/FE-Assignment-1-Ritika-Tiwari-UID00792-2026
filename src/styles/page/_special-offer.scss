@@ -40,6 +40,9 @@
     &__container--close {
         animation: drawer-close 1s forwards;
     }
+    &__container--close {
+        animation: drawer-close 1s forwards;
+    }
 
     @keyframes drawer-open {
         from {
@@ -59,6 +62,15 @@
             transform: translateY(100%);
         }
     }
+    @keyframes drawer-close {
+        from {
+            transform: translateY(0%);
+        }
+
+        to {
+            transform: translateY(100%);
+        }
+    }
 
     @keyframes pop-up {
         from {
@@ -67,6 +79,15 @@
 
         to {
             transform: scale(1);
+        }
+    }
+    @keyframes pop-up-close {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(0);
         }
     }
     @keyframes pop-up-close {
