@@ -39,12 +39,14 @@
     &__brand-logo {
         width: 4rem;
         height: 4rem;
+        cursor: pointer;
     }
 
     &__brand-name {
         font-size: map-get($map: $sub-heading-h1, $key: 'md');
         line-height: map-get($map: $line-heights, $key: 'normal');
         font-weight: $weight-bold;
+        cursor: pointer;
     }
 
     &__description {
@@ -69,7 +71,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
+        cursor: pointer;
         i {
             color: $white;
         }
@@ -142,6 +144,7 @@
         line-height: map-get($map: $line-heights, $key: 'loose');
         font-weight: $weight-regular;
         text-decoration: none;
+        cursor: pointer;
     }
 }
 

@@ -36,6 +36,9 @@
         transform-origin: bottom;
         position: relative;
     }
+    &__container--close {
+        animation: drawer-close 1s forwards;
+    }
 
     @keyframes drawer-open {
         from {
@@ -46,6 +49,15 @@
             transform: translateY(0%);
         }
     }
+    @keyframes drawer-close {
+        from {
+            transform: translateY(0%);
+        }
+
+        to {
+            transform: translateY(100%);
+        }
+    }
 
     @keyframes pop-up {
         from {
@@ -54,6 +66,15 @@
 
         to {
             transform: scale(1);
+        }
+    }
+    @keyframes pop-up-close {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(0);
         }
     }
 
@@ -96,7 +117,7 @@
     }
 
     &__spinner-wrapper {
-        border-radius: 50%;
+        border-radius: map-get($map: $border-radius, $key: 'xl');
         background-color: $wheel-base-color;
         position: relative;
         display: flex;
@@ -111,7 +132,7 @@
         z-index: 1000;
         border: 10px solid $white;
         border-top: 10px solid $wheel-color-primary;
-        border-radius: 50%;
+        border-radius: map-get($map: $border-radius, $key: 'xl');
         width: 5rem;
         height: 5rem;
         animation: spin 2s linear infinite;
@@ -119,7 +140,7 @@
     }
 
     &__spinner {
-        border-radius: 50%;
+        border-radius: map-get($map: $border-radius, $key: 'xl');
         height: 22.8rem;
         width: 22.8rem;
         background-color: $wheel-base-color;
@@ -141,6 +162,7 @@
         right: 5%;
         background-color: transparent;
         border: none;
+        cursor: pointer;
     }
 
     &__spinner-items {
@@ -191,9 +213,10 @@
         align-items: center;
         justify-content: center;
         background-color: $white;
-        border-radius: 50%;
+        border-radius: map-get($map: $border-radius, $key: 'xl');
         box-shadow: $shadow-wheel-secondary;
         z-index: 10;
+        cursor: pointer;
     }
 
     &__spin-btn-text {
@@ -214,7 +237,7 @@
         height: 1.8rem;
         width: 1.8rem;
         background-color: $wheel-color-secondary;
-        border-radius: 50%;
+        border-radius: map-get($map: $border-radius, $key: 'xl');
         font-size: $body-xs;
         font-weight: $weight-medium;
         line-height: map-get($map: $line-heights, $key: 'normal');
@@ -249,6 +272,9 @@
             border-radius: 2.4rem;
             animation-name: pop-up;
             transform-origin: initial;
+        }
+        &__container--close {
+            animation: pop-up-close 1s forwards;
         }
     }
 }

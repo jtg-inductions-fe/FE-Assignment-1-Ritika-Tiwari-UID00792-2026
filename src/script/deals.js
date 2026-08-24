@@ -39,8 +39,14 @@ export const drawer = () => {
      * Drawer close state handler function
      */
     const closeDrawer = () => {
-        overlay.style.display = 'none';
-        document.body.classList.remove('no-scroll');
+        specialOfferContainer.classList.add('special-offer__container--close');
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+            specialOfferContainer.classList.remove(
+                'special-offer__container--close',
+            );
+        }, 1000);
     };
 
     specialDeals.addEventListener('click', openDrawer);
