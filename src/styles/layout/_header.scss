@@ -83,9 +83,7 @@
 
     &__link.button--primary {
         color: $white;
-        &:hover {
-            color: $white;
-        }
+
         &.is-active {
             color: white;
         }
@@ -93,7 +91,6 @@
 
     &__link:hover {
         text-decoration: underline;
-        color: $white;
     }
 
     &__link.is-active {
