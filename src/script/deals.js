@@ -1,17 +1,16 @@
+const DEALS_API_URL =
+    'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/';
+const MAX_WHEEL_SLICES = 4;
+
 /**
  * Drawer to show spin wheel and its functionality
  */
 export const drawer = () => {
-    const DEALS_API_URL =
-        'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/';
-
-    // colors variables import from colors.scss
     const colors = getComputedStyle(document.documentElement);
     const wheelBaseColor = colors.getPropertyValue('--wheel-base-color');
     const primaryWheelColor = colors.getPropertyValue('--wheel-color-primary');
     const successColor = colors.getPropertyValue('--copy-code-success');
     const textHeroColor = colors.getPropertyValue('--text-hero');
-
     const overlay = document.body.querySelector('.special-offer');
     const specialDeals = document.getElementById('deals');
     const specialOfferContainer = document.querySelector(
@@ -68,7 +67,7 @@ export const drawer = () => {
         const spinner = document.querySelector('.special-offer__spinner');
         const loader = document.querySelector('.special-offer__loader');
 
-        if (typeof winPin !== 'undefined') {
+        if (!winPin) {
             winPin.style.color = wheelBaseColor;
         }
         if (spinner) spinner.style.display = 'none';
@@ -77,7 +76,6 @@ export const drawer = () => {
             const response = await fetch(DEALS_API_URL);
             const data = await response.json();
             const defaultValidityDuration = 7;
-
             // filter null values
             for (const item in data) {
                 data[item].validFor ??= defaultValidityDuration;
@@ -93,7 +91,11 @@ export const drawer = () => {
 
             spinWheel(dealsOnWheel);
         } catch (e) {
-            void e;
+            if (e) {
+                if (spinner) spinner.style.display = 'none';
+                spinner.innerHTML =
+                    '<span>Something went wrong, Try again later.</span>';
+            }
         } finally {
             if (spinner) spinner.style.display = 'flex';
             if (loader) loader.style.display = 'none';
@@ -109,9 +111,7 @@ export const drawer = () => {
             await navigator.clipboard.writeText(code);
             copyIcon.classList.remove('icon-copy');
             copyIcon.classList.add('icon-check-square');
-
             copyIcon.style.color = successColor;
-
             // reset icon state after 1 second
             setTimeout(() => {
                 copyIcon.classList.remove('icon-check-sqaure');
@@ -119,7 +119,7 @@ export const drawer = () => {
                 copyIcon.style.color = primaryWheelColor;
             }, 1000);
         } catch (e) {
-            void e;
+            if (e) window.alert('Something went wrong, Try again later.');
         }
     };
 
@@ -161,12 +161,10 @@ export const drawer = () => {
             slices[index].appendChild(sliceText);
         });
     };
-
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
      */
     const spinWheel = (dealsOnWheel) => {
-        const MAX_WHEEL_SLICES = 4;
         let isSpinning = false;
         let currentRotation = 0;
 
@@ -176,7 +174,7 @@ export const drawer = () => {
 
         if (!wheel || !spinBtn) return;
         let winningStatusTemplate = document.getElementById(
-            'special-offer__wining-status-template',
+            'wining-status-template',
         );
         let clone = winningStatusTemplate.content.cloneNode(true);
         let unlockedDealsCard = clone.firstElementChild;

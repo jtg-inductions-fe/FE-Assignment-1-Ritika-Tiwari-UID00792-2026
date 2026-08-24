@@ -59,7 +59,7 @@
         line-height: map-get($map: $line-heights, $key: 'normal');
         text-align: center;
         border: 1px solid $deals-border-secondary;
-        border-radius: map-get($map: $border-radius, $key: 'xxs');
+        border-radius: map-get($map: $border-radius, $key: 'xs');
         background-color: $white;
     }
 }

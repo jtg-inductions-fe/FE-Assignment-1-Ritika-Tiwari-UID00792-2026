@@ -9,6 +9,7 @@
 @use '../components/button' as *;
 @use '../components/card' as *;
 @use '../abstracts/utilities';
+@use '../abstracts/partial-root';
 
 .special-offer {
     height: 100vh;
@@ -117,7 +118,7 @@
     }
 
     &__spinner-wrapper {
-        border-radius: map-get($map: $border-radius, $key: 'xl');
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
         background-color: $wheel-base-color;
         position: relative;
         display: flex;
@@ -132,7 +133,7 @@
         z-index: 1000;
         border: 10px solid $white;
         border-top: 10px solid $wheel-color-primary;
-        border-radius: map-get($map: $border-radius, $key: 'xl');
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
         width: 5rem;
         height: 5rem;
         animation: spin 2s linear infinite;
@@ -140,7 +141,7 @@
     }
 
     &__spinner {
-        border-radius: map-get($map: $border-radius, $key: 'xl');
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
         height: 22.8rem;
         width: 22.8rem;
         background-color: $wheel-base-color;
@@ -213,7 +214,7 @@
         align-items: center;
         justify-content: center;
         background-color: $white;
-        border-radius: map-get($map: $border-radius, $key: 'xl');
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
         box-shadow: $shadow-wheel-secondary;
         z-index: 10;
         cursor: pointer;
@@ -237,7 +238,7 @@
         height: 1.8rem;
         width: 1.8rem;
         background-color: $wheel-color-secondary;
-        border-radius: map-get($map: $border-radius, $key: 'xl');
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
         font-size: $body-xs;
         font-weight: $weight-medium;
         line-height: map-get($map: $line-heights, $key: 'normal');
