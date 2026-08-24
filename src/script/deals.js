@@ -19,8 +19,10 @@ export const drawer = () => {
         '.special-offer__container',
     );
     const header = document.querySelector('.header__container');
+    const footer = document.querySelector('.footer__container');
     const closeBtn = document.querySelector('.special-offer__close-btn');
     const winPin = document.querySelector('.icon-triangle-down');
+    const main = document.querySelector('main');
 
     /**
      * Top level unlocked deals data-structure
@@ -34,6 +36,9 @@ export const drawer = () => {
         header.classList.remove('navigation-open');
         overlay.style.display = 'flex';
         document.body.classList.add('no-scroll');
+        main.setAttribute('inert', '');
+        header.setAttribute('inert', '');
+        footer.setAttribute('inert', '');
     };
 
     /**
@@ -48,6 +53,9 @@ export const drawer = () => {
                 'special-offer__container--close',
             );
         }, 1000);
+        main.removeAttribute('inert');
+        header.removeAttribute('inert');
+        header.removeAttribute('inert');
     };
 
     specialDeals.addEventListener('click', openDrawer);
@@ -230,7 +238,6 @@ export const drawer = () => {
                 .sort((a, b) => a.validFor - b.validFor);
             if (!availableDeals.length) return;
             isSpinning = true;
-
             const items = availableDeals.slice(
                 0,
                 Math.min(MAX_WHEEL_SLICES, availableDeals.length),
