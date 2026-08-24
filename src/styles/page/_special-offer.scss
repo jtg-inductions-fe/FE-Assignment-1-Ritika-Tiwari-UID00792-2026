@@ -1,0 +1,281 @@
+@use 'sass:map';
+@use '../base/reset' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../vendors/icomoon' as *;
+@use '../vendors/fonts.scss' as *;
+@use '../base/layout-breakpoints' as *;
+@use '../components/button' as *;
+@use '../components/card' as *;
+@use '../abstracts/utilities';
+@use '../abstracts/root';
+
+.special-offer {
+    height: 100vh;
+    width: 100%;
+    background-color: $overlay-color;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    overscroll-behavior: contain;
+    display: none;
+    flex-direction: row;
+    align-items: flex-end;
+    padding-inline: 3.5rem;
+
+    &__container {
+        width: 36rem;
+        margin-inline: auto;
+        background-color: $white;
+        border-radius: 2.4rem 2.4rem 0 0;
+        display: flex;
+        flex-direction: column;
+        padding: 2.4rem;
+        gap: 2rem;
+        animation: drawer-open 1s forwards;
+        transform-origin: bottom;
+        position: relative;
+    }
+    &__container--close {
+        animation: drawer-close 1s forwards;
+    }
+
+    @keyframes drawer-open {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0%);
+        }
+    }
+    @keyframes drawer-close {
+        from {
+            transform: translateY(0%);
+        }
+
+        to {
+            transform: translateY(100%);
+        }
+    }
+
+    @keyframes pop-up {
+        from {
+            transform: scale(0);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+    @keyframes pop-up-close {
+        from {
+            transform: scale(1);
+        }
+
+        to {
+            transform: scale(0);
+        }
+    }
+
+    &__heading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    &__title {
+        color: $text-secondary;
+        font-weight: $weight-semibold;
+        font-size: $body-sm;
+        display: flex;
+        gap: 0.8rem;
+        text-align: center;
+        line-height: map-get($map: $line-heights, $key: 'loose');
+    }
+
+    &__heading {
+        color: $text-hero;
+        font-weight: $weight-bold;
+        font-size: map-get($map: $heading-h1, $key: 'xs');
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__instruction {
+        color: $text-primary-50;
+        font-size: $body-xs;
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__spin-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__spinner-wrapper {
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
+        background-color: $wheel-base-color;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 22.8rem;
+        width: 22.8rem;
+    }
+
+    &__loader {
+        position: absolute;
+        z-index: 1000;
+        border: 10px solid $white;
+        border-top: 10px solid $wheel-color-primary;
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
+        width: 5rem;
+        height: 5rem;
+        animation: spin 2s linear infinite;
+        display: none;
+    }
+
+    &__spinner {
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
+        height: 22.8rem;
+        width: 22.8rem;
+        background-color: $wheel-base-color;
+        transition: transform 4s cubic-bezier(0.15, 0, 0.2, 1);
+        position: relative;
+        border: 4px solid $white;
+        box-shadow: $shadow-wheel-primary;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__spinner-items {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__spinner-item-1 {
+        border-bottom: 4px solid white;
+        background-color: $wheel-color-primary;
+    }
+
+    &__spinner-item-2 {
+        border-left: 4px solid white;
+        background-color: $wheel-color-accent-2;
+    }
+
+    &__spinner-item-3 {
+        border-top: 4px solid white;
+        background-color: $wheel-color-secondary;
+        order: 4;
+    }
+
+    &__spinner-item-4 {
+        border-right: 4px solid white;
+        background-color: $wheel-color-accent-1;
+        order: 3;
+    }
+
+    &__spinner-items-label {
+        width: 7rem;
+        text-align: center;
+        color: $white;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        font-size: $body-xs;
+    }
+
+    &__spin-btn {
+        width: 4.4rem;
+        height: 4.4rem;
+        border: 3px solid $text-secondary;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
+        box-shadow: $shadow-wheel-secondary;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    &__spin-btn-text {
+        color: $text-secondary;
+        font-size: $body-xs;
+        line-height: map-get($map: $line-heights, $key: 'noraml');
+        font-weight: $weight-bold;
+    }
+
+    &__view-unlock-deals-btn {
+        width: 100%;
+        font-size: $body-sm;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+    }
+
+    &__bubble-counter {
+        height: 1.8rem;
+        width: 1.8rem;
+        background-color: $wheel-color-secondary;
+        border-radius: map-get($map: $border-radius, $key: 'rounded');
+        font-size: $body-xs;
+        font-weight: $weight-medium;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        color: $white;
+        padding: 0.3rem;
+    }
+
+    &__win-message {
+        font-size: $body-xs;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        margin-bottom: 0.8rem;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@include mq-min('md') {
+    .special-offer {
+        align-items: center;
+
+        &__container {
+            border-radius: 2.4rem;
+            animation-name: pop-up;
+            transform-origin: initial;
+        }
+        &__container--close {
+            animation: pop-up-close 1s forwards;
+        }
+    }
+}

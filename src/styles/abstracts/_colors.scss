@@ -9,6 +9,7 @@ $grey-scale-black: #191825;
 $grey-scale-black-10: #191825;
 $cyan: #06b6d4;
 $subtle-white: #eeeeee;
+$lime-green: #32cd32;
 
 //Text colors
 $text-hero: $black;
@@ -33,7 +34,7 @@ $bg-tracker-inactive: $text-primary-5;
 $border-primary: $text-primary-10;
 $border-secondary: $text-primary-5;
 $deals-border-primary: rgba($hot-pink, 0.2);
-$deals-border-seconary: rgba($black, 0.2);
+$deals-border-secondary: rgba($black, 0.2);
 
 //Colors for special deals feature
 $wheel-color-primary: $hot-pink;
@@ -43,6 +44,7 @@ $wheel-color-accent-2: $cyan;
 $deals-validity-highlight: $violet;
 
 //Special deals cards background colors
+$overlay-color: rgba($black, 0.5);
 $wheel-base-color: $subtle-white;
 $deals-card-primary: linear-gradient(
     90deg,

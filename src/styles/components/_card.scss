@@ -1,0 +1,65 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+
+.card {
+    width: 100%;
+    padding: 1.6rem;
+    border: 1px solid $deals-border-primary;
+    background: $deals-card-primary;
+    border-radius: map-get($map: $border-radius, $key: 'xs');
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.3rem;
+    }
+
+    &__name {
+        width: 100%;
+        font-size: $body-sm;
+        font-weight: $weight-semibold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: start;
+        color: $text-primary;
+    }
+
+    &__validity {
+        font-size: $body-xs;
+        font-weight: $weight-regular;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        color: $deals-validity-highlight;
+    }
+
+    &__code-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+
+        i {
+            color: $wheel-color-primary;
+            cursor: pointer;
+        }
+    }
+
+    &__code {
+        width: 100%;
+        padding: 0.4rem 1rem;
+        font-size: $body-xs;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        border: 1px solid $deals-border-secondary;
+        border-radius: map-get($map: $border-radius, $key: 'xs');
+        background-color: $white;
+    }
+}

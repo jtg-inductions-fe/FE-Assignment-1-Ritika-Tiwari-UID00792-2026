@@ -243,11 +243,15 @@
                             >
                                 <i
                                     class="icon-arrow-left icon--small"
+                                    aria-hidden="true"
                                 ></i></button
                             ><button
                                 class="testimonials__button testimonials__button--next icon-button"
                             >
-                                <i class="icon-arrow-right icon--small"></i>
+                                <i
+                                    class="icon-arrow-right icon--small"
+                                    aria-hidden="true"
+                                ></i>
                             </button>
                         </div>
                     </div>
@@ -391,6 +395,103 @@
             </div>
         </footer>
 
+        <!-- Special Offer Deals -->
+        <section class="special-offer">
+            <div class="special-offer__container">
+                <button class="special-offer__close-btn">
+                    <i
+                        class="icon-close icon icon--small"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+                <div class="special-offer__heading-container">
+                    <h1 class="special-offer__title">
+                        <i
+                            class="icon-gift icon icon--small"
+                            aria-hidden="true"
+                        ></i
+                        >SPECIAL DEALS
+                    </h1>
+                    <h2 class="special-offer__heading">Spin & Win!</h2>
+                    <p class="special-offer__instruction">
+                        Tap the center of the wheel to spin
+                    </p>
+                </div>
+                <div class="special-offer__spin-container">
+                    <i
+                        class="icon-triangle-down icon--small"
+                        aria-hidden="true"
+                    ></i>
+                    <div class="special-offer__spinner-wrapper">
+                        <div class="special-offer__loader"></div>
+
+                        <div class="special-offer__spinner">
+                            <div
+                                class="special-offer__spinner-items special-offer__spinner-item-1"
+                            ></div>
+                            <div
+                                class="special-offer__spinner-items special-offer__spinner-item-2"
+                            ></div>
+                            <div
+                                class="special-offer__spinner-items special-offer__spinner-item-3"
+                            ></div>
+                            <div
+                                class="special-offer__spinner-items special-offer__spinner-item-4"
+                            ></div>
+                            <button class="special-offer__spin-btn">
+                                <span class="special-offer__spin-btn-text"
+                                    >Spin</span
+                                >
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    class="special-offer__view-unlock-deals-btn button button--md button--secondary"
+                >
+                    View All Unlocked Deals
+                    <div class="special-offer__bubble-counter">0</div>
+                </button>
+                <template id="wining-status-template">
+                    <div class="special-offer__wining-status-container">
+                        <p class="special-offer__win-message">You won!</p>
+                        <article class="special-offer__card">
+                            <div class="special-offer__card-content card">
+                                <div
+                                    class="special-offer__details card__details"
+                                >
+                                    <p
+                                        class="special-offer__deal-name card__name"
+                                    >
+                                        20% Off Flights
+                                    </p>
+                                    <p
+                                        class="special-offer__deal-validity card__validity"
+                                    >
+                                        Expires in 7d
+                                    </p>
+                                </div>
+                                <div
+                                    class="special-offer__deal-code-container card__code-container"
+                                >
+                                    <p
+                                        class="special-offer__deal-code card__code"
+                                    >
+                                        FLY20-ABCD
+                                    </p>
+                                    <i
+                                        class="icon-copy icon icon--small copy-icon"
+                                        aria-label="Copy Promo code"
+                                        aria-hidden="true"
+                                    ></i>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </template>
+            </div>
+        </section>
         <script type="module" src="./src/script/index.js" defer></script>
     </body>
 </html>

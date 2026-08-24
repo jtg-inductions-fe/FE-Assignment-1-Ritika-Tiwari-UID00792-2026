@@ -1,4 +1,7 @@
-export function accodion() {
+/**
+ * Function for accordion in the footer
+ */
+export const accodion = () => {
     const footerSection = Array.from(
         document.querySelectorAll('.footer__section'),
     );
@@ -10,4 +13,4 @@ export function accodion() {
             section.classList.toggle('footer__section--open');
         });
     });
-}
+};

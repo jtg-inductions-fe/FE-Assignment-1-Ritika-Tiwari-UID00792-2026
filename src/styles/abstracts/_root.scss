@@ -1,0 +1,12 @@
+@use '../abstracts/colors' as *;
+//expose color variables
+:root {
+    --wheel-base-color: #{$subtle-white};
+    --copy-code-success: #{$lime-green};
+    --wheel-color-primary: #{$hot-pink};
+    --wheel-color-secondary: #{$violet};
+    --wheel-color-accent-1: #{$yellow};
+    --wheel-color-accent-2: #{$cyan};
+    --text-primary-50: #{rgba($grey-scale-black, 0.5)};
+    --text-hero: #{$black};
+}

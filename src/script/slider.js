@@ -2,13 +2,16 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
-export function slider() {
+/**
+ * function for slider functionality using swiper library in js
+ */
+export const slider = () => {
     const testimonials = document.querySelector('.testimonials__list');
 
     /**
      * Function for render data in slides from slides.json file
      */
-    function renderData(name, role, image, rating, text) {
+    const renderData = (name, role, image, rating, text) => {
         return `
 <article class="testimonials__slides swiper-slide">
 <img src="${image}" alt="${name}" class="testimonials__image"/>
@@ -23,12 +26,12 @@ export function slider() {
 <p class="testimonials__description">${text}</p>
 </article>
 `;
-    }
+    };
 
     /**
      * Async Function for fetch and render data in slides from slides.json file and initialization of swiper instance
      */
-    async function loadData() {
+    const loadData = async () => {
         let response = await fetch('/data/slides.json');
         let testimonialsData = await response.json();
         testimonials.innerHTML = testimonialsData
@@ -56,6 +59,6 @@ export function slider() {
                 clickable: true,
             },
         });
-    }
+    };
     loadData();
-}
+};

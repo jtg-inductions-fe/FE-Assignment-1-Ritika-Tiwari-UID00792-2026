@@ -66,6 +66,8 @@ $shadow-button-primary:
 $shadow-button-secondary:
     0 19px 19px rgba($black, 0.09),
     0 43px 26px rgba($black, 0.05);
+$shadow-wheel-primary: 0 0 50px 7px rgba($black, 0.25);
+$shadow-wheel-secondary: 0 2px 14px rgba($wheel-color-primary, 0.35);
 
 //Consistent margin variables for sections of mobile tablet and desktop layouts
 $margin-inline: (
@@ -75,7 +77,9 @@ $margin-inline: (
 );
 //Border radius
 $border-radius: (
+    'xs': 1.6rem,
     'sm': 3.2rem,
     'md': 5.2rem,
     'lg': 10rem,
+    'rounded': 50%,
 );
