@@ -12,6 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 1.2rem;
 
     &__details {
         display: flex;
@@ -57,6 +58,7 @@
 
     &__code {
         width: 100%;
+        min-width: 100px;
         padding: 0.4rem 1rem;
         font-size: $body-xs;
         font-weight: $weight-bold;

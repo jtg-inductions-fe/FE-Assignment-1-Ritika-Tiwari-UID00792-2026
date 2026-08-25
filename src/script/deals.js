@@ -1,14 +1,12 @@
 const DEALS_API_URL =
     'https://gist.githubusercontent.com/ameer-wajid-ali/1f29ebee4295cede36f8d74b45e576df/raw/122966c9a123861249f173911d8d93a76dc06d7a/';
 const MAX_WHEEL_SLICES = 4;
-let dealTimerId = null;
 
 /**
  * Drawer to show spin wheel and its functionality
  */
 export const drawer = () => {
     const colors = getComputedStyle(document.documentElement);
-    const wheelBaseColor = colors.getPropertyValue('--wheel-base-color');
     const primaryWheelColor = colors.getPropertyValue('--wheel-color-primary');
     const successColor = colors.getPropertyValue('--copy-code-success');
     const textHeroColor = colors.getPropertyValue('--text-hero');
@@ -79,9 +77,6 @@ export const drawer = () => {
      * Async function to fetch special offer deals from api and initialize the deals
      */
     const fetchDeals = async () => {
-        if (!winPin) {
-            winPin.style.color = wheelBaseColor;
-        }
         if (wheel) wheel.style.display = 'none';
         if (loader) loader.style.display = 'flex';
         try {
@@ -100,7 +95,6 @@ export const drawer = () => {
                         (unlocked) => unlocked.promoCode === item.promoCode,
                     ),
             );
-
             spinWheel(dealsOnWheel);
         } catch (e) {
             if (e) {
@@ -143,7 +137,6 @@ export const drawer = () => {
         bubble.textContent = count;
     };
     displayCountOfUnlockedDeals(unlockedDeals.length);
-
     let rotateDegreeOfLabel = 0;
     let sliceAngle = 0;
     /**
@@ -160,19 +153,25 @@ export const drawer = () => {
 
         winPin.style.color = primaryWheelColor;
 
-        sliceAngle = 360 / items.length;
+        sliceAngle = 360 / MAX_WHEEL_SLICES;
         rotateDegreeOfLabel = sliceAngle / 2;
-        items.forEach((item, index) => {
+        let index = 0;
+        while (index < MAX_WHEEL_SLICES) {
             const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
             sliceText.setAttribute(
                 'class',
                 'special-offer__spinner-items-label',
             );
-            sliceText.textContent = item.label;
+            if (items[index]) {
+                sliceText.textContent = items[index].label;
+            } else {
+                sliceText.textContent = 'No more deals';
+            }
             sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
-        });
+            index++;
+        }
     };
 
     let winningStatusTemplate = document.getElementById(
@@ -180,6 +179,7 @@ export const drawer = () => {
     );
     let clone = winningStatusTemplate.content.cloneNode(true);
     let unlockedDealsCard = clone.firstElementChild;
+
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
      */
@@ -187,7 +187,11 @@ export const drawer = () => {
         let isSpinning = false;
         let currentRotation = 0;
 
-        if (!dealsOnWheel?.length) return;
+        if (!dealsOnWheel?.length) {
+            if (wheel) wheel.style.display = 'none';
+            wheel.innerHTML =
+                '<span>All deals are unlocked, Try again later.</span>';
+        }
         const spinBtn = document.querySelector('.special-offer__spin-btn');
         const spinBtnText = document.querySelector(
             '.special-offer__spin-btn-text',
@@ -210,14 +214,21 @@ export const drawer = () => {
                     });
                 })
                 .sort((a, b) => Number(a.validFor) - Number(b.validFor));
-            if (!availableDeals.length) return;
+            if (!availableDeals.length) {
+                spinBtn.classList.add('special-offer__spin-btn--disabled');
+                spinBtnText.classList.add(
+                    'special-offer__spin-btn-text--disabled',
+                );
+                spinBtn.ariaDisabled = true;
+                return;
+            }
             isSpinning = true;
             const items = availableDeals.slice(
                 0,
                 Math.min(MAX_WHEEL_SLICES, availableDeals.length),
             );
             renderSlice(items);
-            sliceAngle = 360 / items.length;
+            sliceAngle = 360 / MAX_WHEEL_SLICES;
             if (specialOfferContainer.contains(unlockedDealsCard)) {
                 unlockedDealsCard.style.display = 'none';
             }
@@ -315,7 +326,6 @@ export const drawer = () => {
         const sortedDeals = [...deals].sort(
             (a, b) => Number(a.validFor) - Number(b.validFor),
         );
-
         const noDealsText = document.querySelector(
             '.special-offer__no-deals-unlock-state',
         );
@@ -334,8 +344,8 @@ export const drawer = () => {
             const timeLeft =
                 deal.expiresAt != null ? deal.expiresAt - Date.now() : null;
             const isExpired = deal.expiresAt != null && timeLeft <= 0;
-            const card =
-                template.content.cloneNode(true).firstElementChild.children[1];
+            let clone = winningStatusTemplate.content.cloneNode(true);
+            const card = clone.firstElementChild.children[1];
             const cardContent = card.querySelector(
                 '.special-offer__card-content',
             );
@@ -361,6 +371,7 @@ export const drawer = () => {
                 cardContent.classList.add('card--expired');
                 dealValidity.classList.add('card__validity--expired');
                 copyBtn.style.color = textPrimaryVariant;
+                copyBtn.ariaDisabled = true;
             }
             unlockedDealsContainer.appendChild(card);
         });
@@ -422,34 +433,12 @@ export const drawer = () => {
         storedDeals.push({
             ...deal,
             unlocked: unlockedAt,
-            expiresAt: unlockedAt + Number(deal.validFor) * 60 * 60 * 1000,
+            expiresAt: unlockedAt + Number(deal.validFor) * 24 * 60 * 60 * 1000,
         });
         localStorage.setItem('unlockedDeals', JSON.stringify(storedDeals));
-    };
-
-    const startDealValidityTimer = () => {
-        if (dealTimerId) {
-            clearInterval(dealTimerId);
-        }
-        dealTimerId = setInterval(() => {
-            const storedDeals = JSON.parse(
-                localStorage.getItem('unlockedDeals') || '[]',
-            );
-            const now = Date.now();
-            const updateDeals = storedDeals.map((deal) => {
-                if (deal.expiresAt === null) return deal;
-                const timeLeft = deal.expiresAt - now;
-                return {
-                    ...deal,
-                    timeLeft: Math.max(timeLeft, 0),
-                };
-            });
-            localStorage.setItem('unlockedDeals', JSON.stringify(updateDeals));
-        }, 1000);
     };
 
     navBtn.addEventListener('click', () => {
         displayUnlockedDeals();
     });
-    startDealValidityTimer();
 };

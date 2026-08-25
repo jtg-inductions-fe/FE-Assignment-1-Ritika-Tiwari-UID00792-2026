@@ -269,8 +269,8 @@
     }
 
     &__bubble-counter {
-        height: 1.8rem;
-        width: 1.8rem;
+        min-height: 1.8rem;
+        min-width: 1.8rem;
         background-color: $wheel-color-secondary;
         border-radius: map-get($map: $border-radius, $key: 'rounded');
         font-size: $body-xs;
@@ -280,6 +280,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0.3rem;
     }
 
     &__win-message {
