@@ -68,6 +68,10 @@
         border-radius: map-get($map: $border-radius, $key: 'xs');
         background-color: $white;
     }
+    &__code-copy-btn {
+        background-color: transparent;
+        border: none;
+    }
 }
 
 .card--expired {

@@ -137,6 +137,7 @@ export const drawer = () => {
         bubble.textContent = count;
     };
     displayCountOfUnlockedDeals(unlockedDeals.length);
+
     let rotateDegreeOfLabel = 0;
     let sliceAngle = 0;
     /**
@@ -186,7 +187,6 @@ export const drawer = () => {
     const spinWheel = (dealsOnWheel) => {
         let isSpinning = false;
         let currentRotation = 0;
-
         if (!dealsOnWheel?.length) {
             if (wheel) wheel.style.display = 'none';
             wheel.innerHTML =
@@ -232,6 +232,7 @@ export const drawer = () => {
             if (specialOfferContainer.contains(unlockedDealsCard)) {
                 unlockedDealsCard.style.display = 'none';
             }
+
             const randomIndex = Math.floor(Math.random() * items.length);
             // calcualtion of the target angle of the winner slice from its initial angle
             const targetAngle = randomIndex * sliceAngle;
@@ -245,6 +246,7 @@ export const drawer = () => {
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
             spinBtn.classList.add('special-offer__spin-btn--disabled');
             spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
+            const winningDeal = items[randomIndex];
 
             setTimeout(() => {
                 spinBtn.classList.remove('special-offer__spin-btn--disabled');
@@ -256,7 +258,6 @@ export const drawer = () => {
                     '.special-offer__spinner-items-label',
                 );
                 sliceTextList[randomIndex].style.color = textHeroColor;
-                const winningDeal = items[randomIndex];
                 specialOfferContainer.insertBefore(
                     clone,
                     document.querySelector(
@@ -264,6 +265,7 @@ export const drawer = () => {
                     ),
                 );
                 unlockedDealsCard.style.display = 'block';
+
                 // Check to ensure unlock data structure do not contain duplicate deals
                 if (
                     !unlockedDeals.some(
