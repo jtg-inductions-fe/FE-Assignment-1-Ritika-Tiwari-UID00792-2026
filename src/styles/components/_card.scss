@@ -58,7 +58,7 @@
 
     &__code {
         width: 100%;
-        min-width: 100px;
+        min-width: 10rem;
         padding: 0.4rem 1rem;
         font-size: $body-xs;
         font-weight: $weight-bold;
@@ -68,14 +68,15 @@
         border-radius: map-get($map: $border-radius, $key: 'xs');
         background-color: $white;
     }
+
     &__code-copy-btn {
         background-color: transparent;
         border: none;
     }
-}
 
-.card--expired {
-    background: none;
-    background-color: $wheel-base-color;
-    border-color: $text-primary-50;
+    &--expired {
+        background: none;
+        background-color: $wheel-base-color;
+        border-color: $text-primary-50;
+    }
 }

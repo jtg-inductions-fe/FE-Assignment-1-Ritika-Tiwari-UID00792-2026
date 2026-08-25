@@ -33,16 +33,13 @@
         flex-direction: column;
         padding: 2.4rem;
         gap: 2rem;
-        animation: drawer-open 1s forwards;
+        animation: drawer-open 0.5s forwards;
         transform-origin: bottom;
         position: relative;
     }
 
     &__container--close {
-        animation: drawer-close 1s forwards;
-    }
-    &__container--close {
-        animation: drawer-close 1s forwards;
+        animation: drawer-close 0.5s forwards;
     }
 
     @keyframes drawer-open {
@@ -64,15 +61,6 @@
             transform: translateY(100%);
         }
     }
-    @keyframes drawer-close {
-        from {
-            transform: translateY(0%);
-        }
-
-        to {
-            transform: translateY(100%);
-        }
-    }
 
     @keyframes pop-up {
         from {
@@ -84,15 +72,6 @@
         }
     }
 
-    @keyframes pop-up-close {
-        from {
-            transform: scale(1);
-        }
-
-        to {
-            transform: scale(0);
-        }
-    }
     @keyframes pop-up-close {
         from {
             transform: scale(1);
@@ -296,7 +275,7 @@
         flex-direction: column;
         align-items: center;
         max-height: 23rem;
-        overflow-y: scroll;
+        overflow-y: auto;
         gap: 1rem;
     }
 
@@ -335,7 +314,7 @@
         }
 
         &__container--close {
-            animation: pop-up-close 1s forwards;
+            animation: pop-up-close 0.5s forwards;
         }
     }
 }

@@ -26,7 +26,7 @@ export const drawer = () => {
     const loader = document.querySelector('.special-offer__loader');
 
     /**
-     * Top level unlocked deals data-structure
+     * Top level unlocked deals data-structure fetching from the local storage
      */
     let unlockedDeals = JSON.parse(
         localStorage.getItem('unlockedDeals') || '[]',
@@ -147,7 +147,7 @@ export const drawer = () => {
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
-
+        // reseting the state of slices to empty
         slices.forEach((slice) => {
             slice.replaceChildren();
         });
@@ -175,11 +175,14 @@ export const drawer = () => {
         }
     };
 
+    let navBtn = document.querySelector(
+        '.special-offer__view-unlock-deals-btn',
+    );
     let winningStatusTemplate = document.getElementById(
         'wining-status-template',
     );
     let clone = winningStatusTemplate.content.cloneNode(true);
-    let unlockedDealsCard = clone.firstElementChild;
+    let unlockedDealsCardStatusContainer = clone.firstElementChild;
 
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
@@ -207,6 +210,7 @@ export const drawer = () => {
         );
         spinBtn.addEventListener('click', (e) => {
             if (isSpinning) return;
+            // Available deals after spinning the wheel that is the result of the filter on dealsOnWheel and ensure uniqueness in deals data to be rendered, also applying sorting on the deals RT_A1+_09
             const availableDeals = dealsOnWheel
                 .filter((deal) => {
                     return !unlockedDeals.some((unlocked) => {
@@ -219,18 +223,22 @@ export const drawer = () => {
                 spinBtnText.classList.add(
                     'special-offer__spin-btn-text--disabled',
                 );
-                spinBtn.ariaDisabled = true;
                 return;
             }
             isSpinning = true;
+            navBtn.disabled = true;
+            navBtn.classList.add('button--disabled');
+
             const items = availableDeals.slice(
                 0,
                 Math.min(MAX_WHEEL_SLICES, availableDeals.length),
             );
             renderSlice(items);
             sliceAngle = 360 / MAX_WHEEL_SLICES;
-            if (specialOfferContainer.contains(unlockedDealsCard)) {
-                unlockedDealsCard.style.display = 'none';
+            if (
+                specialOfferContainer.contains(unlockedDealsCardStatusContainer)
+            ) {
+                unlockedDealsCardStatusContainer.style.display = 'none';
             }
 
             const randomIndex = Math.floor(Math.random() * items.length);
@@ -247,12 +255,15 @@ export const drawer = () => {
             spinBtn.classList.add('special-offer__spin-btn--disabled');
             spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
             const winningDeal = items[randomIndex];
-
+            // console.log('winning deal after spin', winningDeal);
             setTimeout(() => {
                 spinBtn.classList.remove('special-offer__spin-btn--disabled');
                 spinBtnText.classList.remove(
                     'special-offer__spin-btn-text--disabled',
                 );
+                navBtn.disabled = false;
+                navBtn.classList.remove('button--disabled');
+
                 //render fresh data on the wheel after spin
                 const sliceTextList = document.querySelectorAll(
                     '.special-offer__spinner-items-label',
@@ -264,7 +275,7 @@ export const drawer = () => {
                         '.special-offer__view-unlock-deals-btn',
                     ),
                 );
-                unlockedDealsCard.style.display = 'block';
+                unlockedDealsCardStatusContainer.style.display = 'block';
 
                 // Check to ensure unlock data structure do not contain duplicate deals
                 if (
@@ -287,6 +298,7 @@ export const drawer = () => {
                 const dealCode = document.querySelector(
                     '.special-offer__deal-code',
                 );
+                // console.log('winning deal before rendering', winningDeal);
                 if (dealName) dealName.textContent = winningDeal.label;
                 if (dealValidity)
                     dealValidity.textContent = `Expires in ${winningDeal.validFor}d`;
@@ -305,9 +317,6 @@ export const drawer = () => {
 
     // Handle Navigation to Unlocked Deals view
     let isUnlockedView = false;
-    let navBtn = document.querySelector(
-        '.special-offer__view-unlock-deals-btn',
-    );
     let unlockedDealsContainer = document.querySelector(
         '.special-offer__unlocked-deals-card-container',
     );
@@ -325,9 +334,12 @@ export const drawer = () => {
      */
     function renderUnlockedDeals(deals) {
         if (!unlockedDealsContainer || !template) return;
+
+        // sorting deals based on the validity of the deals
         const sortedDeals = [...deals].sort(
             (a, b) => Number(a.validFor) - Number(b.validFor),
         );
+        // console.log('Sorting before rendering :', sortedDeals);
         const noDealsText = document.querySelector(
             '.special-offer__no-deals-unlock-state',
         );
@@ -376,6 +388,10 @@ export const drawer = () => {
                 copyBtn.ariaDisabled = true;
             }
             unlockedDealsContainer.appendChild(card);
+            // console.log(
+            //     'To check whether the elements are rendering correct code or not',
+            //     unlockedDealsContainer,
+            // );
         });
     }
 
@@ -388,8 +404,10 @@ export const drawer = () => {
         unlockedDealsContainer.style.display = isUnlockedView ? 'flex' : 'none';
         spinnerContainer.style.display = isUnlockedView ? 'none' : 'flex';
 
-        if (unlockedDealsCard) {
-            unlockedDealsCard.style.display = isUnlockedView ? 'none' : 'block';
+        if (unlockedDealsCardStatusContainer) {
+            unlockedDealsCardStatusContainer.style.display = isUnlockedView
+                ? 'none'
+                : 'block';
         }
         navBtn.classList.toggle('special-offer__back-btn', isUnlockedView);
         const textSpan = navBtn.querySelector('.special-offer__btn-label');
@@ -432,6 +450,8 @@ export const drawer = () => {
             localStorage.getItem('unlockedDeals') || '[]',
         );
         const unlockedAt = Date.now();
+
+        // Storing deals in local storage =
         storedDeals.push({
             ...deal,
             unlocked: unlockedAt,

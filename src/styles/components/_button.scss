@@ -60,4 +60,12 @@
         //Return the button to its normal position while pressing
         transform: translateY(0) scale(1);
     }
+    &--disabled {
+        background-color: $wheel-base-color;
+        opacity: 0.8;
+    }
+    &--disabled:hover {
+        transform: none;
+        box-shadow: none;
+    }
 }
