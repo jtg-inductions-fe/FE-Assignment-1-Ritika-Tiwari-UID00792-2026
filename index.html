@@ -14,389 +14,396 @@
     </head>
 
     <body>
-        <header class="header">
-            <div class="header__container container navigation-open">
-                <div class="header__container__logo">
-                    <img src="/assets/images/logo.svg" alt="Brand Logo" />
-                </div>
-                <nav class="navigation" aria-label="Main Navigation">
-                    <button class="navigation__close-btn">
+        <div id="page-content">
+            <header class="header">
+                <div class="header__container container navigation-open">
+                    <div class="header__container__logo">
+                        <img src="/assets/images/logo.svg" alt="Brand Logo" />
+                    </div>
+                    <nav class="navigation" aria-label="Main Navigation">
+                        <button class="navigation__close-btn">
+                            <i
+                                class="icon-close icon--ex-small"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                        <ul class="navigation__section--start">
+                            <li id="home">
+                                <a
+                                    class="navigation__link is-active"
+                                    href="index.html"
+                                    >Home</a
+                                >
+                            </li>
+                            <li id="discover">
+                                <a class="navigation__link" href="#"
+                                    >Discover</a
+                                >
+                            </li>
+                            <li id="deals">
+                                <a class="navigation__link" href="#"
+                                    >Special Deals</a
+                                >
+                            </li>
+                            <li id="contact">
+                                <a class="navigation__link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <button class="header__container__hamburger">
                         <i
-                            class="icon-close icon--ex-small"
+                            class="icon-hamburger icon--small"
                             aria-hidden="true"
                         ></i>
                     </button>
-                    <ul class="navigation__section--start">
-                        <li id="home">
-                            <a
-                                class="navigation__link is-active"
-                                href="index.html"
-                                >Home</a
-                            >
-                        </li>
-                        <li id="discover">
-                            <a class="navigation__link" href="#">Discover</a>
-                        </li>
-                        <li id="deals">
-                            <a class="navigation__link" href="#"
-                                >Special Deals</a
-                            >
-                        </li>
-                        <li id="contact">
-                            <a class="navigation__link" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
-                <button class="header__container__hamburger">
-                    <i
-                        class="icon-hamburger icon--small"
-                        aria-hidden="true"
-                    ></i>
-                </button>
-                <div class="auth__section">
-                    <a
-                        class="navigation__link button button--sm button--secondary"
-                        href="#"
-                        >Log In</a
-                    >
-                    <a
-                        class="navigation__link button button--sm button--primary"
-                        href="#"
-                        >Sign Up</a
-                    >
+                    <div class="auth__section">
+                        <a
+                            class="navigation__link button button--sm button--secondary"
+                            href="#"
+                            >Log In</a
+                        >
+                        <a
+                            class="navigation__link button button--sm button--primary"
+                            href="#"
+                            >Sign Up</a
+                        >
+                    </div>
                 </div>
-            </div>
-        </header>
-        <main id="main-content">
-            <!-- Hero section start -->
-            <section class="hero" id="hero">
-                <div class="hero__container container">
-                    <div class="hero__content">
-                        <div class="hero__visuals">
-                            <div class="hero__image-container">
-                                <img
-                                    src="./assets/images/profile.svg"
-                                    class="overlay-items profile-item icon"
-                                    alt="Profile Icon"
-                                />
-                                <img
-                                    src="./assets/images/send.svg"
-                                    class="overlay-items send-item icon"
-                                    alt="Send Icon"
-                                />
-                                <div class="overlay-items top-place-item">
+            </header>
+            <main id="main-content">
+                <!-- Hero section start -->
+                <section class="hero" id="hero">
+                    <div class="hero__container container">
+                        <div class="hero__content">
+                            <div class="hero__visuals">
+                                <div class="hero__image-container">
                                     <img
-                                        src="./assets/images/top-places.svg"
-                                        alt="Top Place"
-                                    />
-                                </div>
-                                <div
-                                    class="hero__image-group hero__image-group--left"
-                                >
-                                    <img
-                                        src="./assets/images/visual-image-1.webp"
-                                        alt="Travelling Image"
+                                        src="./assets/images/profile.svg"
+                                        class="overlay-items profile-item icon"
+                                        alt="Profile Icon"
                                     />
                                     <img
-                                        src="./assets/images/visual-image-2.webp"
-                                        alt="Travelling Image"
+                                        src="./assets/images/send.svg"
+                                        class="overlay-items send-item icon"
+                                        alt="Send Icon"
                                     />
-                                </div>
-                                <div
-                                    class="hero__image-group hero__image-group--right"
-                                >
-                                    <img
-                                        src="./assets/images/visual-image-3.webp"
-                                        alt="Travelling Image"
-                                    />
+                                    <div class="overlay-items top-place-item">
+                                        <img
+                                            src="./assets/images/top-places.svg"
+                                            alt="Top Place"
+                                        />
+                                    </div>
+                                    <div
+                                        class="hero__image-group hero__image-group--left"
+                                    >
+                                        <img
+                                            src="./assets/images/visual-image-1.webp"
+                                            alt="Travelling Image"
+                                        />
+                                        <img
+                                            src="./assets/images/visual-image-2.webp"
+                                            alt="Travelling Image"
+                                        />
+                                    </div>
+                                    <div
+                                        class="hero__image-group hero__image-group--right"
+                                    >
+                                        <img
+                                            src="./assets/images/visual-image-3.webp"
+                                            alt="Travelling Image"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="hero__actions">
-                            <span class="hero__tagline">
-                                Explore the world!<i
-                                    class="icon-bag icon--small"
-                                    aria-hidden="true"
-                                ></i>
-                            </span>
-                            <h1 class="hero__heading">
-                                Travel
-                                <span class="hero__heading--highlight"
-                                    >top destination</span
-                                >
-                                of the world
-                            </h1>
-                            <p class="hero__caption">
-                                We always make our customer happy by providing
-                                as many choices as possible
-                            </p>
-                            <div class="hero__button-container">
-                                <button
-                                    class="button button--md button--primary button--shadow"
-                                >
-                                    Get Started
-                                </button>
-                                <button
-                                    class="button button--md button--secondary"
-                                >
-                                    <i
-                                        class="icon-watch-demo-icon icon--small"
+                            <div class="hero__actions">
+                                <span class="hero__tagline">
+                                    Explore the world!<i
+                                        class="icon-bag icon--small"
                                         aria-hidden="true"
-                                    ></i
-                                    >Watch Demo
-                                </button>
+                                    ></i>
+                                </span>
+                                <h1 class="hero__heading">
+                                    Travel
+                                    <span class="hero__heading--highlight"
+                                        >top destination</span
+                                    >
+                                    of the world
+                                </h1>
+                                <p class="hero__caption">
+                                    We always make our customer happy by
+                                    providing as many choices as possible
+                                </p>
+                                <div class="hero__button-container">
+                                    <button
+                                        class="button button--md button--primary button--shadow"
+                                    >
+                                        Get Started
+                                    </button>
+                                    <button
+                                        class="button button--md button--secondary"
+                                    >
+                                        <i
+                                            class="icon-watch-demo-icon icon--small"
+                                            aria-hidden="true"
+                                        ></i
+                                        >Watch Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero__brands">
+                            <img
+                                src="./assets/images/brand-img-1.svg"
+                                alt="Tripadvisor Brand Logo"
+                                class="hero__brands-image"
+                            />
+                            <img
+                                src="./assets/images/brand-img-2.svg"
+                                alt="Expedia Brand Logo"
+                                class="hero__brands-image"
+                            />
+                            <img
+                                src="./assets/images/brand-img-3.svg"
+                                alt="Booking.com Brand Logo"
+                                class="hero__brands-image"
+                            />
+                            <img
+                                src="./assets/images/brand-img-4.svg"
+                                alt="Airbnb Brand Logo"
+                                class="hero__brands-image"
+                            />
+                            <img
+                                src="./assets/images/brand-img-5.svg"
+                                alt="GRBITZ Brand Logo"
+                                class="hero__brands-image"
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                <section class="travel-point">
+                    <div class="travel-point__container container">
+                        <div class="travel-point__img-container">
+                            <img
+                                class="travel-point__img"
+                                src="./assets/images/travel-point-img.webp"
+                                alt="Discount Price Banner Image"
+                            />
+                        </div>
+                        <div class="travel-point__content">
+                            <div class="travel-point__heading-container">
+                                <p
+                                    class="travel-point__heading travel-point__heading--primary"
+                                >
+                                    TRAVEL POINT
+                                </p>
+                                <h2
+                                    class="travel-point__heading travel-point__heading--secondary"
+                                >
+                                    We helping you find your dream location
+                                </h2>
+                            </div>
+                            <p class="travel-point__text">
+                                Contrary to popular belief, Lorem Ipsum is not
+                                simply random text. It has roots in a piece of
+                                classical Latin literature from 45 BC.
+                            </p>
+                            <div class="travel-point__data-container">
+                                <div class="travel-point__icon">
+                                    <img
+                                        src="./assets/images/travel-point-icon.svg"
+                                        alt="Travel Point Icon Image"
+                                        class="icon"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__brands">
-                        <img
-                            src="./assets/images/brand-img-1.svg"
-                            alt="Tripadvisor Brand Logo"
-                            class="hero__brands-image"
-                        />
-                        <img
-                            src="./assets/images/brand-img-2.svg"
-                            alt="Expedia Brand Logo"
-                            class="hero__brands-image"
-                        />
-                        <img
-                            src="./assets/images/brand-img-3.svg"
-                            alt="Booking.com Brand Logo"
-                            class="hero__brands-image"
-                        />
-                        <img
-                            src="./assets/images/brand-img-4.svg"
-                            alt="Airbnb Brand Logo"
-                            class="hero__brands-image"
-                        />
-                        <img
-                            src="./assets/images/brand-img-5.svg"
-                            alt="GRBITZ Brand Logo"
-                            class="hero__brands-image"
-                        />
-                    </div>
-                </div>
-            </section>
-
-            <section class="travel-point">
-                <div class="travel-point__container container">
-                    <div class="travel-point__img-container">
-                        <img
-                            class="travel-point__img"
-                            src="./assets/images/travel-point-img.webp"
-                            alt="Discount Price Banner Image"
-                        />
-                    </div>
-                    <div class="travel-point__content">
-                        <div class="travel-point__heading-container">
+                </section>
+                <section class="testimonials">
+                    <div class="testimonials__container container">
+                        <div class="testimonials__heading-container">
                             <p
-                                class="travel-point__heading travel-point__heading--primary"
+                                class="testimonials__heading testimonials__heading--primary"
                             >
-                                TRAVEL POINT
+                                Testimonials
                             </p>
                             <h2
-                                class="travel-point__heading travel-point__heading--secondary"
+                                class="testimonials__heading testimonials__heading--secondary"
                             >
-                                We helping you find your dream location
+                                Trust our clients
                             </h2>
                         </div>
-                        <p class="travel-point__text">
+                        <div class="testimonials__slider-container">
+                            <div class="testimonials__slider swiper">
+                                <div
+                                    class="testimonials__list swiper-wrapper"
+                                ></div>
+                            </div>
+                            <div class="testimonials__slider-controls">
+                                <button
+                                    class="testimonials__button testimonials__button--previous icon-button"
+                                >
+                                    <i
+                                        class="icon-arrow-left icon--small"
+                                        aria-hidden="true"
+                                    ></i></button
+                                ><button
+                                    class="testimonials__button testimonials__button--next icon-button"
+                                >
+                                    <i
+                                        class="icon-arrow-right icon--small"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="testimonials__pagination"></div>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <div class="footer__container container">
+                    <div class="footer__brand-information">
+                        <div class="footer__logo-container">
+                            <div class="footer__brand-logo">
+                                <img
+                                    src="/assets/images/logo.svg"
+                                    alt="Brand Logo"
+                                />
+                            </div>
+                            <span class="footer__brand-name">Travlog</span>
+                        </div>
+                        <div class="footer__description">
                             Contrary to popular belief, Lorem Ipsum is not
                             simply random text. It has roots in a piece of
                             classical Latin literature from 45 BC.
-                        </p>
-                        <div class="travel-point__data-container">
-                            <div class="travel-point__icon">
-                                <img
-                                    src="./assets/images/travel-point-icon.svg"
-                                    alt="Travel Point Icon Image"
-                                    class="icon"
-                                />
+                        </div>
+                        <div class="footer__socials">
+                            <a
+                                href="#"
+                                class="footer__social-link icon-button--small"
+                                ><i
+                                    class="icon-facebook icon--small"
+                                    aria-hidden="true"
+                                ></i
+                            ></a>
+                            <a
+                                href="#"
+                                class="footer__social-link icon-button--small"
+                                ><i
+                                    class="icon-twitter icon--small"
+                                    aria-hidden="true"
+                                ></i
+                            ></a>
+                            <a
+                                href="#"
+                                class="footer__social-link icon-button--small"
+                                ><i
+                                    class="icon-instagram icon--small"
+                                    aria-hidden="true"
+                                ></i
+                            ></a>
+                        </div>
+                    </div>
+                    <div class="footer__naviagtions">
+                        <div class="footer__section">
+                            <button
+                                class="footer__section-header"
+                                aria-expanded="false"
+                            >
+                                <span class="footer__section-title"
+                                    >Company</span
+                                ><i
+                                    class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <div class="footer__section-items">
+                                <a href="#" class="footer__navigation-links"
+                                    >About</a
+                                >
+                                <a href="#" class="footer__navigation-links"
+                                    >Career</a
+                                >
+                                <a href="#" class="footer__navigation-links"
+                                    >Mobile</a
+                                >
+                            </div>
+                        </div>
+                        <div class="footer__section">
+                            <button
+                                class="footer__section-header"
+                                aria-expanded="false"
+                            >
+                                <span class="footer__section-title"
+                                    >Contact</span
+                                ><i
+                                    class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <div class="footer__section-items">
+                                <a href="#" class="footer__navigation-links"
+                                    >Why Travlog?</a
+                                >
+                                <a href="#" class="footer__navigation-links"
+                                    >Partner with us</a
+                                >
+                                <a href="#" class="footer__navigation-links"
+                                    >FAQ’s</a
+                                >
+                                <a href="#" class="footer__navigation-links"
+                                    >Blog</a
+                                >
+                            </div>
+                        </div>
+                        <div class="footer__section">
+                            <button
+                                class="footer__section-header"
+                                aria-expanded="false"
+                            >
+                                <span class="footer__section-title"
+                                    >Meet Us</span
+                                ><i
+                                    class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <div class="footer__section-items">
+                                <a
+                                    href="tel:+00 92 1234 56789"
+                                    class="footer__navigation-links"
+                                    aria-label="Call +00 92 1234 56789"
+                                    >+00 92 1234 56789</a
+                                >
+                                <a
+                                    href="mailto:info@travlog.com"
+                                    class="footer__navigation-links"
+                                    aria-label="E-mail info@travlog.com"
+                                    >info@travlog.com</a
+                                >
+                                <a
+                                    href="#"
+                                    class="footer__navigation-links"
+                                    aria-label="Address 205. R Street, New York"
+                                    >205. R Street, New York</a
+                                >
+                                <a
+                                    href="#"
+                                    class="footer__navigation-links"
+                                    aria-label="Pin code"
+                                    >BD23200</a
+                                >
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <section class="testimonials">
-                <div class="testimonials__container container">
-                    <div class="testimonials__heading-container">
-                        <p
-                            class="testimonials__heading testimonials__heading--primary"
-                        >
-                            Testimonials
-                        </p>
-                        <h2
-                            class="testimonials__heading testimonials__heading--secondary"
-                        >
-                            Trust our clients
-                        </h2>
-                    </div>
-                    <div class="testimonials__slider-container">
-                        <div class="testimonials__slider swiper">
-                            <div
-                                class="testimonials__list swiper-wrapper"
-                            ></div>
-                        </div>
-                        <div class="testimonials__slider-controls">
-                            <button
-                                class="testimonials__button testimonials__button--previous icon-button"
-                            >
-                                <i
-                                    class="icon-arrow-left icon--small"
-                                    aria-hidden="true"
-                                ></i></button
-                            ><button
-                                class="testimonials__button testimonials__button--next icon-button"
-                            >
-                                <i
-                                    class="icon-arrow-right icon--small"
-                                    aria-hidden="true"
-                                ></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="testimonials__pagination"></div>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <div class="footer__container container">
-                <div class="footer__brand-information">
-                    <div class="footer__logo-container">
-                        <div class="footer__brand-logo">
-                            <img
-                                src="/assets/images/logo.svg"
-                                alt="Brand Logo"
-                            />
-                        </div>
-                        <span class="footer__brand-name">Travlog</span>
-                    </div>
-                    <div class="footer__description">
-                        Contrary to popular belief, Lorem Ipsum is not simply
-                        random text. It has roots in a piece of classical Latin
-                        literature from 45 BC.
-                    </div>
-                    <div class="footer__socials">
-                        <a
-                            href="#"
-                            class="footer__social-link icon-button--small"
-                            ><i
-                                class="icon-facebook icon--small"
-                                aria-hidden="true"
-                            ></i
-                        ></a>
-                        <a
-                            href="#"
-                            class="footer__social-link icon-button--small"
-                            ><i
-                                class="icon-twitter icon--small"
-                                aria-hidden="true"
-                            ></i
-                        ></a>
-                        <a
-                            href="#"
-                            class="footer__social-link icon-button--small"
-                            ><i
-                                class="icon-instagram icon--small"
-                                aria-hidden="true"
-                            ></i
-                        ></a>
-                    </div>
-                </div>
-                <div class="footer__naviagtions">
-                    <div class="footer__section">
-                        <button
-                            class="footer__section-header"
-                            aria-expanded="false"
-                        >
-                            <span class="footer__section-title">Company</span
-                            ><i
-                                class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
-                                aria-hidden="true"
-                            ></i>
-                        </button>
-                        <div class="footer__section-items">
-                            <a href="#" class="footer__navigation-links"
-                                >About</a
-                            >
-                            <a href="#" class="footer__navigation-links"
-                                >Career</a
-                            >
-                            <a href="#" class="footer__navigation-links"
-                                >Mobile</a
-                            >
-                        </div>
-                    </div>
-                    <div class="footer__section">
-                        <button
-                            class="footer__section-header"
-                            aria-expanded="false"
-                        >
-                            <span class="footer__section-title">Contact</span
-                            ><i
-                                class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
-                                aria-hidden="true"
-                            ></i>
-                        </button>
-                        <div class="footer__section-items">
-                            <a href="#" class="footer__navigation-links"
-                                >Why Travlog?</a
-                            >
-                            <a href="#" class="footer__navigation-links"
-                                >Partner with us</a
-                            >
-                            <a href="#" class="footer__navigation-links"
-                                >FAQ’s</a
-                            >
-                            <a href="#" class="footer__navigation-links"
-                                >Blog</a
-                            >
-                        </div>
-                    </div>
-                    <div class="footer__section">
-                        <button
-                            class="footer__section-header"
-                            aria-expanded="false"
-                        >
-                            <span class="footer__section-title">Meet Us</span
-                            ><i
-                                class="footer__section-close-btn icon-arrow-circle-down icon--small icon--social"
-                                aria-hidden="true"
-                            ></i>
-                        </button>
-                        <div class="footer__section-items">
-                            <a
-                                href="tel:+00 92 1234 56789"
-                                class="footer__navigation-links"
-                                aria-label="Call +00 92 1234 56789"
-                                >+00 92 1234 56789</a
-                            >
-                            <a
-                                href="mailto:info@travlog.com"
-                                class="footer__navigation-links"
-                                aria-label="E-mail info@travlog.com"
-                                >info@travlog.com</a
-                            >
-                            <a
-                                href="#"
-                                class="footer__navigation-links"
-                                aria-label="Address 205. R Street, New York"
-                                >205. R Street, New York</a
-                            >
-                            <a
-                                href="#"
-                                class="footer__navigation-links"
-                                aria-label="Pin code"
-                                >BD23200</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
 
         <!-- Special Offer Deals -->
-        <section class="special-offer">
+        <section class="special-offer" aria-modal="true">
             <div class="special-offer__container">
                 <button class="special-offer__close-btn">
                     <i
@@ -416,6 +423,11 @@
                     <p class="special-offer__instruction">
                         Tap the center of the wheel to spin
                     </p>
+                </div>
+                <div class="special-offer__unlocked-deals-card-container">
+                    <span class="special-offer__no-deals-unlock-state"
+                        >No deals are unlocked</span
+                    >
                 </div>
                 <div class="special-offer__spin-container">
                     <i
@@ -438,7 +450,10 @@
                             <div
                                 class="special-offer__spinner-items special-offer__spinner-item-4"
                             ></div>
-                            <button class="special-offer__spin-btn">
+                            <button
+                                type="button"
+                                class="special-offer__spin-btn"
+                            >
                                 <span class="special-offer__spin-btn-text"
                                     >Spin</span
                                 >
@@ -450,8 +465,10 @@
                     type="button"
                     class="special-offer__view-unlock-deals-btn button button--md button--secondary"
                 >
-                    View All Unlocked Deals
-                    <div class="special-offer__bubble-counter">0</div>
+                    <span class="special-offer__btn-label"
+                        >View All Unlocked Deals</span
+                    >
+                    <span class="special-offer__bubble-counter">0</span>
                 </button>
                 <template id="wining-status-template">
                     <div class="special-offer__wining-status-container">
@@ -464,12 +481,12 @@
                                     <p
                                         class="special-offer__deal-name card__name"
                                     >
-                                        20% Off Flights
+                                        Deal Name
                                     </p>
                                     <p
                                         class="special-offer__deal-validity card__validity"
                                     >
-                                        Expires in 7d
+                                        Deal Validity
                                     </p>
                                 </div>
                                 <div
@@ -478,13 +495,17 @@
                                     <p
                                         class="special-offer__deal-code card__code"
                                     >
-                                        FLY20-ABCD
+                                        Promocode
                                     </p>
-                                    <i
-                                        class="icon-copy icon icon--small copy-icon"
-                                        aria-label="Copy Promo code"
-                                        aria-hidden="true"
-                                    ></i>
+                                    <button
+                                        class="special-offer__code-copy-btn card__code-copy-btn"
+                                    >
+                                        <i
+                                            class="icon-copy copy-icon"
+                                            aria-label="Copy Promo code"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </button>
                                 </div>
                             </div>
                         </article>

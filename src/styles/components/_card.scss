@@ -12,6 +12,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 1.2rem;
 
     &__details {
         display: flex;
@@ -38,6 +39,11 @@
         color: $deals-validity-highlight;
     }
 
+    &__validity--expired {
+        color: $text-primary-50;
+        cursor: not-allowed;
+    }
+
     &__code-container {
         display: flex;
         flex-direction: row;
@@ -53,6 +59,7 @@
 
     &__code {
         width: 100%;
+        min-width: 10rem;
         padding: 0.4rem 1rem;
         font-size: $body-xs;
         font-weight: $weight-bold;
@@ -61,5 +68,17 @@
         border: 1px solid $deals-border-secondary;
         border-radius: map-get($map: $border-radius, $key: 'xs');
         background-color: $white;
+    }
+
+    &__code-copy-btn {
+        background-color: transparent;
+        border: none;
+    }
+
+    &--expired {
+        background: none;
+        background-color: $wheel-base-color;
+        border-color: $text-primary-50;
+        cursor: not-allowed;
     }
 }

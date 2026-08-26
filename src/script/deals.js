@@ -7,23 +7,33 @@ const MAX_WHEEL_SLICES = 4;
  */
 export const drawer = () => {
     const colors = getComputedStyle(document.documentElement);
-    const wheelBaseColor = colors.getPropertyValue('--wheel-base-color');
     const primaryWheelColor = colors.getPropertyValue('--wheel-color-primary');
     const successColor = colors.getPropertyValue('--copy-code-success');
     const textHeroColor = colors.getPropertyValue('--text-hero');
+    const textPrimaryVariant = colors.getPropertyValue('--text-primary-50');
+    const header = document.querySelector('.header__container');
     const overlay = document.body.querySelector('.special-offer');
-    const specialDeals = document.getElementById('deals');
+    const specialDealsNav = document.getElementById('deals');
     const specialOfferContainer = document.querySelector(
         '.special-offer__container',
     );
-    const header = document.querySelector('.header__container');
     const closeBtn = document.querySelector('.special-offer__close-btn');
     const winPin = document.querySelector('.icon-triangle-down');
+    const wheel = document.querySelector('.special-offer__spinner');
+    const loader = document.querySelector('.special-offer__loader');
+    const pageContentWrapper = document.getElementById('page-content');
 
     /**
-     * Top level unlocked deals data-structure
+     * Top level unlocked deals data-structure fetching from the local storage
      */
-    const unlockedDeals = [];
+    let unlockedDeals = [];
+    try {
+        unlockedDeals = JSON.parse(
+            localStorage.getItem('unlockedDeals') || '[]',
+        );
+    } catch {
+        unlockedDeals = [];
+    }
 
     /**
      * Drawer open state handler function
@@ -32,6 +42,7 @@ export const drawer = () => {
         header.classList.remove('navigation-open');
         overlay.style.display = 'flex';
         document.body.classList.add('no-scroll');
+        pageContentWrapper.inert = true;
     };
 
     /**
@@ -46,9 +57,10 @@ export const drawer = () => {
                 'special-offer__container--close',
             );
         }, 1000);
+        pageContentWrapper.inert = false;
     };
 
-    specialDeals.addEventListener('click', openDrawer);
+    specialDealsNav.addEventListener('click', openDrawer);
     overlay.addEventListener('click', (e) => {
         if (e.target === e.currentTarget) {
             closeDrawer();
@@ -64,13 +76,7 @@ export const drawer = () => {
      * Async function to fetch special offer deals from api and initialize the deals
      */
     const fetchDeals = async () => {
-        const spinner = document.querySelector('.special-offer__spinner');
-        const loader = document.querySelector('.special-offer__loader');
-
-        if (!winPin) {
-            winPin.style.color = wheelBaseColor;
-        }
-        if (spinner) spinner.style.display = 'none';
+        if (wheel) wheel.style.display = 'none';
         if (loader) loader.style.display = 'flex';
         try {
             const response = await fetch(DEALS_API_URL);
@@ -85,19 +91,18 @@ export const drawer = () => {
             let dealsOnWheel = data.filter(
                 (item) =>
                     !unlockedDeals.some(
-                        (unlocked) => unlocked.label === item.label,
+                        (unlocked) => unlocked.promoCode === item.promoCode,
                     ),
             );
-
             spinWheel(dealsOnWheel);
         } catch (e) {
             if (e) {
-                if (spinner) spinner.style.display = 'none';
-                spinner.innerHTML =
+                if (wheel) wheel.style.display = 'none';
+                wheel.innerHTML =
                     '<span>Something went wrong, Try again later.</span>';
             }
         } finally {
-            if (spinner) spinner.style.display = 'flex';
+            if (wheel) wheel.style.display = 'flex';
             if (loader) loader.style.display = 'none';
         }
     };
@@ -124,15 +129,17 @@ export const drawer = () => {
     };
 
     /**
-     * function to update unlocked deals count on bubble on the button
+     * function to update unlocked deals count of bubble on the button
      */
     const displayCountOfUnlockedDeals = (count) => {
         const bubble = document.querySelector('.special-offer__bubble-counter');
         bubble.textContent = count;
     };
+    displayCountOfUnlockedDeals(unlockedDeals.length);
 
     let rotateDegreeOfLabel = 0;
     let sliceAngle = 0;
+
     /**
      * function to render fresh deals on slide on every spin
      */
@@ -140,44 +147,61 @@ export const drawer = () => {
         const slices = document.querySelectorAll(
             '.special-offer__spinner-items',
         );
-
+        // reseting the state of slices to empty
         slices.forEach((slice) => {
             slice.replaceChildren();
         });
 
         winPin.style.color = primaryWheelColor;
 
-        sliceAngle = 360 / items.length;
+        sliceAngle = 360 / MAX_WHEEL_SLICES;
         rotateDegreeOfLabel = sliceAngle / 2;
-        items.forEach((item, index) => {
+        let index = 0;
+        // Running loop to render the items on the wheel slice or if there are no more items to render then render "No more deals" text
+        while (index < MAX_WHEEL_SLICES) {
             const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
             sliceText.setAttribute(
                 'class',
                 'special-offer__spinner-items-label',
             );
-            sliceText.textContent = item.label;
+            if (items[index]) {
+                sliceText.textContent = items[index].label;
+            } else {
+                sliceText.textContent = 'No more deals';
+            }
             sliceText.style.transform = `rotate(${angle - rotateDegreeOfLabel}deg)`;
             slices[index].appendChild(sliceText);
-        });
+            index++;
+        }
     };
+
+    const navBtn = document.querySelector(
+        '.special-offer__view-unlock-deals-btn',
+    );
+    const winningStatusTemplate = document.getElementById(
+        'wining-status-template',
+    );
+    const clone = winningStatusTemplate.content.cloneNode(true);
+    const unlockedDealsCardStatusContainer = clone.firstElementChild;
+
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
      */
     const spinWheel = (dealsOnWheel) => {
         let isSpinning = false;
         let currentRotation = 0;
-
-        if (!dealsOnWheel?.length) return;
-        const wheel = document.querySelector('.special-offer__spinner');
+        if (!dealsOnWheel?.length) {
+            wheel.innerHTML =
+                '<span>All deals are unlocked, Try again later.</span>';
+        }
         const spinBtn = document.querySelector('.special-offer__spin-btn');
+        const spinBtnText = document.querySelector(
+            '.special-offer__spin-btn-text',
+        );
 
         if (!wheel || !spinBtn) return;
-        let winningStatusTemplate = document.getElementById(
-            'wining-status-template',
-        );
-        let clone = winningStatusTemplate.content.cloneNode(true);
-        let unlockedDealsCard = clone.firstElementChild;
+
         renderSlice(
             dealsOnWheel.slice(
                 0,
@@ -186,72 +210,96 @@ export const drawer = () => {
         );
         spinBtn.addEventListener('click', (e) => {
             if (isSpinning) return;
+            // Available deals after spinning the wheel that is the result of the filter on dealsOnWheel and ensure uniqueness in deals data to be rendered, also applying sorting on the deals.
             const availableDeals = dealsOnWheel
                 .filter((deal) => {
                     return !unlockedDeals.some((unlocked) => {
-                        return unlocked.label === deal.label;
+                        return unlocked.promoCode === deal.promoCode;
                     });
                 })
-                .sort((a, b) => a.validFor - b.validFor);
-            if (!availableDeals.length) return;
+                .sort((a, b) => Number(a.validFor) - Number(b.validFor));
+            if (!availableDeals.length) {
+                spinBtn.disabled = true;
+                spinBtnText.classList.add(
+                    'special-offer__spin-btn-text--disabled',
+                );
+                return;
+            }
             isSpinning = true;
+            navBtn.disabled = true;
 
             const items = availableDeals.slice(
                 0,
                 Math.min(MAX_WHEEL_SLICES, availableDeals.length),
             );
-
             renderSlice(items);
-            sliceAngle = 360 / items.length;
-            if (specialOfferContainer.contains(unlockedDealsCard)) {
-                unlockedDealsCard.style.display = 'none';
+            sliceAngle = 360 / MAX_WHEEL_SLICES;
+            if (
+                specialOfferContainer.contains(unlockedDealsCardStatusContainer)
+            ) {
+                unlockedDealsCardStatusContainer.style.display = 'none';
             }
-            const randomIndex = Math.floor(Math.random() * items.length);
 
+            const randomIndex = Math.floor(Math.random() * items.length);
             // calcualtion of the target angle of the winner slice from its initial angle
             const targetAngle = randomIndex * sliceAngle;
-
             // Add extra rotation to the wheel
             const extraRotation = 360 * 6;
-
             /* Calculate the exact degrees needed to move from the current position,
             we subtract the target angle to rotate the wheel backwards so the slice lands at the top pointer */
             const rotation =
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
-
             currentRotation += rotation;
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
+            spinBtn.disabled = true;
+            spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
+            const winningDeal = items[randomIndex];
 
             setTimeout(() => {
+                spinBtn.disabled = false;
+                spinBtnText.classList.remove(
+                    'special-offer__spin-btn-text--disabled',
+                );
+                navBtn.disabled = false;
+
+                //render fresh data on the wheel after spin
                 const sliceTextList = document.querySelectorAll(
                     '.special-offer__spinner-items-label',
                 );
                 sliceTextList[randomIndex].style.color = textHeroColor;
-                const winningDeal = items[randomIndex];
                 specialOfferContainer.insertBefore(
                     clone,
                     document.querySelector(
                         '.special-offer__view-unlock-deals-btn',
                     ),
                 );
-                unlockedDealsCard.style.display = 'block';
+                unlockedDealsCardStatusContainer.style.display = 'block';
 
                 // Check to ensure unlock data structure do not contain duplicate deals
-                if (!unlockedDeals.includes(winningDeal)) {
+                if (
+                    !unlockedDeals.some(
+                        (deal) => deal.promoCode === winningDeal.promoCode,
+                    )
+                ) {
                     unlockedDeals.push(winningDeal);
+                    saveUnlockedDeals(winningDeal);
                 }
 
-                // Calling unlock deals function to show the number of deals into bubble
+                // Calling unlock deals function to show the number of deals in bubble counter
                 displayCountOfUnlockedDeals(unlockedDeals.length);
-                const dealName = document.querySelector(
+
+                // Rendering winning deal data in the card of winning status container
+                const dealName = unlockedDealsCardStatusContainer.querySelector(
                     '.special-offer__deal-name',
                 );
-                const dealValidity = document.querySelector(
-                    '.special-offer__deal-validity',
-                );
-                const dealCode = document.querySelector(
+                const dealValidity =
+                    unlockedDealsCardStatusContainer.querySelector(
+                        '.special-offer__deal-validity',
+                    );
+                const dealCode = unlockedDealsCardStatusContainer.querySelector(
                     '.special-offer__deal-code',
                 );
+
                 if (dealName) dealName.textContent = winningDeal.label;
                 if (dealValidity)
                     dealValidity.textContent = `Expires in ${winningDeal.validFor}d`;
@@ -267,4 +315,180 @@ export const drawer = () => {
             e.stopPropagation();
         });
     };
+
+    // Handle Navigation to Unlocked Deals view
+    let isUnlockedView = false;
+    const unlockedDealsContainer = document.querySelector(
+        '.special-offer__unlocked-deals-card-container',
+    );
+    const spinnerContainer = document.querySelector(
+        '.special-offer__spin-container',
+    );
+    const headingOnDrawer = document.querySelector('.special-offer__heading');
+    const instructionOnDrawer = document.querySelector(
+        '.special-offer__instruction',
+    );
+    const template = document.getElementById('wining-status-template');
+
+    /**
+     * Function for rendering deals cards in the View
+     */
+    function renderUnlockedDeals(deals) {
+        if (!unlockedDealsContainer || !template) return;
+
+        // Removing cards from the container that are already exist;
+        deals.forEach((deal) => {
+            const alreadyExist = unlockedDealsContainer.querySelector(
+                `[data-promo-code="${deal.promoCode}"]`,
+            );
+            if (alreadyExist) {
+                alreadyExist.remove();
+            }
+        });
+
+        // sorting deals based on the validity of the deals
+        const sortedDeals = [...deals].sort(
+            (a, b) => Number(a.validFor) - Number(b.validFor),
+        );
+        const noDealsText = document.querySelector(
+            '.special-offer__no-deals-unlock-state',
+        );
+
+        if (sortedDeals.length === 0) {
+            noDealsText.style.display = 'block';
+            return;
+        } else {
+            noDealsText.style.display = 'none';
+        }
+
+        // Rendering sorted deals on the unlockedView
+        sortedDeals.forEach((deal) => {
+            // Calculating time left for a deal to get expired
+            const timeLeft =
+                deal.expiresAt != null ? deal.expiresAt - Date.now() : null;
+            //Checking whether this deal is expired or not based on expireAt timeStamp and timeLeft
+            const isExpired = deal.expiresAt != null && timeLeft <= 0;
+
+            // Creating new card to render a deal
+            const clone = winningStatusTemplate.content.cloneNode(true);
+            const card = clone.firstElementChild.children[1];
+            const cardContent = card.querySelector(
+                '.special-offer__card-content',
+            );
+            // Setting attribute of deal card with promocode to check the unique deal card in the container.
+            card.setAttribute('data-promo-code', deal.promoCode);
+
+            const dealName = card.querySelector('.special-offer__deal-name');
+            const dealValidity = card.querySelector(
+                '.special-offer__deal-validity',
+            );
+            const dealCode = card.querySelector('.special-offer__deal-code');
+            const copyBtn = card.querySelector('.icon-copy');
+
+            // Rendering deal data on the created deal card
+            if (dealName) dealName.textContent = deal.label;
+            if (dealValidity)
+                dealValidity.textContent = isExpired
+                    ? 'Deal Expired'
+                    : `Expires in ${deal.validFor}d`;
+            if (dealCode) dealCode.textContent = deal.promoCode;
+            if (copyBtn && !isExpired) {
+                copyBtn.addEventListener('click', () => {
+                    copyCodeToClipboard(deal.promoCode, copyBtn);
+                });
+            }
+            // UI State handling if deal is expired
+            if (isExpired) {
+                cardContent.classList.add('card--expired');
+                dealValidity.classList.add('card__validity--expired');
+                copyBtn.style.color = textPrimaryVariant;
+                copyBtn.ariaDisabled = true;
+            }
+            unlockedDealsContainer.appendChild(card);
+        });
+    }
+
+    /**
+     * Function for showing Unlocked Deals on the Unlocked deals container
+     */
+    function displayUnlockedDeals() {
+        if (!unlockedDealsContainer || !template) return;
+        isUnlockedView = !isUnlockedView;
+        unlockedDealsContainer.style.display = isUnlockedView ? 'flex' : 'none';
+        spinnerContainer.style.display = isUnlockedView ? 'none' : 'flex';
+
+        if (unlockedDealsCardStatusContainer) {
+            unlockedDealsCardStatusContainer.style.display = isUnlockedView
+                ? 'none'
+                : 'block';
+        }
+
+        /* Chaging the state of button if isUnlockedView is active and also changing the heading and instruction of special offer container on the unlockedView */
+        navBtn.classList.toggle('special-offer__back-btn', isUnlockedView);
+        const textSpan = navBtn.querySelector('.special-offer__btn-label');
+        const heading = isUnlockedView ? 'Unlocked Deals' : 'Spin & Win!';
+        const instruction = isUnlockedView
+            ? 'All the deals you’ve unlocked yet!'
+            : 'Tap the center of the wheel to spin';
+        if (headingOnDrawer) headingOnDrawer.textContent = heading;
+        if (instructionOnDrawer) instructionOnDrawer.textContent = instruction;
+        const targetLabel = isUnlockedView
+            ? 'Go Back'
+            : 'View All Unlocked Deals';
+
+        if (textSpan) {
+            textSpan.textContent = targetLabel;
+        } else {
+            navBtn.childNodes[0].nodeValue = targetLabel;
+        }
+
+        const countBubble = navBtn.querySelector(
+            '.special-offer__bubble-counter',
+        );
+        if (countBubble) {
+            countBubble.style.display = isUnlockedView ? 'none' : 'flex';
+        }
+
+        if (isUnlockedView) {
+            let storedDeals = [];
+            try {
+                storedDeals = JSON.parse(
+                    localStorage.getItem('unlockedDeals') || '[]',
+                );
+                renderUnlockedDeals(storedDeals);
+            } catch {
+                storedDeals = [];
+            }
+        }
+    }
+
+    /**
+     * Function to store the unlocked deals in the local storage with expiresAt timestamp
+     */
+    const saveUnlockedDeals = (deal) => {
+        let storedDeals = [];
+        try {
+            storedDeals = JSON.parse(
+                localStorage.getItem('unlockedDeals') || '[]',
+            );
+
+            const unlockedAt = Date.now();
+
+            // Storing deals in local storage
+            storedDeals.push({
+                ...deal,
+                unlocked: unlockedAt,
+                expiresAt:
+                    unlockedAt + Number(deal.validFor) * 24 * 60 * 60 * 1000,
+            });
+            localStorage.setItem('unlockedDeals', JSON.stringify(storedDeals));
+        } catch {
+            storedDeals = [];
+        }
+    };
+
+    // Event listener to handle the navigation from spin view to unlocked deals view
+    navBtn.addEventListener('click', () => {
+        displayUnlockedDeals();
+    });
 };

@@ -33,12 +33,13 @@
         flex-direction: column;
         padding: 2.4rem;
         gap: 2rem;
-        animation: drawer-open 1s forwards;
+        animation: drawer-open 0.5s forwards;
         transform-origin: bottom;
         position: relative;
     }
+
     &__container--close {
-        animation: drawer-close 1s forwards;
+        animation: drawer-close 0.5s forwards;
     }
 
     @keyframes drawer-open {
@@ -50,6 +51,7 @@
             transform: translateY(0%);
         }
     }
+
     @keyframes drawer-close {
         from {
             transform: translateY(0%);
@@ -69,6 +71,7 @@
             transform: scale(1);
         }
     }
+
     @keyframes pop-up-close {
         from {
             transform: scale(1);
@@ -227,6 +230,11 @@
         font-weight: $weight-bold;
     }
 
+    &__spin-btn-text--disabled {
+        color: $text-primary-50;
+        cursor: not-allowed;
+    }
+
     &__view-unlock-deals-btn {
         width: 100%;
         font-size: $body-sm;
@@ -235,14 +243,17 @@
     }
 
     &__bubble-counter {
-        height: 1.8rem;
-        width: 1.8rem;
+        min-height: 1.8rem;
+        min-width: 1.8rem;
         background-color: $wheel-color-secondary;
         border-radius: map-get($map: $border-radius, $key: 'rounded');
         font-size: $body-xs;
         font-weight: $weight-medium;
         line-height: map-get($map: $line-heights, $key: 'normal');
         color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 0.3rem;
     }
 
@@ -252,6 +263,28 @@
         line-height: map-get($map: $line-heights, $key: 'normal');
         text-align: center;
         margin-bottom: 0.8rem;
+    }
+
+    &__unlocked-deals-card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-height: 23rem;
+        overflow-y: auto;
+        gap: 1rem;
+    }
+
+    &__card {
+        width: 100%;
+    }
+
+    &__no-deals-unlock-state {
+        color: $text-hero;
+        font-size: $body-xs;
+        font-weight: $weight-bold;
+        line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
+        display: none;
     }
 }
 
@@ -274,8 +307,9 @@
             animation-name: pop-up;
             transform-origin: initial;
         }
+
         &__container--close {
-            animation: pop-up-close 1s forwards;
+            animation: pop-up-close 0.5s forwards;
         }
     }
 }
