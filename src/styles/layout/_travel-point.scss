@@ -80,6 +80,8 @@
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
         text-align: center;
+        max-width: 15rem;
+        @include truncate;
     }
 
     &__data-item-title {
@@ -88,6 +90,8 @@
         font-weight: $weight-regular;
         line-height: map-get($map: $line-heights, $key: 'loose');
         text-align: center;
+        max-width: 15rem;
+        @include truncate;
     }
 
     &__icon {
