@@ -18,8 +18,23 @@
             <header class="header">
                 <div class="header__container container navigation-open">
                     <div class="header__container__logo">
-                        <img src="/assets/images/logo.svg" alt="Brand Logo" />
+                        <a href="/" class="header__brand-logo-link">
+                            <img
+                                src="/assets/images/logo.svg"
+                                alt="Brand Logo"
+                            />
+                        </a>
                     </div>
+                    <button
+                        type="button"
+                        aria-label="Open Menu"
+                        class="header__container__hamburger"
+                    >
+                        <i
+                            class="icon-hamburger icon--small"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
                     <nav class="navigation" aria-label="Main Navigation">
                         <button class="navigation__close-btn">
                             <i
@@ -50,12 +65,6 @@
                             </li>
                         </ul>
                     </nav>
-                    <button class="header__container__hamburger">
-                        <i
-                            class="icon-hamburger icon--small"
-                            aria-hidden="true"
-                        ></i>
-                    </button>
                     <div class="auth__section">
                         <a
                             class="navigation__link button button--sm button--secondary"
@@ -135,11 +144,15 @@
                                 </p>
                                 <div class="hero__button-container">
                                     <button
+                                        type="button"
+                                        aria-label="Get Started"
                                         class="button button--md button--primary button--shadow"
                                     >
                                         Get Started
                                     </button>
                                     <button
+                                        type="button"
+                                        aria-label="Watch Demo"
                                         class="button button--md button--secondary"
                                     >
                                         <i
@@ -242,6 +255,8 @@
                             </div>
                             <div class="testimonials__slider-controls">
                                 <button
+                                    type="button"
+                                    aria-label="Next testimonial"
                                     class="testimonials__button testimonials__button--previous icon-button"
                                 >
                                     <i
@@ -249,6 +264,8 @@
                                         aria-hidden="true"
                                     ></i></button
                                 ><button
+                                    type="button"
+                                    aria-label="Previous testimonial"
                                     class="testimonials__button testimonials__button--next icon-button"
                                 >
                                     <i
@@ -267,12 +284,18 @@
                     <div class="footer__brand-information">
                         <div class="footer__logo-container">
                             <div class="footer__brand-logo">
-                                <img
-                                    src="/assets/images/logo.svg"
-                                    alt="Brand Logo"
-                                />
+                                <a href="/" class="footer__brand-logo-link">
+                                    <img
+                                        src="/assets/images/logo.svg"
+                                        alt="Brand Logo"
+                                    />
+                                </a>
                             </div>
-                            <span class="footer__brand-name">Travlog</span>
+                            <span class="footer__brand-name"
+                                ><a href="/" class="footer__brand-name-link"
+                                    >Travlog</a
+                                ></span
+                            >
                         </div>
                         <div class="footer__description">
                             Contrary to popular belief, Lorem Ipsum is not

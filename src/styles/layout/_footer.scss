@@ -48,16 +48,17 @@
         font-weight: $weight-bold;
         cursor: pointer;
     }
+    &__brand-name-link {
+        color: $text-hero;
+        text-decoration: none;
+    }
 
     &__description {
         font-size: $body-normal;
         color: $text-primary-50;
         line-height: map-get($map: $line-heights, $key: 'loose');
         font-weight: $weight-regular;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
+        @include truncate(2);
     }
 
     &__socials {
@@ -145,6 +146,10 @@
         font-weight: $weight-regular;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    &__navigation-links:focus-visible {
+        outline-offset: -2px;
     }
 }
 

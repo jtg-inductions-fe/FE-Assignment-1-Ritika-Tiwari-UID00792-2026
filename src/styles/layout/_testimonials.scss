@@ -85,6 +85,14 @@
         align-items: center;
     }
 
+    &__author {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
     &__name {
         color: $text-user-data;
         font-size: $heading-h4;
@@ -98,12 +106,14 @@
         font-size: $heading-h4;
         font-weight: $weight-bold;
         line-height: map-get($map: $line-heights, $key: 'normal');
+        text-align: center;
     }
 
     &__rating {
         display: flex;
         gap: 2rem;
     }
+
     &__image {
         height: 12rem;
         width: 12rem;
@@ -115,10 +125,7 @@
         font-weight: $weight-regular;
         line-height: map-get($map: $line-heights, $key: 'loose');
         text-align: center;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
+        @include truncate(2);
     }
 
     &__pagination {
@@ -126,6 +133,7 @@
         justify-content: center;
         gap: 2.4rem;
     }
+
     .swiper-pagination-bullet {
         width: 2.4rem;
         height: 2.4rem;

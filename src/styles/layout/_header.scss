@@ -17,7 +17,6 @@
     background-color: $white;
 
     &__container {
-        max-width: map-get($map: $breakpoints, $key: 'md');
         padding-block: 3.2rem;
         display: flex;
         flex-direction: row;
@@ -139,8 +138,6 @@
 @include mq-min('md') {
     .header {
         &__container {
-            max-width: map-get($breakpoints, xl);
-
             &__logo {
                 order: -1;
                 margin-left: 20rem;
@@ -175,7 +172,6 @@
         background-color: $white;
         &__container {
             padding-block: 4.85rem;
-            // max-width: 100%;
             top: 3.4rem;
             border-radius: 10px;
             padding-block: 4.9rem;
