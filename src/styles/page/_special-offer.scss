@@ -223,19 +223,13 @@
         cursor: pointer;
     }
 
-    &__spin-btn--disabled {
-        background-color: $wheel-base-color;
-        border-color: $text-primary-50;
-        opacity: 0.8;
-        cursor: none;
-    }
-
     &__spin-btn-text {
         color: $text-secondary;
         font-size: $body-xs;
         line-height: map-get($map: $line-heights, $key: 'noraml');
         font-weight: $weight-bold;
     }
+
     &__spin-btn-text--disabled {
         color: $text-primary-50;
     }

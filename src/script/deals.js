@@ -158,6 +158,7 @@ export const drawer = () => {
         sliceAngle = 360 / MAX_WHEEL_SLICES;
         rotateDegreeOfLabel = sliceAngle / 2;
         let index = 0;
+        // Running loop to render the items on the wheel slice or if there are no more items to render then render "No more deals" text
         while (index < MAX_WHEEL_SLICES) {
             const angle = index * sliceAngle;
             const sliceText = document.createElement('span');
@@ -211,7 +212,7 @@ export const drawer = () => {
         );
         spinBtn.addEventListener('click', (e) => {
             if (isSpinning) return;
-            // Available deals after spinning the wheel that is the result of the filter on dealsOnWheel and ensure uniqueness in deals data to be rendered, also applying sorting on the deals RT_A1+_09
+            // Available deals after spinning the wheel that is the result of the filter on dealsOnWheel and ensure uniqueness in deals data to be rendered, also applying sorting on the deals.
             const availableDeals = dealsOnWheel
                 .filter((deal) => {
                     return !unlockedDeals.some((unlocked) => {
@@ -220,7 +221,7 @@ export const drawer = () => {
                 })
                 .sort((a, b) => Number(a.validFor) - Number(b.validFor));
             if (!availableDeals.length) {
-                spinBtn.classList.add('special-offer__spin-btn--disabled');
+                spinBtn.classList.add('button--disabled');
                 spinBtnText.classList.add(
                     'special-offer__spin-btn-text--disabled',
                 );
@@ -253,12 +254,12 @@ export const drawer = () => {
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
             currentRotation += rotation;
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
-            spinBtn.classList.add('special-offer__spin-btn--disabled');
+            spinBtn.classList.add('button--disabled');
             spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
             const winningDeal = items[randomIndex];
 
             setTimeout(() => {
-                spinBtn.classList.remove('special-offer__spin-btn--disabled');
+                spinBtn.classList.remove('button--disabled');
                 spinBtnText.classList.remove(
                     'special-offer__spin-btn-text--disabled',
                 );
@@ -288,8 +289,10 @@ export const drawer = () => {
                     saveUnlockedDeals(winningDeal);
                 }
 
-                // Calling unlock deals function to show the number of deals into bubble
+                // Calling unlock deals function to show the number of deals in bubble counter
                 displayCountOfUnlockedDeals(unlockedDeals.length);
+
+                // Rendering winning deal data in the card of winning status container
                 const dealName = unlockedDealsCardStatusContainer.querySelector(
                     '.special-offer__deal-name',
                 );
@@ -329,7 +332,7 @@ export const drawer = () => {
     let instructionOnDrawer = document.querySelector(
         '.special-offer__instruction',
     );
-    const template = document.querySelector('template');
+    const template = document.getElementById('wining-status-template');
 
     /**
      * Function for rendering deals cards in the View
@@ -364,21 +367,29 @@ export const drawer = () => {
 
         // Rendering sorted deals on the unlockedView
         sortedDeals.forEach((deal) => {
+            // Calculating time left for a deal to get expired
             const timeLeft =
                 deal.expiresAt != null ? deal.expiresAt - Date.now() : null;
+            //Checking whether this deal is expired or not based on expireAt timeStamp and timeLeft
             const isExpired = deal.expiresAt != null && timeLeft <= 0;
+
+            // Creating new card to render a deal
             let clone = winningStatusTemplate.content.cloneNode(true);
             const card = clone.firstElementChild.children[1];
             const cardContent = card.querySelector(
                 '.special-offer__card-content',
             );
+            // Setting attribute of deal card with promocode to check the unique deal card in the container.
             card.setAttribute('data-promo-code', deal.promoCode);
+
             const dealName = card.querySelector('.special-offer__deal-name');
             const dealValidity = card.querySelector(
                 '.special-offer__deal-validity',
             );
             const dealCode = card.querySelector('.special-offer__deal-code');
             const copyBtn = card.querySelector('.icon-copy');
+
+            // Rendering deal data on the created deal card
             if (dealName) dealName.textContent = deal.label;
             if (dealValidity)
                 dealValidity.textContent = isExpired
@@ -390,6 +401,7 @@ export const drawer = () => {
                     copyCodeToClipboard(deal.promoCode, copyBtn);
                 });
             }
+            // UI State handling if deal is expired
             if (isExpired) {
                 cardContent.classList.add('card--expired');
                 dealValidity.classList.add('card__validity--expired');
