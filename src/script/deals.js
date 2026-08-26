@@ -221,7 +221,7 @@ export const drawer = () => {
                 })
                 .sort((a, b) => Number(a.validFor) - Number(b.validFor));
             if (!availableDeals.length) {
-                spinBtn.classList.add('button--disabled');
+                spinBtn.classList.disabled = true;
                 spinBtnText.classList.add(
                     'special-offer__spin-btn-text--disabled',
                 );
@@ -229,7 +229,6 @@ export const drawer = () => {
             }
             isSpinning = true;
             navBtn.disabled = true;
-            navBtn.classList.add('button--disabled');
 
             const items = availableDeals.slice(
                 0,
@@ -254,17 +253,16 @@ export const drawer = () => {
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
             currentRotation += rotation;
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
-            spinBtn.classList.add('button--disabled');
+            spinBtn.classList.disabled = true;
             spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
             const winningDeal = items[randomIndex];
 
             setTimeout(() => {
-                spinBtn.classList.remove('button--disabled');
+                spinBtn.disabled = false;
                 spinBtnText.classList.remove(
                     'special-offer__spin-btn-text--disabled',
                 );
                 navBtn.disabled = false;
-                navBtn.classList.remove('button--disabled');
 
                 //render fresh data on the wheel after spin
                 const sliceTextList = document.querySelectorAll(
