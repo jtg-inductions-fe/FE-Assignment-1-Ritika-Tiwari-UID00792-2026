@@ -232,6 +232,7 @@
 
     &__spin-btn-text--disabled {
         color: $text-primary-50;
+        cursor: not-allowed;
     }
 
     &__view-unlock-deals-btn {

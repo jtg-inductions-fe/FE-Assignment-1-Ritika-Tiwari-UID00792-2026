@@ -41,6 +41,7 @@
 
     &__validity--expired {
         color: $text-primary-50;
+        cursor: not-allowed;
     }
 
     &__code-container {
@@ -78,5 +79,6 @@
         background: none;
         background-color: $wheel-base-color;
         border-color: $text-primary-50;
+        cursor: not-allowed;
     }
 }

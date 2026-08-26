@@ -64,6 +64,7 @@
         border-color: $wheel-base-color;
         background-color: $wheel-base-color;
         opacity: 0.8;
+        cursor: not-allowed;
     }
     &--disabled:hover {
         transform: none;
