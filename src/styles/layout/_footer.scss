@@ -150,6 +150,10 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    &__navigation-links:focus-visible {
+        outline-offset: -2px;
+    }
 }
 
 //reponsive layout for tablet screens
