@@ -11,26 +11,29 @@ export const drawer = () => {
     const successColor = colors.getPropertyValue('--copy-code-success');
     const textHeroColor = colors.getPropertyValue('--text-hero');
     const textPrimaryVariant = colors.getPropertyValue('--text-primary-50');
-
+    const header = document.querySelector('.header__container');
     const overlay = document.body.querySelector('.special-offer');
     const specialDealsNav = document.getElementById('deals');
     const specialOfferContainer = document.querySelector(
         '.special-offer__container',
     );
-    const header = document.querySelector('.header__container');
-    const footer = document.querySelector('.footer__container');
     const closeBtn = document.querySelector('.special-offer__close-btn');
     const winPin = document.querySelector('.icon-triangle-down');
-    const main = document.querySelector('main');
     const wheel = document.querySelector('.special-offer__spinner');
     const loader = document.querySelector('.special-offer__loader');
+    const pageContentWrapper = document.getElementById('page-content');
 
     /**
      * Top level unlocked deals data-structure fetching from the local storage
      */
-    let unlockedDeals = JSON.parse(
-        localStorage.getItem('unlockedDeals') || '[]',
-    );
+    let unlockedDeals = [];
+    try {
+        unlockedDeals = JSON.parse(
+            localStorage.getItem('unlockedDeals') || '[]',
+        );
+    } catch {
+        unlockedDeals = [];
+    }
 
     /**
      * Drawer open state handler function
@@ -39,9 +42,7 @@ export const drawer = () => {
         header.classList.remove('navigation-open');
         overlay.style.display = 'flex';
         document.body.classList.add('no-scroll');
-        main.setAttribute('inert', '');
-        header.setAttribute('inert', '');
-        footer.setAttribute('inert', '');
+        pageContentWrapper.inert = true;
     };
 
     /**
@@ -56,9 +57,7 @@ export const drawer = () => {
                 'special-offer__container--close',
             );
         }, 1000);
-        main.removeAttribute('inert');
-        header.removeAttribute('inert');
-        header.removeAttribute('inert');
+        pageContentWrapper.inert = false;
     };
 
     specialDealsNav.addEventListener('click', openDrawer);
@@ -177,14 +176,14 @@ export const drawer = () => {
         }
     };
 
-    let navBtn = document.querySelector(
+    const navBtn = document.querySelector(
         '.special-offer__view-unlock-deals-btn',
     );
-    let winningStatusTemplate = document.getElementById(
+    const winningStatusTemplate = document.getElementById(
         'wining-status-template',
     );
-    let clone = winningStatusTemplate.content.cloneNode(true);
-    let unlockedDealsCardStatusContainer = clone.firstElementChild;
+    const clone = winningStatusTemplate.content.cloneNode(true);
+    const unlockedDealsCardStatusContainer = clone.firstElementChild;
 
     /**
      * Spin wheel logic in js and dynamically render the items in wheel
@@ -193,7 +192,6 @@ export const drawer = () => {
         let isSpinning = false;
         let currentRotation = 0;
         if (!dealsOnWheel?.length) {
-            if (wheel) wheel.style.display = 'none';
             wheel.innerHTML =
                 '<span>All deals are unlocked, Try again later.</span>';
         }
@@ -221,7 +219,7 @@ export const drawer = () => {
                 })
                 .sort((a, b) => Number(a.validFor) - Number(b.validFor));
             if (!availableDeals.length) {
-                spinBtn.classList.disabled = true;
+                spinBtn.disabled = true;
                 spinBtnText.classList.add(
                     'special-offer__spin-btn-text--disabled',
                 );
@@ -253,7 +251,7 @@ export const drawer = () => {
                 extraRotation + (360 - (currentRotation % 360)) - targetAngle;
             currentRotation += rotation;
             wheel.style.transform = `rotate(${currentRotation + rotateDegreeOfLabel}deg)`;
-            spinBtn.classList.disabled = true;
+            spinBtn.disabled = true;
             spinBtnText.classList.add('special-offer__spin-btn-text--disabled');
             const winningDeal = items[randomIndex];
 
@@ -320,14 +318,14 @@ export const drawer = () => {
 
     // Handle Navigation to Unlocked Deals view
     let isUnlockedView = false;
-    let unlockedDealsContainer = document.querySelector(
+    const unlockedDealsContainer = document.querySelector(
         '.special-offer__unlocked-deals-card-container',
     );
-    let spinnerContainer = document.querySelector(
+    const spinnerContainer = document.querySelector(
         '.special-offer__spin-container',
     );
-    let headingOnDrawer = document.querySelector('.special-offer__heading');
-    let instructionOnDrawer = document.querySelector(
+    const headingOnDrawer = document.querySelector('.special-offer__heading');
+    const instructionOnDrawer = document.querySelector(
         '.special-offer__instruction',
     );
     const template = document.getElementById('wining-status-template');
@@ -372,7 +370,7 @@ export const drawer = () => {
             const isExpired = deal.expiresAt != null && timeLeft <= 0;
 
             // Creating new card to render a deal
-            let clone = winningStatusTemplate.content.cloneNode(true);
+            const clone = winningStatusTemplate.content.cloneNode(true);
             const card = clone.firstElementChild.children[1];
             const cardContent = card.querySelector(
                 '.special-offer__card-content',
@@ -452,10 +450,15 @@ export const drawer = () => {
         }
 
         if (isUnlockedView) {
-            const storedDeals = JSON.parse(
-                localStorage.getItem('unlockedDeals') || '[]',
-            );
-            renderUnlockedDeals(storedDeals);
+            let storedDeals = [];
+            try {
+                storedDeals = JSON.parse(
+                    localStorage.getItem('unlockedDeals') || '[]',
+                );
+                renderUnlockedDeals(storedDeals);
+            } catch {
+                storedDeals = [];
+            }
         }
     }
 
@@ -463,18 +466,25 @@ export const drawer = () => {
      * Function to store the unlocked deals in the local storage with expiresAt timestamp
      */
     const saveUnlockedDeals = (deal) => {
-        const storedDeals = JSON.parse(
-            localStorage.getItem('unlockedDeals') || '[]',
-        );
-        const unlockedAt = Date.now();
+        let storedDeals = [];
+        try {
+            storedDeals = JSON.parse(
+                localStorage.getItem('unlockedDeals') || '[]',
+            );
 
-        // Storing deals in local storage
-        storedDeals.push({
-            ...deal,
-            unlocked: unlockedAt,
-            expiresAt: unlockedAt + Number(deal.validFor) * 24 * 60 * 60 * 1000,
-        });
-        localStorage.setItem('unlockedDeals', JSON.stringify(storedDeals));
+            const unlockedAt = Date.now();
+
+            // Storing deals in local storage
+            storedDeals.push({
+                ...deal,
+                unlocked: unlockedAt,
+                expiresAt:
+                    unlockedAt + Number(deal.validFor) * 24 * 60 * 60 * 1000,
+            });
+            localStorage.setItem('unlockedDeals', JSON.stringify(storedDeals));
+        } catch {
+            storedDeals = [];
+        }
     };
 
     // Event listener to handle the navigation from spin view to unlocked deals view
