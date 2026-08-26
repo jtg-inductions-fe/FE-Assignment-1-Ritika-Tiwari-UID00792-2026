@@ -52,10 +52,7 @@
         line-height: map-get($map: $line-heights, $key: 'loose');
         font-weight: $weight-regular;
         text-align: center;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 5;
-        overflow: hidden;
+        @include truncate(3);
     }
 
     &__data-container {

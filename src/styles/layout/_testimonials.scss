@@ -125,10 +125,7 @@
         font-weight: $weight-regular;
         line-height: map-get($map: $line-heights, $key: 'loose');
         text-align: center;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
+        @include truncate(2);
     }
 
     &__pagination {

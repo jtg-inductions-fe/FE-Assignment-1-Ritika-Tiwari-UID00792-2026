@@ -25,3 +25,19 @@
         font-display: swap;
     }
 }
+
+// Mixin to truncate text with an ellipsis
+@mixin truncate($lines: null) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @if $lines == null {
+        // Single-line truncation
+        white-space: nowrap;
+    } @else {
+        // Multi-line truncation (Webkit Line Clamp)
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+}
